@@ -1,38 +1,33 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
+  // Preflight off: the existing Theoria stylesheet was designed against
+  // browser defaults, so this guarantees zero visual change.
+  corePlugins: { preflight: false },
   theme: {
+    // Same breakpoints as the mockup (max 1020px / max 640px)
+    screens: { sm: '641px', md: '768px', lg: '1021px', xl: '1280px' },
     extend: {
       colors: {
-        // Theoria brand (sampled from the logo)
-        navy: { DEFAULT: '#06194A', 700: '#13296A', 800: '#0C2058', 900: '#040F33' },
-        brand: {
-          blue: '#9FBDFF',        // book left page
-          'blue-light': '#C7D8FF',
-          purple: '#B88BF7',      // book right page
-          'purple-dark': '#6B3FD0', // readable on white (text, active states)
-        },
-        // Legacy alias: older components use "gold-*" class names.
-        // They now resolve to Theoria colours, so nothing breaks.
-        gold: { DEFAULT: '#9FBDFF', light: '#C7D8FF', dark: '#6B3FD0' },
-        paper: '#F3F6FF',
-        ink: '#1B2748',
+        navy: { DEFAULT: '#060C29', 2: '#0D1740', 3: '#16245C' },
+        brand: { blue: '#9DBEFF', purple: '#B68AF6', 'blue-d': '#5B7CF0', 'purple-d': '#7C4DDB' },
+        ivory: '#F6F8FF',
+        tint: '#EEF2FF',
+        ink: '#101B38',
+        muted: '#5D6785',
+        line: '#E1E6F3',
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['Roboto', 'system-ui', 'sans-serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'Arial', 'sans-serif'],
       },
-      keyframes: {
-        marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
-        floaty: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },
-        fadeIn: { from: { opacity: 0, transform: 'translateY(8px)' }, to: { opacity: 1, transform: 'none' } },
+      backgroundImage: {
+        grad: 'linear-gradient(120deg,#9DBEFF,#B68AF6)',
       },
-      animation: {
-        marquee: 'marquee 40s linear infinite',
-        floaty: 'floaty 3s ease-in-out infinite',
-        fadeIn: 'fadeIn .35s ease both',
+      boxShadow: {
+        card: '0 18px 50px -18px rgba(6,12,41,.28)',
       },
     },
   },
   plugins: [],
-};
+}

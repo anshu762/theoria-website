@@ -1,35 +1,32 @@
-export const APPLY_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSfbTp1eoSYns_cTaeNVxF7v-u7WvdEqRN4LryuiMmpbIX1GrA/viewform?usp=header';
+export const CONTACT_EMAIL = 'info@univisory.org'
 
-// Theoria brand files (put them in /public)
-export const LOGO_SRC = '/Theoria-logo.png';
-export const ICON_SRC = '/Theoria-favicon.png';
+// Where the bottom banner's "Get Started" button goes.
+// '/apply' = the internal Apply page (same tab).
+// Or use a full URL like 'https://your-form-link.com' to open it in a new tab.
+export const APPLY_URL = 'https://univisory.org/country-choose.html'
 
-// Where the UniVisory images (mentors, elite, research papers) are loaded from.
-// Default: UniVisory CDN. After running the download script, set VITE_IMG_BASE=/images
-const IMG_BASE = (import.meta.env.VITE_IMG_BASE || 'https://univisory.org/cdn/images').replace(/\/$/, '');
-export const img = (path) => `${IMG_BASE}/${path}`;
+// Optional: put theoria-logo.png in /public and set to '/theoria-logo.png'
+export const LOGO_PNG = ''
 
-export const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || '';
+// Set to true to show the editorial "REVIEW NOTE" boxes again
+export const SHOW_REVIEW_NOTES = false
 
-export const CONTACT = {
-  address: '919, Tower A, Spaze IT Park, Sec-49, Sohna Road, Gurugram, Haryana-122001',
-  phone: '+91 9535386869',
-  email: 'info@univisory.org',
-};
+export const NAV_LINKS = [
+  { to: '/why-research', label: 'Why Research?' },
+  { to: '/programs', label: 'Programs' },
+  { to: '/research', label: 'Research Library' },
+  { to: '/why-theoria', label: 'Why Theoria?' },
+  { to: '/podcast', label: 'Podcast' },
+  { to: '/about', label: 'About' },
+]
 
-// Verify these paths on univisory.org
-const U = 'https://www.univisory.org';
-export const UNIVISORY_LINKS = {
-  about: [
-    { label: 'What We Do', href: `${U}/about.html` },
-    { label: "Director's Note", href: `${U}/directors-note.html` },
-    { label: 'Our Blogs', href: `${U}/blogs.html` },
-  ],
-  useful: [
-    { label: 'Privacy Policy', href: `${U}/privacy-policy.html` },
-    { label: 'Terms of Service', href: `${U}/terms.html` },
-    { label: 'Careers', href: `${U}/careers.html` },
-  ],
-  home: U,
-};
+export const TITLES = {
+  '/': 'Theoria | Research for Young Scholars',
+  '/why-research': 'Why Research? | Theoria',
+  '/programs': 'Programs | Theoria',
+  '/research': 'Research Library | Theoria',
+  '/why-theoria': 'Why Theoria? | Theoria',
+  '/podcast': 'Podcast | Theoria',
+  '/about': 'About | Theoria',
+  '/apply': 'Apply | Theoria',
+}
