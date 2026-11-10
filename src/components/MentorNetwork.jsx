@@ -56,11 +56,6 @@ export default function MentorNetwork() {
             </li>
           ))}
         </ul>
-
-        <small className="mn-disclaimer">
-          University names and logos belong to their respective owners. Theoria is
-          not affiliated with or endorsed by these institutions.
-        </small>
       </div>
     </aside>
   )
