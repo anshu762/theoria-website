@@ -3,6 +3,11 @@ import PageHead from '../components/PageHead'
 import Note from '../components/Note'
 
 const d = (ms) => ({ '--d': ms + 'ms' })
+const PRICES = {
+  scholar: '$3,800',
+  elite: '$4,650',
+  fellowship: '$3,800',
+}
 
 export default function Programs() {
   return (
@@ -17,9 +22,15 @@ export default function Programs() {
       <section>
         <div className="shell">
           <div className="three">
-            <article className="card rv"><div className="tag">Foundations</div><h2>Scholar</h2><p>Develop research literacy, structured inquiry and a substantial first research output.</p><ul><li>Research-question development</li><li>Literature and methodology foundations</li><li>Guided analysis and writing</li><li>Report or appropriate project deliverable</li></ul></article>
-            <article className="card featured rv" style={d(100)}><div className="tag">Original investigation</div><h2>Elite</h2><p>One-to-one research mentorship for a novel question and a defensible original output.</p><ul><li>Field-matched mentor</li><li>Advanced methodology and analysis</li><li>Iterative manuscript or research development</li><li>Publication-readiness and submission guidance</li></ul></article>
-            <article className="card fellow rv" style={d(200)}><div className="tag">Research &amp; innovation</div><h2>Fellowship</h2><p>Extended support for ambitious scholarly work, applied projects or both.</p><ul><li>Research track: manuscript and publication process</li><li>Innovation track: build and validate a project</li><li>Integrated track: research + applied output</li><li>Expanded academic review and mentor evaluation</li></ul></article>
+            <article className="card rv"><div className="tag">Foundations</div><h2>Scholar</h2>
+            <div className="price"><span className="price-amt">{PRICES.scholar}</span></div>
+            <p>Develop research literacy, structured inquiry and a substantial first research output.</p><ul><li>Research-question development</li><li>Literature and methodology foundations</li><li>Guided analysis and writing</li><li>Report or appropriate project deliverable</li></ul></article>
+            <article className="card featured rv" style={d(100)}><div className="tag">Original investigation</div><h2>Elite</h2>
+            <div className="price"><span className="price-amt">{PRICES.scholar}</span></div>
+            <p>One-to-one research mentorship for a novel question and a defensible original output.</p><ul><li>Field-matched mentor</li><li>Advanced methodology and analysis</li><li>Iterative manuscript or research development</li><li>Publication-readiness and submission guidance</li></ul></article>
+            <article className="card fellow rv" style={d(200)}><div className="tag">Research &amp; innovation</div><h2>Fellowship</h2>
+            <div className="price"><span className="price-amt">{PRICES.scholar}</span></div>
+            <p>Extended support for ambitious scholarly work, applied projects or both.</p><ul><li>Research track: manuscript and publication process</li><li>Innovation track: build and validate a project</li><li>Integrated track: research + applied output</li><li>Expanded academic review and mentor evaluation</li></ul></article>
           </div>
         </div>
       </section>

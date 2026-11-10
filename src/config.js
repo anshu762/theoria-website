@@ -16,7 +16,7 @@ export const NAV_LINKS = [
   { to: '/programs', label: 'Programs' },
   { to: '/research', label: 'Research Library' },
   { to: '/why-theoria', label: 'Why Theoria?' },
-  { to: '/podcast', label: 'Podcast' },
+//   { to: '/podcast', label: 'Podcast' },
   { to: '/about', label: 'About' },
 ]
 

@@ -20,7 +20,7 @@ button{cursor:pointer}
 .shell{max-width:1240px;margin:auto;padding:0 36px}
 .grad-text{background:linear-gradient(100deg,var(--blue-d),var(--purple-d));-webkit-background-clip:text;background-clip:text;color:transparent}
 
-.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#4F5FA0}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:1.2rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#4F5FA0}
 .eyebrow:before{content:"";width:26px;height:3px;border-radius:3px;background:var(--grad)}
 .dark .eyebrow{color:var(--blue)}
 
@@ -228,3 +228,59 @@ textarea{grid-column:1/-1;min-height:120px;resize:vertical}
    .toast{left:16px;right:16px;max-width:none;bottom:90px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+/* ============ Hero right side: Our Mentor Network ============ */
+.mentor-net{position:relative;isolation:isolate;overflow:hidden;border-radius:28px;padding:34px 28px 22px;background:linear-gradient(160deg,#060C29 5%,#16245C 58%,#2B3F8E 130%);box-shadow:0 30px 70px -20px rgba(6,12,41,.5)}
+.mentor-net:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--grad);z-index:2}
+
+.mn-ring{position:absolute;z-index:0;border-radius:50%;border:1.5px solid rgba(157,190,255,.45);border-left-color:transparent;border-bottom-color:rgba(182,138,246,.75);pointer-events:none}
+.mn-r1{width:300px;height:300px;right:-120px;top:-130px;animation:spin 26s linear infinite}
+.mn-r2{width:420px;height:420px;right:-180px;top:-190px;opacity:.5;animation:spin 38s linear infinite reverse}
+.mn-spark{position:absolute;z-index:0;right:26px;top:96px;font-size:20px;color:var(--purple);animation:twinkle 3s ease-in-out infinite;pointer-events:none}
+
+.mn-body{position:relative;z-index:1}
+.mn-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.mn-icon{flex-shrink:0;animation:float 5s ease-in-out infinite;filter:drop-shadow(0 10px 14px rgba(0,0,0,.35))}
+.hero .mentor-net h2{color:#fff;font-size:clamp(1.6rem,2.3vw,2.05rem);line-height:1.15;letter-spacing:-.02em;margin:0}
+.hero .mentor-net p{max-width:none;font-size:14.5px;line-height:1.7;color:#C9D3EF;margin:0 0 22px}
+
+.mn-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mn-tile{position:relative;display:flex;align-items:center;gap:10px;min-height:58px;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.96);color:var(--navy);transition:transform .25s,box-shadow .25s}
+.mn-tile:hover{transform:translateY(-3px);box-shadow:0 14px 26px -12px rgba(0,0,0,.6)}
+.mn-tile:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;box-shadow:0 0 0 2px rgba(182,138,246,.95),0 0 22px rgba(157,190,255,.6);animation:mnGlow 12s linear infinite;animation-delay:calc(var(--i) * 1.2s)}
+.rv.in .mn-tile{animation:mnIn .6s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i) * 70ms + 350ms)}
+.mn-logo{width:36px;height:36px;flex-shrink:0;display:grid;place-items:center}
+.mn-logo img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.mn-mono{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--grad);color:var(--navy);font-family:'Playfair Display',serif;font-weight:700;font-size:12px;letter-spacing:.02em}
+.mn-name{font-size:11.5px;font-weight:700;line-height:1.3;color:var(--navy)}
+.mn-disclaimer{display:block;margin-top:16px;font-size:10px;line-height:1.5;color:#8E9BBB}
+
+@keyframes mnIn{from{opacity:0;transform:translateY(14px) scale(.96)}}
+@keyframes mnGlow{0%{opacity:0}3%,9%{opacity:1}13%,100%{opacity:0}}
+
+@media(max-width:1020px){
+  .mentor-net{max-width:560px;width:100%;margin:auto}
+}
+@media(max-width:640px){
+  .mentor-net{padding:28px 20px 20px;border-radius:24px}
+}
+@media(max-width:480px){
+  .mn-tile{flex-direction:column;justify-content:center;text-align:center;gap:6px;padding:12px 8px}
+  .mn-name{font-size:11px}
+}
+
+/* ============ Pathway card prices ============ */
+.price{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin:6px 0 16px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.price-amt{font-family:'Playfair Display',Georgia,serif;font-size:2.4rem;font-weight:600;line-height:1;letter-spacing:-.02em;color:var(--navy)}
+.price-note{font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#5A66A3}
+
+.card.featured .price{border-color:#D6D8FA}
+.card.featured .price-amt{background:linear-gradient(100deg,var(--blue-d),var(--purple-d));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.card.fellow .price{border-color:rgba(255,255,255,.16)}
+.card.fellow .price-amt{color:#fff}
+.card.fellow .price-note{color:#C9D3EF}
+
+@media(max-width:640px){
+  .price-amt{font-size:2.1rem}
+}
