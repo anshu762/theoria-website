@@ -77,22 +77,7 @@ export default function Home() {
           <div className="quote rv" style={d(150)}>“The purpose of research is not merely to produce a paper, but to develop the ability to question, investigate and create knowledge.”</div>
         </div>
       </section>
-
-      <section>
-        <div className="shell">
-          <div className="rv"><div className="eyebrow">Why it matters</div><h2>Research changes how students learn.</h2></div>
-          <div className="tiles">
-            <div className="tile rv"><span className="dot">✦</span><strong>Intellectual growth</strong><p>Learn to question assumptions and follow evidence.</p></div>
-            <div className="tile rv" style={d(80)}><span className="dot">✦</span><strong>Academic depth</strong><p>Move beyond curricula into real disciplinary questions.</p></div>
-            <div className="tile rv" style={d(160)}><span className="dot">✦</span><strong>Original contribution</strong><p>Create knowledge, tools or interventions that others can examine.</p></div>
-            <div className="tile rv"><span className="dot">✦</span><strong>Methodological rigour</strong><p>Understand uncertainty, limitations and reproducibility.</p></div>
-            <div className="tile rv" style={d(80)}><span className="dot">✦</span><strong>Scholarly communication</strong><p>Write, present, defend and revise ideas clearly.</p></div>
-            <div className="tile rv" style={d(160)}><span className="dot">✦</span><strong>Independent ownership</strong><p>Develop the confidence to pursue a difficult question.</p></div>
-          </div>
-          <div className="actions"><Link className="btn secondary" to="/why-research">Read Why Research?</Link></div>
-        </div>
-      </section>
-
+      
       <CommonQuestions />
     </div>
   )
