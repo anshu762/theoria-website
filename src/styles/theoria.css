@@ -104,7 +104,7 @@ section{padding:25px 0 !important;position:relative}
 .card li{position:relative;padding:6px 0 6px 24px}
 .card li:before{content:"";position:absolute;left:0;top:12px;width:12px;height:12px;border-radius:50%;background:var(--grad)}
 .card.featured{background:linear-gradient(160deg,#F3F4FF,#EEF3FF);border-color:#D6D8FA}
-.card.featured:before{content:"Most chosen path";position:absolute;top:-12px;right:22px;background:var(--grad);color:var(--navy);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+.card.featured:before{content:"Most chosen path";position:absolute;top:-12px;right:22px;background:var(--grad);color:var(--navy);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px; z-index:20}
 .card.fellow{background:linear-gradient(160deg,var(--navy),var(--navy-3));color:#fff;border-color:var(--navy)}
 .card.fellow h2,.card.fellow h3{color:#fff}
 .card.fellow p,.card.fellow .tag{color:#C9D3EF}
@@ -270,7 +270,7 @@ textarea{grid-column:1/-1;min-height:120px;resize:vertical}
 }
 
 /* ============ Pathway card prices ============ */
-.price{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin:6px 0 16px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.price{align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin:6px 0 16px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .price-amt{font-family:'Playfair Display',Georgia,serif;font-size:2.4rem;font-weight:600;line-height:1;letter-spacing:-.02em;color:var(--navy)}
 .price-note{font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#5A66A3}
 

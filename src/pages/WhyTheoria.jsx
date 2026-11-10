@@ -2,6 +2,7 @@ import PageHead from '../components/PageHead'
 import Note from '../components/Note'
 import BookIcon from '../components/BookIcon'
 import MentorNetwork from '../components/MentorNetwork'
+import CommonQuestions from '../components/CommonQuestions'
 
 const d = (ms) => ({ '--d': ms + 'ms' })
 
@@ -33,15 +34,7 @@ export default function WhyTheoria() {
         </div>
       </section>
 
-      <section>
-        <div className="shell faq">
-          <div className="rv"><h2>Frequently asked questions</h2></div>
-          <details className="rv"><summary>Does Theoria guarantee a publication?</summary><p>No. Theoria can support manuscript preparation, journal selection, submission and agreed revision work. Editorial decisions belong to independent journals and conferences.</p></details>
-          <details className="rv"><summary>Does Fellowship always include a paper?</summary><p>No. Fellowship may centre on a research manuscript, a validated applied project, or an integrated project and paper. The scope is agreed before enrolment.</p></details>
-          <details className="rv"><summary>Will a student receive a recommendation letter?</summary><p>A mentor may provide a letter when sufficient supervision and performance justify an independent academic assessment. A favourable LOR cannot be guaranteed or purchased.</p></details>
-          <details className="rv"><summary>Is Theoria affiliated with the universities where mentors work?</summary><p>Individual mentors may have university affiliations; these do not constitute institutional sponsorship or endorsement unless separately documented.</p></details>
-        </div>
-      </section>
+      <CommonQuestions />
     </div>
   )
 }
