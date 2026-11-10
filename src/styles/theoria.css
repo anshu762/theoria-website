@@ -54,7 +54,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.93);border-
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
 
 /* sections */
-section{padding:100px 0;position:relative}
+section{padding:25px 0 !important;position:relative}
 .band{background:linear-gradient(100deg,#EAF1FF,#F5F0FF)}
 .dark{background:var(--navy);color:#fff;overflow:hidden}
 .dark h2,.dark h3{color:#fff}.dark p{color:#C5CEE6}
@@ -480,4 +480,54 @@ textarea{min-height:110px}
   .trust span{font-size:11px;padding:7px 12px}
   .brand img{height:42px}
   .mentor-net{padding:24px 18px 18px;border-radius:22px}
+}
+
+/* =====================================================================
+   HERO ALIGNMENT – left copy + right Mentor card
+   (append at END of file; delete this block + the "hero-copy" class to revert)
+   ===================================================================== */
+
+/* Desktop: both columns share one row height; content centered in each */
+.hero-inner{
+  align-items:stretch;      /* left + right columns get equal height */
+  align-content:center;     /* row hugs content, centered in the hero */
+}
+.hero-copy{
+  display:flex;flex-direction:column;justify-content:center;
+  min-width:0;
+}
+.hero-copy .eyebrow{align-self:flex-start}
+.hero-copy h1{margin:35px 0 35px}
+.hero-copy p{margin-bottom:0}
+.hero-copy .actions{margin-top:35px}
+.hero-copy .trust{margin-top:70px}
+
+.mentor-net{
+  display:flex;flex-direction:column;justify-content:center;
+  width:100%;min-width:0;
+}
+.mn-body{width:100%}
+
+/* Tablet: centered stack, same width for text and card */
+@media(max-width:1020px){
+  .hero-inner{align-content:start;gap:32px}
+  .hero-copy{
+    align-items:center;text-align:center;
+    width:100%;max-width:640px;margin:0 auto;
+  }
+  .hero-copy .eyebrow{align-self:center}
+  .hero-copy p{margin-left:auto;margin-right:auto}
+  .hero-copy .actions,
+  .hero-copy .trust{justify-content:center}
+  .mentor-net{max-width:640px;margin:0 auto}
+}
+
+/* Phone: left-aligned text, card exactly the same width */
+@media(max-width:640px){
+  .hero-copy{align-items:stretch;text-align:left;max-width:none}
+  .hero-copy .eyebrow{align-self:flex-start}
+  .hero-copy p{margin-left:0;margin-right:0}
+  .hero-copy .actions,
+  .hero-copy .trust{justify-content:flex-start}
+  .mentor-net{max-width:none;margin:0}
 }

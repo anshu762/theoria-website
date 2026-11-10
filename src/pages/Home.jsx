@@ -16,7 +16,7 @@ export default function Home() {
     <div className="page">
       <div className="hero">
         <div className="shell hero-inner">
-          <div>
+          <div className="hero-copy">
             <div className="eyebrow rv">An invitation to investigate</div>
             <h1 className="rv" style={d(80)}>Where curiosity becomes <span className="grad-text">original work.</span></h1>
             <p className="rv" style={d(160)}>Research mentorship program for young scholars who want to grow beyond what is taught in classroom.</p>

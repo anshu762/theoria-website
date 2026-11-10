@@ -30,10 +30,6 @@ export default function WhyTheoria() {
             <div className="tile rv" style={d(80)}><span className="dot">✓</span><strong>Publication integrity</strong><p>No promise of independent journal or conference acceptance.</p></div>
             <div className="tile rv" style={d(160)}><span className="dot">✓</span><strong>Milestone accountability</strong><p>Progress visibility, response standards and escalation.</p></div>
           </div>
-          <div className="mutedbox rv" style={{ marginTop: 18 }}>
-            <strong>Scholarly outcomes, not just certificates.</strong>
-            <p style={{ margin: '8px 0 0' }}>Every pathway should produce a meaningful, inspectable output appropriate to its scope. These commitments require operational sign-off and documentation before publication as verified guarantees.</p>
-          </div>
         </div>
       </section>
 
