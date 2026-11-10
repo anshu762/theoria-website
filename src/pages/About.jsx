@@ -20,7 +20,7 @@ export default function About() {
             <p>We believe high school students can engage seriously with challenging questions when given appropriate supervision, time, methodological training and honest feedback.</p>
             <p>Research excellence is measured not by prestige signals alone, but by intellectual ownership, reproducible reasoning and the quality of the final contribution.</p>
           </div>
-          <div className="quote rv" style={d(150)}>Research for Young Scholars.</div>
+          <div className="quote rv" style={d(150)}>"Rigorous research shouldn't wait for university. With the right guidance, young minds can ask real questions and find original answers."</div>
         </div>
       </section>
 

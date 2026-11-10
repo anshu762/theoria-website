@@ -13,6 +13,8 @@ export default function WhyResearch() {
         intro="Research is a practice of asking, testing, building and revising, with intellectual benefits that extend well beyond any university application."
       />
 
+      
+
       <section>
         <div className="shell">
           <div className="rv">
