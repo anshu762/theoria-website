@@ -12,7 +12,7 @@ export default function CommonQuestions() {
   return (
     <section className="bg-white">
       <div className="shell">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-1 lg:gap-16">
+        <div className="grid grid-cols-1 gap-1 lg:grid-cols-1 lg:gap-1">
           <div className="">
             <h2>Frequently asked questions</h2>
           </div>
