@@ -219,7 +219,7 @@ textarea{grid-column:1/-1;min-height:120px;resize:vertical}
   section{padding:66px 0}
   .three,.tiles,.research-grid,.formgrid{grid-template-columns:1fr}
   .nav{height:76px}.navlinks{top:76px}
-  .wordmark{font-size:24px}.brand svg{width:40px;height:34px}
+  .wordmark{font-size:24px}.brand svg{width:50px;height:40px}
   .hero-inner{padding-top:40px;min-height:0}
   .hero-art{height:340px}.bigicon{width:170px}.ring.r1{width:230px;height:230px}.ring.r2{width:300px;height:300px}
   .card,.research-card{padding:26px}
@@ -530,4 +530,77 @@ textarea{min-height:110px}
   .hero-copy .actions,
   .hero-copy .trust{justify-content:flex-start}
   .mentor-net{max-width:none;margin:0}
+}
+
+/* =====================================================================
+   LOGO – bigger icon + THEORIA, tagline under the word with blue lines
+   (append at END of file; delete this block to revert)
+   Used by Header.jsx and Footer.jsx through .brand / .wordmark
+   ===================================================================== */
+
+/* one size variable drives icon, word and tagline */
+.brand{
+  --logo:clamp(28px,1rem + 1.5vw,40px);   /* desktop: 28px → 40px */
+  gap:calc(var(--logo) * .3);
+}
+
+/* book icon (overrides the width/height attributes and the old phone rule) */
+.brand svg{
+  width:calc(var(--logo) * 1.8);
+  height:calc(var(--logo) * 1.5);
+  flex-shrink:0;
+}
+
+/* THEORIA word + tagline stacked; width = width of THEORIA */
+.wordmark{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  flex-shrink:0;
+  font-size:var(--logo);
+  letter-spacing:.12em;
+  line-height:1;
+  white-space:nowrap;
+}
+
+/* tagline row:  ——— RESEARCH FOR YOUNG SCHOLARS ——— */
+.wordmark small{
+  display:flex;
+  align-items:center;
+  gap:.6em;
+  margin-top:calc(var(--logo) * .2);
+  font-family:Inter,system-ui,Arial,sans-serif;
+  font-weight:700;
+  font-size:max(6.2px, calc(var(--logo) * .2));
+  line-height:1;
+  letter-spacing:.1em;
+}
+
+/* the two blue lines (fade outward, fill the leftover width) */
+.wordmark small:before,
+.wordmark small:after{
+  content:"";
+  flex:1 1 0;
+  min-width:6px;
+  height:2px;
+  border-radius:2px;
+}
+.wordmark small:before{background:linear-gradient(90deg,rgba(91,124,240,.15),var(--blue-d))}
+.wordmark small:after {background:linear-gradient(90deg,var(--blue-d),rgba(91,124,240,.15))}
+
+/* footer sits on a dark background: lighter blue lines */
+.footer .wordmark small:before{background:linear-gradient(90deg,rgba(157,190,255,.2),var(--blue))}
+.footer .wordmark small:after {background:linear-gradient(90deg,var(--blue),rgba(157,190,255,.2))}
+
+/* small laptops: keep the nav links on one line */
+@media(min-width:1021px) and (max-width:1200px){
+  .brand{--logo:28px}
+}
+/* tablet */
+@media(max-width:1020px){
+  .brand{--logo:34px}
+}
+/* phones */
+@media(max-width:640px){
+  .brand{--logo:clamp(26px,7.4vw,32px)}
 }

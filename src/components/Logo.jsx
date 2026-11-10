@@ -4,7 +4,7 @@ import { LOGO_SRC } from '../config.js';
 function TextLogo() {
   return (
     <span className="inline-flex items-center gap-3">
-      <svg viewBox="0 0 120 120" className="h-11 w-11" aria-hidden="true">
+      <svg viewBox="0 0 120 120" className="h-16 w-16" aria-hidden="true">
         <circle cx="60" cy="30" r="13" fill="#9FBDFF" />
         <path d="M14 46h42v58C44 84 28 78 14 82z" fill="#9FBDFF" />
         <path d="M106 46H64v58c12-20 28-26 42-22z" fill="#B88BF7" />
