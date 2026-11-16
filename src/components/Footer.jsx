@@ -6,17 +6,17 @@ export default function Footer() {
     <footer className="footer">
       <div className="shell">
         <div className="brand">
-          <BookIcon width="52" height="43" />
-          <span className="wordmark">THEORIA<small>RESEARCH FOR YOUNG SCHOLARS</small></span>
+          <div className="flex flex-row items-start justify-start gap-2">
+            <BookIcon width="52" height="43" />
+            <span className="wordmark">THEORIA<small>RESEARCH FOR YOUNG SCHOLARS</small></span>
+          </div>
         </div>
-        <p className="tagline">Original research. Meaningful projects. Intellectual growth.</p>
         <div className="footerlinks">
-          <Link to="/why-research">Why Research?</Link>
-          <Link to="/programs">Programs</Link>
-          <Link to="/research">Research Library</Link>
-          <Link to="/why-theoria">Why Theoria?</Link>
-          <Link to="/podcast">Podcast</Link>
-          <Link to="/apply">Apply</Link>
+          <Link to="/why-research">Research programs</Link>
+          <Link to="/programs">Research library</Link>
+          <Link to="/research">Success stories</Link>
+          <Link to="/why-theoria">Competition ready</Link>
+          <Link to="/podcast">About us</Link>
         </div>
         <hr />
         <p className="copy">© 2026 Theoria. Concept website for design and content approval. Research claims and program terms require verification before launch.</p>

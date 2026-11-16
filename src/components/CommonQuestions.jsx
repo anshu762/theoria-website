@@ -34,8 +34,8 @@ export default function CommonQuestions() {
                     className={
                       'relative overflow-hidden rounded-[14px] border border-solid bg-white transition-[border-color,box-shadow] duration-300 ' +
                       (isOpen
-                        ? 'border-[#cdd6f5] shadow-card'
-                        : 'border-line hover:border-[#cdd6f5]')
+                        ? 'border-[#123B37] shadow-card'
+                        : 'border-line hover:border-[#123B37]')
                     }
                   >
                     {/* gradient accent bar */}
@@ -53,18 +53,9 @@ export default function CommonQuestions() {
                         aria-expanded={isOpen}
                         aria-controls={panelId}
                         onClick={() => toggle(i)}
-                        className="m-0 flex w-full items-center gap-4 border-0 bg-transparent px-5 py-5 text-left sm:px-7 sm:py-6 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#B68AF6]"
+                        className="m-0 flex w-full items-center gap-4 border-0 bg-transparent px-5 py-5 text-left sm:px-7 sm:py-6 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#123B37]"
                       >
-                        <span
-                          className={
-                            'w-11 shrink-0 font-display text-[28px] leading-none transition-colors duration-300 ' +
-                            (isOpen ? 'text-brand-purple' : 'text-[#B7C3F2]')
-                          }
-                        >
-                          {String(i + 1).padStart(2, '0')}
-                        </span>
-
-                        <span className="flex-1 font-display text-[1.1rem] font-medium leading-[1.3] text-navy sm:text-[1.25rem]">
+                        <span className="flex-1 text-[1.1rem] font-semibold leading-[1.3] text-[#123B37] sm:text-[1.25rem]">
                           {item.q}
                         </span>
 
@@ -73,8 +64,8 @@ export default function CommonQuestions() {
                           className={
                             'grid h-9 w-9 shrink-0 place-items-center rounded-full transition duration-300 ' +
                             (isOpen
-                              ? 'rotate-45 bg-grad text-navy'
-                              : 'bg-tint text-brand-purple-d')
+                              ? 'rotate-45 bg-grad text-[#123B37]'
+                              : 'bg-tint text-[#123B37]')
                           }
                         >
                           <svg
@@ -103,7 +94,7 @@ export default function CommonQuestions() {
                       }
                     >
                       <div className="min-h-0 overflow-hidden">
-                        <p className="m-0 px-5 pb-6 text-[14.5px] leading-[1.75] text-muted sm:pl-[88px] sm:pr-8 sm:pb-7">
+                        <p className="m-0 px-5 pb-6 text-[16.5px] leading-[1.75] text-[#123B37] sm:pl-7 sm:pr-8 sm:pb-7">
                           {item.a}
                         </p>
                       </div>

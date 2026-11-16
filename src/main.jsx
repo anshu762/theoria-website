@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
 import './index.css'            // Tailwind
 import './styles/theoria.css'   // Theoria design system (loaded after Tailwind)
+import './styles/about.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

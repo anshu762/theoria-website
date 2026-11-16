@@ -5,14 +5,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Theoria | Research for Young Scholars</title>
 <meta name="description" content="Theoria: research and innovation mentorship for young scholars. Explore Scholar, Elite and Fellowship pathways.">
-<meta name="theme-color" content="#060C29">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 100'%3E%3Ccircle cx='60' cy='16' r='12.5' fill='%239DBEFF'/%3E%3Cpath d='M6 38Q40 33 56 52L56 90Q40 68 11 73Q16 55 6 38Z' fill='%239DBEFF'/%3E%3Cpath d='M114 38Q80 33 64 52L64 90Q80 68 109 73Q104 55 114 38Z' fill='%23B68AF6'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#F3F1E5">
+<!-- <link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='5 -8 110 110'%3E%3Ccircle cx='60' cy='16' r='12.5' fill='%23133B3A'/%3E%3Cpath d='M6 38Q40 33 56 52L56 90Q40 68 11 73Q16 55 6 38Z' fill='%23133B3A'/%3E%3Cpath d='M114 38Q80 33 64 52L64 90Q80 68 109 73Q104 55 114 38Z' fill='%23133B3A'/%3E%3C/svg%3E"> -->
+
+<!-- fallback favicon (shown for a split second; replaced by the real icon via the script at the bottom) -->
+<link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='5 -8 110 110'%3E%3Ccircle cx='60' cy='16' r='12.5' fill='%23F3F1E5'/%3E%3Cpath d='M6 38Q40 33 56 52L56 90Q40 68 11 73Q16 55 6 38Z' fill='%23F3F1E5'/%3E%3Cpath d='M114 38Q80 33 64 52L64 90Q80 68 109 73Q104 55 114 38Z' fill='%23F3F1E5'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="ic-green" color-interpolation-filters="sRGB">
+    <feFlood flood-color="#123B37" result="c"/>
+    <feComposite in="c" in2="SourceAlpha" operator="in"/>
+  </filter>
+  <filter id="ic-cream" color-interpolation-filters="sRGB">
+    <feFlood flood-color="#F3F1E5" result="c"/>
+    <feComposite in="c" in2="SourceAlpha" operator="in"/>
+  </filter>
+</svg>
 <div id="root"></div>
 <script type="module" src="/src/main.jsx"></script>
+<!-- favicon = the SAME book icon (#ic symbol) as the header/footer, painted cream -->
+<script>
+(function () {
+  var tries = 0;
+  function build() {
+    var sym = document.getElementById('ic');
+    if (!sym || !sym.ownerSVGElement) {
+      if (tries++ < 100) setTimeout(build, 100);   // wait for the page to render the symbol
+      return;
+    }
+    var ser = new XMLSerializer();
+    var parts = Array.prototype.map.call(sym.ownerSVGElement.children, function (n) {
+      return ser.serializeToString(n);
+    }).join('');
+    var svg =
+      '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 -8 110 110">' +
+        '<defs>' + parts +
+          '<filter id="fav-cream" color-interpolation-filters="sRGB">' +
+            '<feFlood flood-color="#F3F1E5" result="c"/>' +
+            '<feComposite in="c" in2="SourceAlpha" operator="in"/>' +
+          '</filter>' +
+        '</defs>' +
+        '<use href="#ic" xlink:href="#ic" width="120" height="100" filter="url(#fav-cream)"/>' +
+      '</svg>';
+    var old = document.querySelectorAll('link[rel~="icon"]');
+    for (var i = 0; i < old.length; i++) old[i].parentNode.removeChild(old[i]);
+    var link = document.createElement('link');
+    link.rel = 'icon';
+    link.type = 'image/svg+xml';
+    link.setAttribute('sizes', 'any');
+    link.href = 'data:image/svg+xml,' + encodeURIComponent(svg);
+    document.head.appendChild(link);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+</script>
 </body>
 </html>

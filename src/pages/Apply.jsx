@@ -60,7 +60,6 @@ export default function Apply() {
               <div className="step"><b style={num}>01</b><div><strong>Understand the student</strong><p>Interests, experience, readiness and available time.</p></div></div>
               <div className="step"><b style={num}>02</b><div><strong>Define possible research directions</strong><p>Academic feasibility and potential project scope.</p></div></div>
               <div className="step"><b style={num}>03</b><div><strong>Recommend a pathway</strong><p>Scholar, Elite or Fellowship, based on fit.</p></div></div>
-              <Note>Production contact address, data policy and application terms require confirmation.</Note>
             </div>
           </div>
         </section>

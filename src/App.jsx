@@ -13,6 +13,9 @@ import WhyTheoria from './pages/WhyTheoria.jsx'
 import Podcast from './pages/Podcast.jsx'
 import About from './pages/About.jsx'
 import Apply from './pages/Apply.jsx'
+import Publications from './pages/Publications.jsx'
+import Projects from './pages/Projects.jsx'
+// import SuccessStoriesPage from './pages/SuccessStoriesPage.jsx'
 
 export default function App() {
   return (
@@ -43,6 +46,9 @@ export default function App() {
           <Route path="/podcast" element={<Podcast />} />
           <Route path="/about" element={<About />} />
           <Route path="/apply" element={<Apply />} />
+          <Route path="/program/publications" element={<Publications />} />
+          <Route path="/program/projects" element={<Projects />} />
+          
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

@@ -45,7 +45,6 @@ export default function ResearchLibrary() {
               <p>What the student learned, revised and can defend, with permission.</p>
             </div>
           </div>
-          <Note>No sample projects are represented as completed Theoria work in this prototype. Insert verified student cases from approved records before launch.</Note>
         </div>
       </section>
     </div>

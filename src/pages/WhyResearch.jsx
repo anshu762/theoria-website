@@ -27,7 +27,6 @@ export default function WhyResearch() {
             <div className="card rv" style={d(100)}><span className="tag">Harvard</span><h3>Supplementary scholarly work</h3><p>Harvard's application guidance describes optional supplementary materials for applicants whose work warrants further consideration.</p><a className="source" target="_blank" rel="noopener noreferrer" href="https://college.harvard.edu/admissions/apply/application-requirements">Harvard official application guidance ↗</a></div>
             <div className="card rv" style={d(200)}><span className="tag">Columbia</span><h3>Academic exploration</h3><p>Consult Columbia's official admissions materials for current policies on optional materials and evaluation; no research requirement is implied.</p><a className="source" target="_blank" rel="noopener noreferrer" href="https://undergrad.admissions.columbia.edu/">Columbia Undergraduate Admissions ↗</a></div>
           </div>
-          <Note>Before publication, the editorial team should confirm current policy wording and secure permission for any reproduced university screenshots or excerpts.</Note>
         </div>
       </section>
 

@@ -12,18 +12,28 @@ export const LOGO_PNG = ''
 export const SHOW_REVIEW_NOTES = false
 
 export const NAV_LINKS = [
-  { to: '/why-research', label: 'Why Research?' },
-  { to: '/programs', label: 'Programs' },
-  { to: '/research', label: 'Research Library' },
-  { to: '/why-theoria', label: 'Why Theoria?' },
+  { to: '/programs', label: 'Research programs' },
+  {
+    to: '/program/publications',
+    label: 'Research library',
+    children: [
+      { to: '/program/publications', label: 'Publications' },
+      { to: '/program/projects', label: 'Projects' },
+    ],
+  },
+  { to: '/Success-stories', label: 'Success stories' },
+  { to: '/why-theoria', label: 'Competition ready' },
 //   { to: '/podcast', label: 'Podcast' },
-  { to: '/about', label: 'About' },
+  { to: '/about', label: 'About us' },
 ]
 
 export const TITLES = {
   '/': 'Theoria | Research for Young Scholars',
   '/why-research': 'Why Research? | Theoria',
   '/programs': 'Programs | Theoria',
+  '/program': 'Research Library | Theoria',
+  '/program/publications': 'Publications | Theoria',
+  '/program/projects': 'Projects | Theoria',
   '/research': 'Research Library | Theoria',
   '/why-theoria': 'Why Theoria? | Theoria',
   '/podcast': 'Podcast | Theoria',
