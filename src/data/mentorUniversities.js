@@ -76,10 +76,12 @@ export const RAW_UNIVERSITIES = [
   },
   {
     name: 'University of Toronto', mono: 'UT', slug: 'university-of-toronto', site: 'utoronto.ca',
+    local: 'toronto-logo.webp',
     files: ['University_of_Toronto_coat_of_arms.svg', 'Utoronto_coa.svg', 'University_of_Toronto_logo.svg'],
   },
   {
     name: 'UBC', full: 'University of British Columbia', mono: 'UBC', slug: 'university-of-british-columbia', site: 'ubc.ca',
+    local: 'UBC-logo.webp',
     files: ['UBC_Coat_of_Arms.svg', 'University_of_British_Columbia_coat_of_arms.svg', 'UBC_logo.svg'],
   },
   {
@@ -92,6 +94,7 @@ export const RAW_UNIVERSITIES = [
   },
   {
     name: 'UCL', full: 'University College London', mono: 'UCL', slug: 'ucl', site: 'ucl.ac.uk',
+    local: 'UCL-logo.webp',
     files: ['UCL_logo.svg', 'University_College_London_logo.svg', 'UCL_Coat_of_Arms.svg'],
   },
   {
@@ -110,6 +113,7 @@ export const RAW_UNIVERSITIES = [
   },
   {
     name: 'TU Delft', full: 'Delft University of Technology', mono: 'TUD', slug: 'tu-delft', site: 'tudelft.nl',
+    local: 'TUDelft-logo.webp',
     files: ['TU_Delft_logo.svg', 'TU_Delft_Logo.svg', 'Logo_TU_Delft.svg'],
   },
   {
@@ -119,6 +123,7 @@ export const RAW_UNIVERSITIES = [
   },
   {
     name: 'NTU', full: 'Nanyang Technological University', mono: 'NTU', slug: 'ntu', site: 'ntu.edu.sg',
+    local: 'NTU-logo.webp',
     files: ['NTU_Singapore_Logo.svg', 'Nanyang_Technological_University_coat_of_arms.svg', 'NTU_logo.svg'],
   },
   {
@@ -127,6 +132,7 @@ export const RAW_UNIVERSITIES = [
   },
   {
     name: 'HKU', full: 'University of Hong Kong', mono: 'HKU', slug: 'hku', site: 'hku.hk',
+    local: 'HKU-logo.webp',
     files: ['HKU_Logo.svg', 'University_of_Hong_Kong_Logo.svg', 'HKU_coat_of_arms.svg'],
   },
   {
@@ -137,13 +143,32 @@ export const RAW_UNIVERSITIES = [
 ]
 
 
-export const MENTOR_UNIVERSITIES = RAW_UNIVERSITIES.map((u) => ({
-  ...u,
-  sources: [
-    ...(u.local ? [`${BASE}logos/${u.local}`] : []),
-    `${BASE}logos/${u.slug}.svg`,
-    `${BASE}logos/${u.slug}.png`,
+// true  = ONLY your own files are used. Universities without one show their initials badge.
+// false = universities without your own file still try the online logos (can look blurry).
+const CUSTOM_ONLY = false
+
+
+export const MENTOR_UNIVERSITIES = RAW_UNIVERSITIES.map((u) => {
+  // your own file named in `local`
+  const own = u.local ? [`${BASE}logos/${u.local}`] : []
+
+
+  // optional files named after the slug (public/logos/<slug>.svg or .png)
+  const selfHosted = [`${BASE}logos/${u.slug}.svg`, `${BASE}logos/${u.slug}.png`]
+
+
+  // online logos (Wikimedia, then the website icon)
+  const online = [
     ...u.files.map((f) => commons(f)),
     ...(u.site ? [favicon(u.site)] : []),
-  ],
-}))
+  ]
+
+
+  let sources
+  if (u.local) sources = own                         // custom logo -> ONLY the custom logo
+  else if (CUSTOM_ONLY) sources = selfHosted         // no online logos at all
+  else sources = [...selfHosted, ...online]          // unchanged behaviour
+
+
+  return { ...u, sources }
+})

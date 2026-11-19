@@ -1217,11 +1217,6 @@ header .wordmark{color:var(--navy) !important}
   transition:transform .35s var(--ease),box-shadow .35s,border-color .35s;
 }
 .mu-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--line-2)}
-.mu-card:after{
-  content:"";position:absolute;left:16px;right:16px;top:0;height:3px;
-  border-radius:0 0 3px 3px;background:var(--grad);
-  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease);
-}
 .mu-card:hover:after{transform:scaleX(1)}
 .rv.in .mu-card{animation:mu-pop .6s var(--ease) backwards;animation-delay:calc(var(--i,0) * 70ms + 200ms)}
 
@@ -1280,7 +1275,6 @@ header .wordmark{color:var(--navy) !important}
   .mu-name{font-size:max(12px,calc(16*var(--u)))}
 }
 @media(min-width:1100px){
-  .mu-card:after{animation:mu-glow 12s ease-in-out infinite;animation-delay:calc(var(--i,0) * 1.2s + 2s)}
   .mu-card:hover:after{animation:none;transform:scaleX(1)}
 }
 @keyframes mu-glow{0%{transform:scaleX(0)}4%,10%{transform:scaleX(1)}14%,100%{transform:scaleX(0)}}
