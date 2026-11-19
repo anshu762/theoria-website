@@ -39,7 +39,7 @@ const PROGRAMS = ['Scholar', 'Elite', 'Fellowship']
 const ROWS = [
   [
     'Core purpose',
-    'Build a foundation in research and understand methodologies.',
+    'Build a foundations in research and understand methodologies.',
     'Investigate a novel research question, work with advanced methodologies',
     'Undertake original research, design, and develop an advanced project.',
   ],
