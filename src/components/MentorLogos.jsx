@@ -1,20 +1,30 @@
 import { useState, useCallback } from 'react'
 import { MENTOR_UNIVERSITIES } from '../data/mentorUniversities'
 
+
 const d = (ms) => ({ '--d': ms + 'ms' })
+
 
 // how many rows the logos are split into (26 logos -> 9 / 9 / 8)
 const ROWS = 3
+
+
+// smallest acceptable size for the tiny website-icon fallback (avoids blur)
+const MIN_PX = 64
+const isFavicon = (src) => src.includes('google.com/s2/favicons')
+
 
 // `idx` = which entry of u.sources is being shown (kept in the parent so the
 // card and its marquee copy always use the same one)
 function MentorLogo({ u, idx, onFail }) {
   const src = u.sources[idx]
 
+
   // every source failed -> initials badge
   if (!src) {
     return <span className="mu-mono" aria-hidden="true">{u.mono}</span>
   }
+
 
   return (
     <img
@@ -25,14 +35,20 @@ function MentorLogo({ u, idx, onFail }) {
       height="48"
       decoding="async"
       referrerPolicy="no-referrer"
+      onLoad={(e) => {
+        // a tiny website icon would look blurry -> treat it as failed
+        if (isFavicon(src) && e.currentTarget.naturalWidth < MIN_PX) onFail(u, idx)
+      }}
       onError={() => onFail(u, idx)}
     />
   )
 }
 
+
 export default function MentorLogos() {
   // slug -> index of the source currently used
   const [tried, setTried] = useState({})
+
 
   const onFail = useCallback((u, i) => {
     if (import.meta.env.DEV) {
@@ -43,11 +59,13 @@ export default function MentorLogos() {
     setTried((t) => ((t[u.slug] ?? 0) === i ? { ...t, [u.slug]: i + 1 } : t))
   }, [])
 
+
   const total = MENTOR_UNIVERSITIES.length
   const per = Math.ceil(total / ROWS)
   const rows = Array.from({ length: ROWS }, (_, r) =>
     MENTOR_UNIVERSITIES.slice(r * per, (r + 1) * per)
   ).filter((row) => row.length)
+
 
   return (
     <section
@@ -61,6 +79,7 @@ export default function MentorLogos() {
           <h2 id="mentor-network-title">Our Mentor Network</h2>
           <span className="mu-rule" aria-hidden="true" />
         </div>
+
 
         {/* one auto-scrolling strip.
             --mu-n     = number of UNIQUE universities (the loop distance)

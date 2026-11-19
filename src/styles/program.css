@@ -273,3 +273,182 @@
 }
 .pg-programs .card.pg-elite .pg-fact h4{color:var(--blue,#A9CBBF)}
 .pg-programs .card.pg-elite .pg-fact p{color:#D6E5DF}
+
+/* =====================================================================
+   PROGRAMS v2: CTA band (pgc-) + one-screen table (pgt- / pg-)
+   DIALS:
+   --pg-fs     table text size (scales with screen height, 12.5px to 16px)
+   .pgc-btn    CTA button size and colours
+   ===================================================================== */
+
+/* ---------- CTA band ---------- */
+.pg-programs section.pgc-section{
+  position:relative;isolation:isolate;overflow:hidden;
+  display:block !important;
+  min-height:0 !important;height:auto !important;
+  padding:clamp(26px,3.4vw,46px) 0 !important;
+  scroll-snap-align:none;
+  background:
+    radial-gradient(rgba(243,241,229,.07) 1px,transparent 1.6px) 0 0/22px 22px,
+    linear-gradient(160deg,#0F3330 0%,#123B37 55%,#1B4B47 130%) !important;
+}
+.pg-programs section.pgc-section::before{
+  content:"";position:absolute;z-index:-1;left:50%;top:50%;
+  width:min(70vw,720px);aspect-ratio:2/1;border-radius:50%;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(1,138,134,.38),transparent 68%);
+  animation:pgc-glow 8s ease-in-out infinite;
+}
+
+.pgc-band{
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(14px,2.6vw,36px);
+}
+.pgc-line{flex:1 1 0;height:1px;min-width:0}
+.pgc-line-l{background:linear-gradient(90deg,transparent,rgba(243,241,229,.5))}
+.pgc-line-r{background:linear-gradient(270deg,transparent,rgba(243,241,229,.5))}
+
+/* the wrapper carries the pulse ring (the button clips its own shine) */
+.pgc-pulse{position:relative;display:inline-block;flex:0 0 auto;border-radius:999px}
+.pgc-pulse::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  animation:pgc-pulse 2.8s ease-out infinite;
+}
+
+.pgc-btn{
+  position:relative;overflow:hidden;isolation:isolate;
+  display:inline-flex;align-items:center;justify-content:center;gap:16px;
+  padding:.8em .8em .8em 1.9em;border-radius:999px;
+  background:#F3F1E5;color:#123B37;
+  font-size:clamp(1.05rem,1rem + .45vw,1.28rem);font-weight:800;line-height:1.2;
+  letter-spacing:-.005em;text-decoration:none;white-space:nowrap;
+  box-shadow:0 18px 34px -14px rgba(0,0,0,.65);
+  transition:transform .3s var(--ease,ease),box-shadow .3s ease,background-color .3s ease;
+}
+.pgc-btn::before{
+  content:"";position:absolute;z-index:0;top:0;bottom:0;left:-60%;width:40%;
+  background:linear-gradient(100deg,transparent,rgba(1,138,134,.3),transparent);
+  transform:skewX(-20deg);
+  animation:pgc-shine 4.2s ease-in-out infinite;
+}
+.pgc-txt,.pgc-arr{position:relative;z-index:1}
+.pgc-arr{
+  width:2.1em;height:2.1em;border-radius:50%;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:#018a86;color:#F3F1E5;font-size:1em;line-height:1;
+  transition:transform .35s var(--ease,ease),background-color .3s ease;
+}
+.pgc-btn:hover{background:#fff;transform:translateY(-3px);box-shadow:0 24px 40px -14px rgba(0,0,0,.7)}
+.pgc-btn:hover .pgc-arr{transform:translateX(4px) scale(1.08);background:#123B37}
+.pgc-btn:active{transform:scale(.97)}
+.pgc-btn:focus-visible{outline:3px solid #A9CBBF;outline-offset:4px}
+
+@keyframes pgc-pulse{
+  0%{box-shadow:0 0 0 0 rgba(169,203,191,.55)}
+  70%,100%{box-shadow:0 0 0 20px rgba(169,203,191,0)}
+}
+@keyframes pgc-shine{0%,55%{left:-60%}100%{left:130%}}
+@keyframes pgc-glow{50%{transform:translate(-50%,-50%) scale(1.12)}}
+
+/* ---------- table section (now the LAST section: room for the sticky banner) ---------- */
+.pg-programs section.pg-compare{
+  --pg-fs:clamp(12.5px,min(.95vw,1.6vh),16px);
+  display:block !important;
+  min-height:0 !important;height:auto !important;
+  padding:clamp(24px,4.2vh,52px) 0 calc(var(--ban,60px) + clamp(16px,3vh,36px)) !important;
+  scroll-snap-align:none;
+}
+
+.pg-programs .pgt-head{text-align:start;margin:0 auto clamp(14px,2.6vh,28px)}
+.pg-programs .pgt-head h2{
+  margin:0;color:var(--ink);
+  font-size:clamp(1.5rem,1rem + 1.4vw,2.4rem);
+  font-weight:800;line-height:1.15;letter-spacing:-.02em;
+}
+.pg-programs .pgt-accent{color:#018a86}
+
+/* ---------- table: 4 fixed columns, everything fits the screen ---------- */
+.pg-programs .pg-compare .pg-table-wrap{overflow:hidden;border-radius:20px}
+.pg-programs .pg-compare .pg-table{
+  table-layout:fixed;width:100%;min-width:0;font-size:var(--pg-fs);
+}
+
+.pg-programs .pg-compare .pg-table thead th{
+  width:auto;
+  padding:clamp(9px,1.7vh,16px) clamp(10px,1.3vw,20px);
+  font-size:calc(var(--pg-fs) + 2px) !important;
+  letter-spacing:.06em;line-height:1.2;
+  text-align:left;vertical-align:middle;
+}
+.pg-programs .pg-compare .pg-table thead th:first-child,
+.pg-programs .pg-compare .pg-table tbody th{
+  width:17%;
+  position:static;               /* no sideways scrolling any more */
+  white-space:normal !important;
+}
+
+.pg-programs .pg-compare .pg-table tbody th,
+.pg-programs .pg-compare .pg-table tbody td{
+  padding:10px !important;
+  font-size:16px !important;
+  line-height:1.45 !important;
+  vertical-align:middle;
+  overflow-wrap:break-word;
+  text-wrap:pretty;
+}
+.pg-programs .pg-compare .pg-table tbody th{
+  background:var(--page);
+  color:var(--ink) !important;
+  font-weight:700 !important;     /* row labels slightly bolder; set 400 to match the cells */
+}
+.pg-programs .pg-compare .pg-table tbody tr:hover th{background:var(--tint)}
+
+/* ---------- tablet and phone: each row becomes a card, no sideways scroll ---------- */
+@media (max-width:900px){
+  .pg-programs section.pg-compare{--pg-fs:16px}
+
+  .pg-programs .pg-compare .pg-table-wrap{
+    overflow:visible;border:0;background:transparent;box-shadow:none;border-radius:0;
+  }
+  .pg-programs .pg-compare .pg-table{display:block;width:100%}
+  .pg-programs .pg-compare .pg-table thead{
+    position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);
+  }
+  .pg-programs .pg-compare .pg-table tbody{display:grid;gap:16px}
+  .pg-programs .pg-compare .pg-table tbody tr{
+    display:block;overflow:hidden;
+    border:1px solid var(--line);border-radius:18px;background:var(--card);
+    box-shadow:0 18px 40px -28px rgba(19,59,58,.5);
+  }
+  .pg-programs .pg-compare .pg-table tbody th{
+    display:block;width:auto !important;
+    padding:12px 16px;border:0;
+    background:var(--navy);color:var(--page) !important;
+    font-size:calc(var(--pg-fs) + 1px) !important;font-weight:800 !important;
+  }
+  .pg-programs .pg-compare .pg-table tbody tr:hover th{background:var(--navy)}
+  .pg-programs .pg-compare .pg-table tbody td{
+    display:block;width:auto;padding:12px 16px;
+    border-top:1px solid var(--line);
+  }
+  .pg-programs .pg-compare .pg-table tbody tr th + td{border-top:0}
+  .pg-programs .pg-compare .pg-table tbody td::before{
+    content:attr(data-label);display:block;margin-bottom:4px;
+    color:var(--purple-d);
+    font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  }
+}
+
+/* ---------- phones: CTA fills the width ---------- */
+@media (max-width:640px){
+  .pgc-line{display:none}
+  .pgc-band{display:block}
+  .pgc-pulse{display:block;width:100%}
+  .pgc-btn{display:flex;width:100%;justify-content:space-between;padding-left:1.4em}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .pg-programs section.pgc-section::before,
+  .pgc-pulse::after,
+  .pgc-btn::before{animation:none}
+}

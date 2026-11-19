@@ -1,14 +1,17 @@
 // Logo sources are tried in this order:
-//   1) /public/logos/<slug>.svg   (your own self-hosted file, BEST quality)
-//   2) /public/logos/<slug>.png   (same; make it at least 128px wide, ideally 256px)
-//   3) Wikimedia Commons candidates listed in `files` (first one that loads wins)
-//   4) the university's own website icon (`site`), only for entries that have it
-//      (skipped automatically if it is smaller than 64px, because it would look blurry)
-//   5) the initials badge (`mono`)
+//   1) /public/logos/<local>      (your own file named in `local`, BEST quality)
+//   2) /public/logos/<slug>.svg   (self-hosted, optional)
+//   3) /public/logos/<slug>.png   (self-hosted, optional, at least 128px wide)
+//   4) Wikimedia Commons candidates listed in `files` (first one that loads wins)
+//   5) the university's own website icon (`site`), skipped automatically if it
+//      is smaller than 64px, because it would look blurry
+//   6) the initials badge (`mono`)
 //
-// `name` = the short name shown on the card (kept short so it fits one row)
-// `full` = optional full official name, shown as a tooltip on hover
-const BASE = import.meta.env.BASE_URL
+// `name`  = the short name shown on the card (kept short so it fits one row)
+// `full`  = optional full official name, shown as a tooltip on hover
+// `local` = optional file name inside public/logos (case-sensitive!)
+const BASE = import.meta.env?.BASE_URL ?? '/'
+
 
 const commons = (file, width = 250) =>
   `https://commons.wikimedia.org/wiki/Special:FilePath/${file}?width=${width}`
@@ -18,7 +21,7 @@ const favicon = (site) =>
   `https://www.google.com/s2/favicons?domain=${site}&sz=256`
 
 
-const RAW = [
+export const RAW_UNIVERSITIES = [
   {
     name: 'University of California', mono: 'UC', slug: 'university-of-california',
     files: ['Seal_of_the_University_of_California.svg', 'University_of_California_seal.svg', 'Seal_of_the_University_of_California,_Berkeley.svg'],
@@ -33,7 +36,8 @@ const RAW = [
   },
   {
     name: 'University of Oxford', mono: 'OX', slug: 'university-of-oxford',
-    files: ['Oxford-University-Circlet.svg', 'Oxford_University_Coat_Of_Arms.svg'],
+    local: 'oxford-logo.webp',
+    files: ['Oxford_University_Coat_Of_Arms.svg'],
   },
   {
     name: 'Cornell University', mono: 'CO', slug: 'cornell-university',
@@ -92,10 +96,12 @@ const RAW = [
   },
   {
     name: 'Trinity College Dublin', mono: 'TCD', slug: 'tcd', site: 'tcd.ie',
+    local: 'Trinity-logo.webp',
     files: ['Trinity_College_Dublin_Coat_of_Arms.svg', 'Trinity_College_Dublin_coat_of_arms.svg', 'Trinity_College_Dublin_Logo.svg'],
   },
   {
     name: 'Bocconi University', mono: 'BU', slug: 'bocconi-university', site: 'unibocconi.eu',
+    local: 'bocconi-logo.webp',
     files: ['Bocconi_University_logo.svg', 'Logo_Bocconi.svg', 'Bocconi_University_Logo.svg'],
   },
   {
@@ -108,6 +114,7 @@ const RAW = [
   },
   {
     name: 'NUS', full: 'National University of Singapore', mono: 'NUS', slug: 'nus', site: 'nus.edu.sg',
+    local: 'NUS-logo.webp',
     files: ['NUS_coat_of_arms.svg', 'National_University_of_Singapore.svg', 'NUS_logo.svg'],
   },
   {
@@ -124,14 +131,16 @@ const RAW = [
   },
   {
     name: 'HKUST', full: 'Hong Kong University of Science and Technology', mono: 'UST', slug: 'hkust', site: 'ust.hk',
+    local: 'HKUST-logo.webp',
     files: ['HKUST_Logo.svg', 'HKUST_logo.svg', 'Hong_Kong_University_of_Science_and_Technology_logo.svg'],
   },
 ]
 
 
-export const MENTOR_UNIVERSITIES = RAW.map((u) => ({
+export const MENTOR_UNIVERSITIES = RAW_UNIVERSITIES.map((u) => ({
   ...u,
   sources: [
+    ...(u.local ? [`${BASE}logos/${u.local}`] : []),
     `${BASE}logos/${u.slug}.svg`,
     `${BASE}logos/${u.slug}.png`,
     ...u.files.map((f) => commons(f)),

@@ -47,7 +47,7 @@ const ITEMS = [
   },
     {
     id: 'innovation',
-    title: 'From Research to Creation',
+    title: 'Building Prototypes',
     tagline: "We don't stop at research papers. We help students build what they envision. They design, build and bring them to life.",
     body: ["We encourage students to think beyond theoretical research. They don't just investigate a question, develop findings or identify potential applications; they take their ideas forward by designing and building something tangible from their research."],
     helps:
@@ -83,7 +83,7 @@ const ITEMS = [
   },
     {
     id: 'methodologies',
-    title: 'Advanced Methodologies & Techniques',
+    title: 'Advanced Methodologies',
     tagline: 'Equipping students with necessary tools and techniques to conduct rigorous, independent research.',
     body: [
       'At Theoria, students learn and apply specialised research techniques relevant to their projects, such as computational modelling, simulations, statistical analysis, experimental design, machine learning, econometric techniques, data analysis, prototyping and other specialised approaches.',

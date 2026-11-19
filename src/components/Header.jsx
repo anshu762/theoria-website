@@ -3,13 +3,94 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import BookIcon from './BookIcon'
 import { NAV_LINKS, LOGO_PNG } from '../config'
 
+/* ---------- read how dark the surface behind the header is ---------- */
+const COLOR_RE = /rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)(?:[\s,/]+([\d.]+)(%?))?\s*\)/g
+
+const lum = (r, g, b) => (0.299 * r + 0.587 * g + 0.114 * b) / 255
+
+function readColors(str) {
+  const out = []
+  if (!str) return out
+  let m
+  COLOR_RE.lastIndex = 0
+  while ((m = COLOR_RE.exec(str))) {
+    let a = m[4] === undefined ? 1 : parseFloat(m[4])
+    if (m[5] === '%') a /= 100
+    out.push({ l: lum(+m[1], +m[2], +m[3]), a })
+  }
+  return out
+}
+
+/* brightness (0 = black, 1 = white) of one element's own background, or null if it has none */
+function surfaceLum(el) {
+  const cs = getComputedStyle(el)
+  if (parseFloat(cs.opacity) < 0.1) return null
+
+  const bi = cs.backgroundImage
+  if (bi && bi !== 'none' && bi.indexOf('gradient') !== -1) {
+    const g = readColors(bi).filter((c) => c.a >= 0.6)   // ignores faint glows and dots
+    if (g.length) return g.reduce((s, c) => s + c.l, 0) / g.length
+  }
+  const bg = readColors(cs.backgroundColor).filter((c) => c.a >= 0.6)
+  if (bg.length) return bg[0].l
+  return null
+}
+
 export default function Header() {
   const [open, setOpen] = useState(false)   // mobile menu
   const [dd, setDd] = useState(null)        // which dropdown is open (by its `to`)
+  const [tone, setTone] = useState('light') // 'light' | 'dark' = what is behind the header
   const { pathname } = useLocation()
   const navRef = useRef(null)
+  const hdrRef = useRef(null)
 
   useEffect(() => { setOpen(false); setDd(null) }, [pathname])
+
+  /* pick the header colours from the section currently under it */
+  useEffect(() => {
+    const hdr = hdrRef.current
+    if (!hdr) return undefined
+    let raf = 0
+
+    const measure = () => {
+      raf = 0
+      const r = hdr.getBoundingClientRect()
+      const y = Math.min(window.innerHeight - 1, Math.max(1, r.top + r.height / 2))
+      const w = window.innerWidth
+      let sum = 0
+      let n = 0
+      ;[w * 0.15, w * 0.5, w * 0.85].forEach((x) => {
+        const stack = document.elementsFromPoint(x, y)
+        for (let i = 0; i < stack.length; i++) {
+          const el = stack[i]
+          if (hdr.contains(el)) continue
+          const l = surfaceLum(el)
+          if (l !== null) {
+            sum += l
+            n++
+            break
+          }
+        }
+      })
+      const next = n && sum / n < 0.45 ? 'dark' : 'light'
+      setTone((t) => (t === next ? t : next))
+    }
+
+    const queue = () => { if (!raf) raf = window.requestAnimationFrame(measure) }
+
+    queue()
+    const timers = [120, 400, 1000].map((ms) => window.setTimeout(queue, ms)) // after the page renders
+    window.addEventListener('scroll', queue, { passive: true })
+    window.addEventListener('resize', queue)
+    window.addEventListener('load', queue)
+    return () => {
+      if (raf) window.cancelAnimationFrame(raf)
+      timers.forEach(window.clearTimeout)
+      window.removeEventListener('scroll', queue)
+      window.removeEventListener('resize', queue)
+      window.removeEventListener('load', queue)
+    }
+  }, [pathname])
 
   /* close the dropdown on outside click / Esc */
   useEffect(() => {
@@ -29,7 +110,7 @@ export default function Header() {
   const linkClass = ({ isActive }) => 'lnk' + (isActive ? ' active' : '')
 
   return (
-    <header>
+    <header ref={hdrRef} data-tone={tone}>
       <div className="shell nav">
         <Link className="brand" to="/" aria-label="Theoria home">
           {LOGO_PNG ? (

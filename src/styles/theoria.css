@@ -4000,7 +4000,7 @@ section.ph-section{
 
 .uq-section .ud-card{
   position:relative;display:flex;flex-direction:column;flex:1 1 auto;width:100%;
-  padding:clamp(20px,2vw,28px);overflow:hidden;text-align:left;
+  padding:13px;overflow:hidden;text-align:left;
   background:#FBFAF4;border:1px solid #DAD6C0;border-radius:20px;color:#133B3A;
   font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
   transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
@@ -4400,11 +4400,11 @@ section.ph-section{
 .wy-section .wy-head{text-align:left;max-width:900px;}
 .wy-section .wy-head h2{
   margin:0;
-  font-size:clamp(1.9rem,3.6vw,3.1rem);
+  font-size:calc(35 * var(--u));
   line-height:1.12;
-  font-weight:800;
   letter-spacing:-.02em;
   color:#133B3A;
+  margin-bottom: 10px;
 }
 .wy-section .wy-accent{color:#018a86}
 .wy-section .wy-rule{
@@ -4423,8 +4423,8 @@ section.ph-section{
 }
 .wy-section .wy-panel{
   display:flex;flex-direction:column;
-  gap:clamp(14px,1.6vw,20px);
-  padding:clamp(18px,2.4vw,32px);
+  gap:8px;
+  padding:18px;
   border-radius:24px;
   min-width:0;
 }
@@ -4441,16 +4441,16 @@ section.ph-section{
 }
 
 /* panel heading */
-.wy-section .wy-ph{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid #DAD6C0}
+.wy-section .wy-ph{display:flex;align-items:center;gap:12px;padding-bottom:4px;border-bottom:1px solid #DAD6C0}
 .wy-section .wy-panel-do .wy-ph{border-bottom-color:rgba(255,255,255,.14)}
 .wy-section .wy-ph-ico{
-  width:42px;height:42px;border-radius:12px;flex:0 0 auto;
+  width:32px;height:32px;border-radius:12px;flex:0 0 auto;
   display:flex;align-items:center;justify-content:center;
 }
 .wy-section .wy-ph-ico svg{width:22px;height:22px;display:block}
 .wy-section .wy-panel-say .wy-ph-ico{background:#018a86;color:#F3F1E5}
 .wy-section .wy-panel-do .wy-ph-ico{background:#F3F1E5;color:#123B37}
-.wy-section .wy-ph h3{margin:0;font-size:clamp(1.3rem,1.9vw,1.7rem);font-weight:800;letter-spacing:-.01em;line-height:1.15}
+.wy-section .wy-ph h3{margin:0;font-size:1.3rem;letter-spacing:-.01em;line-height:1.15}
 .wy-section .wy-panel-say .wy-ph h3{color:#133B3A}
 .wy-section .wy-panel-do .wy-ph h3{color:#F3F1E5}
 
@@ -4463,12 +4463,12 @@ section.ph-section{
   border-radius:16px;overflow:hidden;
   transition:transform .3s var(--ease,ease),box-shadow .3s ease,border-color .3s ease,background-color .3s ease;
 }
-.wy-section .wy-ct{margin:0;font-size:clamp(1.12rem,1.35vw,1.28rem);font-weight:800;line-height:1.25;letter-spacing:-.005em}
+.wy-section .wy-ct{margin:0;font-size:1.1rem;font-weight:800;line-height:1.25;letter-spacing:-.005em}
 .wy-section .wy-cp{margin:0;font-size:clamp(1rem,1.1vw,1.07rem);line-height:1.6}
 
 /* left cards */
 .wy-section .wy-card-say{
-  padding:16px 18px 14px 24px;
+  padding:8px;
   background:#F3F1E5;
   border:1px solid #DAD6C0;
 }
@@ -4509,7 +4509,7 @@ section.ph-section{
 
 /* right cards */
 .wy-section .wy-card-do{
-  padding:16px 18px;
+  padding:8px;
   background:rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.12);
   gap:10px;
@@ -4521,7 +4521,7 @@ section.ph-section{
 }
 .wy-section .wy-row{display:flex;align-items:center;gap:12px}
 .wy-section .wy-ico{
-  width:38px;height:38px;border-radius:11px;flex:0 0 auto;
+  width:28px;height:28px;border-radius:11px;flex:0 0 auto;
   display:flex;align-items:center;justify-content:center;
   background:rgba(169,203,191,.16);color:#A9CBBF;
   transition:transform .3s var(--ease,ease),background-color .3s ease,color .3s ease;
@@ -4566,4 +4566,162 @@ section.ph-section{
   .wy-section .wy-li{opacity:1;transform:none;transition:none}
   .wy-section .wy-rule{transform:scaleX(1);transition:none}
   .wy-section .wy-card,.wy-section .wy-ico{transition:none}
+}
+
+/* =====================================================================
+   HEADER: adapts to the section behind it   (data-tone on <header>)
+   light = your current look (unchanged)    dark = cream text on dark green
+   ===================================================================== */
+header[data-tone]{transition:background-color .3s ease,border-color .3s ease}
+
+/* ---------- DARK tone ---------- */
+header[data-tone="dark"]{
+  background:rgba(15,51,48,.82) !important;
+  border-bottom-color:rgba(243,241,229,.14) !important;
+}
+
+/* logo: icon + THEORIA + tagline */
+.brand svg,.brand img{transition:filter .3s ease}
+header[data-tone="dark"] .brand svg{filter:brightness(0) invert(.95)}
+header[data-tone="dark"] .brand img{mix-blend-mode:normal;filter:brightness(0) invert(.95)}
+header[data-tone="dark"] .wordmark{color:#F3F1E5 !important;transition:color .3s ease}
+header[data-tone="dark"] .wordmark small{color:#CFE0DA}
+header[data-tone="dark"] .wordmark small:before{background:linear-gradient(90deg,rgba(169,203,191,.2),#A9CBBF)}
+header[data-tone="dark"] .wordmark small:after{background:linear-gradient(90deg,#A9CBBF,rgba(169,203,191,.2))}
+
+/* hover underline */
+header[data-tone="dark"] .navlinks a.lnk:after{background:#A9CBBF}
+
+/* hamburger */
+header[data-tone="dark"] .mobiletoggle{color:#F3F1E5}
+
+/* CTA button keeps its green; only its border adapts */
+header[data-tone="dark"] .btn.nav-cta{border-color:rgba(243,241,229,.35)}
+
+/* desktop nav links (on phones the menu opens on its own light panel, so they stay dark there) */
+@media (min-width:1021px){
+  header[data-tone="dark"] .navlinks a.lnk{color:#F3F1E5 !important}
+  header[data-tone="dark"] .navlinks a.lnk:hover,
+  header[data-tone="dark"] .navlinks a.lnk.active{color:#A9CBBF !important}
+  header[data-tone="dark"] .nav-dd-btn{color:#F3F1E5}
+  header[data-tone="dark"] .nav-dd-btn:hover{color:#A9CBBF}
+}
+
+/* =====================================================================
+   UNIQUE SECTION v5: every card aligned (title / text / button rows)
+   DIALS: --ud-pad card padding, --ud-title title size, --ud-text text size
+   ===================================================================== */
+.uq-section .ud-grid{
+  --ud-pad:clamp(18px,1.7vw,24px);
+  --ud-title:clamp(1.12rem,1.25vw,1.35rem);
+  --ud-text:clamp(1rem,1.15vw,1.15rem);
+}
+@media (max-width:1100px){
+  .uq-section .ud-grid{--ud-title:clamp(1.2rem,2.2vw,1.4rem)}
+}
+@media (max-width:640px){
+  .uq-section .ud-grid{--ud-title:1.25rem;--ud-text:1.02rem}
+}
+
+
+/* ---------- card shell ---------- */
+.uq-section .ud-grid .ud-card{
+  padding:var(--ud-pad) !important;
+  min-width:0;
+  text-align:left;
+}
+
+
+/* ---------- title (icon hidden, but works if you show it again) ---------- */
+.uq-section .ud-grid .ud-card .ud-top{
+  display:flex !important;
+  align-items:flex-start !important;
+  gap:12px;
+  margin:0 0 12px !important;
+  padding:0 !important;
+  min-height:calc(var(--ud-title) * 1.2 * 2) !important;   /* fallback: room for 2 lines */
+}
+.uq-section .ud-grid .ud-card .ud-top .ud-title{
+  flex:1 1 auto;
+  min-width:0;
+  margin:0 !important;
+  padding:0 !important;
+  font-size:var(--ud-title) !important;
+  line-height:1.2 !important;
+  font-weight:800;
+  letter-spacing:-.01em;
+  text-align:left;
+  overflow-wrap:break-word;
+  text-wrap:balance;
+}
+
+
+/* ---------- description ---------- */
+.uq-section .ud-grid .ud-card .ud-text{
+  margin:0 0 18px !important;
+  font-size:var(--ud-text) !important;
+  line-height:1.55 !important;
+  text-align:left;
+  text-wrap:pretty;
+}
+
+
+/* ---------- View details ---------- */
+.uq-section .ud-grid .ud-card .ud-more{
+  margin:auto 0 0 !important;       /* fallback: pinned to the bottom */
+  align-self:flex-start;
+  line-height:1.2;
+}
+
+
+/* ---------- browsers with subgrid: rows line up across each card row ---------- */
+@supports (grid-template-rows:subgrid){
+  .uq-section .uq-grid.ud-grid{
+    grid-auto-rows:auto;
+    align-items:stretch;
+  }
+
+
+  /* each list item spans 3 shared rows: title / text / button */
+  .uq-section .uq-grid.ud-grid > .uq-item{
+    display:grid !important;
+    grid-row:span 3;
+    grid-template-rows:subgrid;
+    row-gap:0 !important;
+    min-width:0;
+  }
+
+
+  /* the card sits on those same 3 rows */
+  .uq-section .uq-grid.ud-grid > .uq-item > .ud-card{
+    display:grid !important;
+    grid-row:1 / span 3;
+    grid-template-rows:subgrid;
+    grid-template-columns:minmax(0,1fr);
+    row-gap:0 !important;
+    align-content:stretch;
+    flex:none;
+  }
+
+
+  .uq-section .ud-grid .ud-card .ud-top{
+    grid-row:1;
+    min-height:0 !important;        /* the shared row decides the height */
+  }
+  .uq-section .ud-grid .ud-card .ud-text{
+    grid-row:2;
+    align-self:start;
+  }
+  .uq-section .ud-grid .ud-card .ud-more{
+    grid-row:3;
+    margin:0 !important;
+    align-self:end;
+    justify-self:start;
+  }
+}
+
+
+@media (prefers-reduced-motion:reduce){
+  .uq-section .ud-grid .ud-card,
+  .uq-section .ud-grid .ud-card .ud-more-arr{transition:none}
 }

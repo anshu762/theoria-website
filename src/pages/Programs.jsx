@@ -8,17 +8,17 @@ const d = (ms) => ({ '--d': ms + 'ms' })
 const SCHOLAR_FACTS = [
   ['What they experience', 'Topic exploration, research-question development, literature review, introductory methodology, guided analysis and academic writing.'],
   ['What they create', 'A structured research report or agreed first research output, with a clearer direction for further study.'],
-  ['Typically suited to', 'Grades 8–10 as a guide; readiness matters more than grade.'],
+  ['Best suited for', 'Grades 8–10 as a guide; readiness matters more than grade.'],
 ]
 const ELITE_FACTS = [
   ['What they experience', 'Field-matched research mentorship, research design, evidence and analysis, critical review, manuscript development and publication-pathway guidance.'],
   ['What they create', 'An original research manuscript or equivalent scholarly output, with a suitable external-submission strategy where appropriate.'],
-  ['Typically suited to', 'Grades 10–12 as a guide; subject knowledge and research readiness are assessed.'],
+  ['Best suited for', 'Grades 10–12 as a guide; subject knowledge and research readiness are assessed.'],
 ]
 const FELLOW_FACTS = [
   ['What they experience', 'Specialist research mentorship, original investigation, then advanced solution design, development, testing and validation.'],
   ['What they create', 'Research manuscript plus a substantial applied project, with documented results and a suitable recognition pathway.'],
-  ['Best suited to', 'Students with the motivation, preparation and project ambition to undertake two connected phases.'],
+  ['Best suited for', 'Students with the motivation, preparation and project ambition to undertake two connected phases.'],
 ]
 
 function Facts({ items }) {
@@ -34,15 +34,39 @@ function Facts({ items }) {
   )
 }
 
-/* ───────── comparison table ───────── */
-const COLS = ['The experience', 'Scholar', 'Elite', 'Fellowship']
+/* ───────── comparison table (text exactly as supplied) ───────── */
+const PROGRAMS = ['Scholar', 'Elite', 'Fellowship']
 const ROWS = [
-  ['Best for', 'Curious student exploring research', 'Student ready for original investigation', 'Student ready to research, build and validate'],
-  ['Core purpose', 'Research foundations', 'Original scholarly contribution', 'Original research applied to a real-world project'],
-  ['Mentorship focus', 'Question, methods, writing', 'Field-specific investigation and manuscript', 'Research supervision followed by advanced project guidance'],
-  ['Primary output', 'Structured report / agreed output', 'Original manuscript / scholarly output', 'Original manuscript + advanced applied project'],
-  ['External recognition', 'Opportunity awareness, where relevant', 'Suitable publication guidance, if included', 'Research and project recognition strategy, if included'],
-  ['Student’s key achievement', 'Learn how to research', 'Demonstrate original research', 'Demonstrate research and its real-world application'],
+  [
+    'Core purpose',
+    'Build a foundation in research and understand methodologies.',
+    'Investigate a novel research question, work with advanced methodologies',
+    'Undertake original research, design, and develop an advanced project.',
+  ],
+  [
+    'Mentorship & guidance',
+    'Guidance on selecting a topic, developing academic writing skills.',
+    'Close mentorship from subject experts on development of research manuscript.',
+    'Research mentorship + technical project guidance .',
+  ],
+  [
+    'What students produce',
+    'Structured research report',
+    'Original research manuscript or substantial scholarly output.',
+    'Original research manuscript and advanced projects.',
+  ],
+  [
+    'Opportunities for recognition',
+    'Exposure to academic and research opportunities.',
+    'Suitable journals, publications & academic platforms.',
+    'Research publications, conferences, competitions, science fairs, innovation challenges.',
+  ],
+  [
+    'What students take away',
+    'Understanding of how research is conducted.',
+    'Experience of independent original research & academic insights.',
+    'Turning research into tangible, real-world solutions.',
+  ],
 ]
 
 export default function Programs() {
@@ -54,6 +78,7 @@ export default function Programs() {
         intro="Choose the experience that matches the student's readiness and intended output, not simply the longest list of deliverables."
       />
 
+      {/* ───────── PROGRAM CARDS ───────── */}
       <section>
         <div className="shell">
           <div className="three">
@@ -68,30 +93,39 @@ export default function Programs() {
             <Facts items={FELLOW_FACTS} /></article>
           </div>
         </div>
-        <div className="pg-cta-inner rv">
-            <Link className="pg-cta-btn" to="/research-fit-application">
-              <span>Assess program fit</span>
-              <span className="pg-cta-arr" aria-hidden="true">→</span>
-            </Link>
+      </section>
+
+      {/* ───────── CTA (separate, before the table) ───────── */}
+      <section className="pgc-section" aria-label="Assess program fit">
+        <div className="shell">
+          <div className="pgc-band rv">
+            <span className="pgc-line pgc-line-l" aria-hidden="true" />
+            <span className="pgc-pulse">
+              <Link className="pgc-btn" to="/research-fit-application">
+                <span className="pgc-txt">Assess program fit</span>
+                <span className="pgc-arr" aria-hidden="true">→</span>
+              </Link>
+            </span>
+            <span className="pgc-line pgc-line-r" aria-hidden="true" />
+          </div>
         </div>
       </section>
 
-
       {/* ───────── COMPARISON TABLE ───────── */}
-      <section className="pg-compare">
+      <section className="pg-compare" aria-labelledby="pgt-title">
         <div className="shell">
-          <div
-            className="pg-table-wrap rv"
-            role="region"
-            aria-label="Program comparison table"
-            tabIndex={0}
-          >
+          <div className="pgt-head rv">
+            <h2 id="pgt-title">What each program <span className="pgt-accent">offers</span></h2>
+          </div>
+
+          <div className="pg-table-wrap rv" role="region" aria-label="Program comparison table">
             <table className="pg-table">
               <caption className="pg-sr">Comparison of the Scholar, Elite and Fellowship programs</caption>
               <thead>
                 <tr>
-                  {COLS.map((c, k) => (
-                    <th key={c} scope="col">{c}</th>
+                  <th scope="col"><span className="pg-sr">Aspect</span></th>
+                  {PROGRAMS.map((p) => (
+                    <th key={p} scope="col">{p}</th>
                   ))}
                 </tr>
               </thead>
@@ -99,9 +133,9 @@ export default function Programs() {
                 {ROWS.map((r) => (
                   <tr key={r[0]}>
                     <th scope="row">{r[0]}</th>
-                    <td>{r[1]}</td>
-                    <td>{r[2]}</td>
-                    <td>{r[3]}</td>
+                    {PROGRAMS.map((p, k) => (
+                      <td key={p} data-label={p}>{r[k + 1]}</td>
+                    ))}
                   </tr>
                 ))}
               </tbody>

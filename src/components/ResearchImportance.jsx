@@ -169,7 +169,7 @@ export default function ResearchImportance() {
           <h2 id="wy-title">
             Why <span className="wy-accent">Research Matters</span> in High School
           </h2>
-          <span className="wy-rule" aria-hidden="true" />
+          {/* <span className="wy-rule" aria-hidden="true" /> */}
         </header>
 
         <div className="wy-grid">
