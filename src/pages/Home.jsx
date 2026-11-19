@@ -60,7 +60,7 @@ export default function Home() {
       <UniqueThings/>
       <ResearchImportance/>
 
-            <section className="uv-section" aria-labelledby="uv-h">
+            {/* <section className="uv-section" aria-labelledby="uv-h">
         <div className="shell">
           <div className="uv-head rv">
             <div className="uv-eyebrow">University perspectives · Official guidance</div>
@@ -81,7 +81,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ---------- Our philosophy (green, book icon on the right) ---------- */}
       <section className="ph-section">

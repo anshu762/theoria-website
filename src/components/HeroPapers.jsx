@@ -404,7 +404,7 @@ export const PAPERS = [
     title: 'A Strategic Overview of the Indian Fashion Industry with apropos to Logistics and Sustainable Supply Chain Management',
     field: 'Fashion · Supply Chain',
     student: 'Student Name',
-    school: 'UCL',
+    school: 'NYU',
     grade: 'Class of 2027',
     photo: '/students/student-img-2.png',
   },

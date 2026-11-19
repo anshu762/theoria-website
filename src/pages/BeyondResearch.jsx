@@ -81,8 +81,7 @@ export default function BeyondResearch() {
         <div className="shell bd-hero-in">
           <div className="bd-copy">
             <h1 className="rv" style={d(0)}>
-              <span className="bd-h1-a">Going Beyond Research:</span>{' '}
-              <span className="bd-h1-b">International Competition Preparation</span>
+              Going Beyond Research: <span className="bd-h1-b">International Competition Preparation</span>
             </h1>
 
             <p className="bd-lead rv" style={d(100)}>
@@ -132,28 +131,6 @@ export default function BeyondResearch() {
         </div>
       </section>
 
-      {/* ───────── WHY AIM BEYOND ───────── */}
-      <section className="bd-why">
-        <div className="shell">
-          <div className="bd-why-head rv">
-            <h2>Why Aim Beyond the <span className="bd-why-x">Research Paper?</span></h2>
-            <p>
-              International recognition gives students an opportunity to take their curiosity beyond the classroom and demonstrate what they are capable of achieving.
-            </p>
-          </div>
-
-          <ul className="bd-grid">
-            {REASONS.map((r, i) => (
-              <li className="rv" key={r.title} style={d(i * 100)}>
-                <article className="bd-card">
-                  <span className="bd-card-ico"><Icon name={r.icon} /></span>
-                  <h3>{r.title}</h3>
-                </article>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
             {/* ───────── OUR APPROACH ───────── */}
       <section className="bd-way">
         <div className="shell">

@@ -28,7 +28,7 @@
 .bd-copy{min-width:0}
 .bd-copy h1{
   margin:0 0 clamp(14px,2vw,22px);
-  font-size:2.5rem;
+  font-size:3rem;
   font-weight: 500;
   line-height:1.08;letter-spacing:-.03em;color:var(--navy);
 }
@@ -170,7 +170,7 @@
   position:relative;overflow:hidden;width:100%;
   min-height:clamp(150px,14vw,200px);
   display:flex;flex-direction:column;justify-content:flex-end;gap:14px;
-  padding:clamp(20px,2vw,28px);border-radius:18px;
+  padding:15px !important;border-radius:18px;
   background:var(--card);border:1px solid var(--line);
   transition:transform .35s var(--ease),box-shadow .35s,border-color .35s,background .35s,color .35s;
 }
@@ -248,7 +248,7 @@
 .bd-copy{min-width:0}
 .bd-copy h1{
   margin:0 0 clamp(14px,2vw,22px);
-  font-size:2.5rem;
+  font-size:3rem;
   font-weight: 500;
   line-height:1.08;letter-spacing:-.03em;color:var(--navy);
 }
@@ -259,10 +259,10 @@
   font-size:clamp(1rem,.94rem + .3vw,1.15rem);line-height:1.75;
 }
 .bd-page .bd-copy p.bd-lead{
-  max-width:none;margin:0 0 clamp(16px,2vw,22px);
-  padding-left:clamp(14px,1.6vw,20px);border-left:4px solid var(--grad);
+  max-width:none;margin:0 !important;
+  padding-left:0 !important;border: none;
   font-size:1.6rem;font-weight:500;line-height:1.3;
-  color:var(--navy);letter-spacing:-.01em;
+  color:var(--muted);letter-spacing:-.01em;
 }
 .bd-hl{
   color:var(--navy);font-weight:700;
@@ -367,7 +367,7 @@
 
 /* ---------- WHY AIM BEYOND (light) ---------- */
 .bd-page .bd-why{
-  padding:clamp(48px,6vw,88px) 0 !important;
+  padding:30px 0 !important;
 }
 .bd-why-head{max-width:760px;margin:0 0 clamp(24px,3.4vw,40px)}
 .bd-page .bd-why-head h2{
@@ -564,3 +564,36 @@
 .uq-accent{
     display: inline;
 }
+
+/* =====================================================================
+   BEYOND RESEARCH: wider text column + compact cards   (bd-)
+   DIALS:
+   grid-template-columns (2nd value)  width of the globe panel
+   .bd-art max-width                  size of the globe panel
+   ===================================================================== */
+
+/* ---------- hero: text takes all the space, globe panel is smaller ---------- */
+.bd-page .bd-copy p,
+.bd-page .bd-copy p.bd-lead{max-width:none}
+
+@media (min-width:1021px){
+  .bd-page .bd-hero-in{
+    grid-template-columns:minmax(0,1fr) clamp(300px,28vw,400px);
+    gap:clamp(32px,4vw,64px);
+  }
+  .bd-page .bd-art{max-width:400px}
+  .bd-page .bd-chip{font-size:clamp(.7rem,.55rem + .35vw,.9rem)}
+}
+
+/* ---------- Why Aim Beyond: remove the leftover empty space ---------- */
+.bd-page .bd-card{min-height:0}
+.bd-page .bd-card h3{padding-bottom:0}
+
+
+.bd-page .bd-why-head,
+.bd-page .bd-way-head{max-width:none}
+
+.bd-page .bd-why-head h2,
+.bd-page .bd-why-head p,
+.bd-page .bd-way-head h2,
+.bd-page .bd-way-head p{text-wrap:wrap}

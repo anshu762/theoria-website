@@ -5,11 +5,11 @@ import { createPortal } from 'react-dom'
 const ITEMS = [
   {
     id: 'novel-topic',
-    title: 'Novel Research Topic',
-    tagline: 'Not just choosing a research topic. Discovering something worth investigating.',
+    title: 'Novel Research Topic Selection',
+    tagline: 'Identifying research questions that are original, relevant and worth investigating.',
     body: [
-      'We help students move beyond familiar, over-explored topics to identify genuinely novel questions, unexplored problems or fresh approaches to existing challenges.',
-      'This involves examining existing research, identifying knowledge gaps, questioning assumptions and exploring intersections between disciplines.',
+      'Theoria guides students in identifying research topics that go beyond commonly explored subjects and offer genuine scope for investigation. Rather than simply selecting a topic based on personal interest, students learn to assess its originality, relevance and potential contribution to their chosen field.',
+      'This involves reviewing existing literature, identifying gaps in current research, questioning established assumptions and exploring interdisciplinary connections to uncover questions that warrant further investigation.',
     ],
     helps:
       'Their work begins with a stronger intellectual proposition—one that can demonstrate originality, curiosity and independent thinking rather than simply repeat what is already known.',
@@ -25,10 +25,11 @@ const ITEMS = [
    {
     id: 'competitions',
     title: 'International Competition Readiness',
-    tagline: 'Beyond publication. Towards international distinction.',
+    tagline: "Preparing student's to compete, innovate and earn recognition globally.",
     body: [
-      'Theoria helps students identify and prepare for relevant research competitions, selective research programs, innovation challenges and international awards.',
+      "Theoria helps student's identify and prepare for relevant research competitions, selective research programs, innovation challenges and international awards.",
       'Preparation is aligned with the actual requirements of opportunities such as IRIS/Regeneron ISEF, RSI and suitable international innovation competitions.',
+      "Our aim is to help student's build research that stands up to rigorous evaluation and has the potential to earn recognition beyond the classroom."
     ],
     helps:
       'Students can pursue recognition beyond their school, test their work against demanding standards and develop the confidence to compete with exceptional peers.',
@@ -44,23 +45,20 @@ const ITEMS = [
       </>
     ),
   },
-  {
-    id: 'methodologies',
-    title: 'Advanced Methodologies & Techniques',
-    tagline: 'Beyond reading papers. Towards serious investigation.',
-    body: [
-      'Theoria students learn to use methods appropriate to their research questions. Depending on the field and project, these may include computational modelling, simulations, statistical analysis, experimental design, machine learning, econometric techniques, data analysis, prototyping and other advanced approaches.',
-      'The emphasis is not on using sophisticated techniques for appearance. It is on choosing methods that produce credible evidence and meaningful findings.',
-    ],
+    {
+    id: 'innovation',
+    title: 'From Research to Creation',
+    tagline: "We don't stop at research papers. We help students build what they envision. They design, build and bring them to life.",
+    body: ["We encourage students to think beyond theoretical research. They don't just investigate a question, develop findings or identify potential applications; they take their ideas forward by designing and building something tangible from their research."],
     helps:
-      'Students gain practical exposure to advanced academic techniques, develop deeper technical capabilities and learn how researchers investigate complex questions.',
+      'Students develop physical prototypes, functional models, robotic systems, 3D designs, computational tools or other original creations.',
     showcase:
-      'Actual simulation outputs, analytical models, experimental results, code or technical diagrams from student projects.',
+      'From conceptualising and designing to building, testing and refining, students gain the opportunity to turn their research into something they have actually created.',
     icon: (
       <>
-        <path d="M12 3 3 8l9 5 9-5-9-5Z" />
-        <path d="m3 12 9 5 9-5" />
-        <path d="m3 16 9 5 9-5" />
+        <path d="M9 18h6" />
+        <path d="M10 21h4" />
+        <path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3Z" />
       </>
     ),
   },
@@ -80,6 +78,25 @@ const ITEMS = [
       <>
         <rect x="3" y="5" width="18" height="14" rx="2" />
         <path d="m3 7 9 6 9-6" />
+      </>
+    ),
+  },
+    {
+    id: 'methodologies',
+    title: 'Advanced Methodologies & Techniques',
+    tagline: 'Equipping students with necessary tools and techniques to conduct rigorous, independent research.',
+    body: [
+      'At Theoria, students learn and apply specialised research techniques relevant to their projects, such as computational modelling, simulations, statistical analysis, experimental design, machine learning, econometric techniques, data analysis, prototyping and other specialised approaches.',
+    ],
+    helps:
+      'Students learn not just how to use these techniques, but when and why to apply them. The focus is on selecting appropriate methods, analysing evidence, testing assumptions and producing credible, meaningful research findings.',
+    showcase:
+      'Actual simulation outputs, analytical models, experimental results, code or technical diagrams from student projects.',
+    icon: (
+      <>
+        <path d="M12 3 3 8l9 5 9-5-9-5Z" />
+        <path d="m3 12 9 5 9-5" />
+        <path d="m3 16 9 5 9-5" />
       </>
     ),
   },
@@ -104,11 +121,11 @@ const ITEMS = [
   },
   {
     id: 'mentorship',
-    title: '1:1 Mentorship with Researchers',
-    tagline: 'The right research expertise, matched to the student and their individual research interests.',
+    title: 'Personalised Research Mentorship',
+    tagline: 'Guidance from accomplished researchers, matched to each students interests and research goals.',
     body: [
-      'Our researchers bring advanced expertise across diverse fields. We match each student with 1:1 mentor based on their specific interests, research question, required techniques and potential interdisciplinary connections—not simply their intended university major.',
-      'Every student then follows a project-specific research journey, with research questions, methodologies, milestones and feedback tailored to their academic readiness and the demands of the investigation.',
+      'Our mentors are accomplished researchers with advanced expertise across a wide range of fields. We match each student with a researcher one-on-one based on their interests, research question, the techniques their project requires and opportunities to explore connections across disciplines.',
+      'Every student then follows a project-specific research journey, with research questions, methodologies, milestones and feedback tailored to their academic readiness and the demands of the investigation.'
     ],
     example:
       'For example, a student interested in AI applications in healthcare may benefit from a researcher specializing in machine learning, computational biology or biomedical data analysis, depending on the nature of their research question.',
@@ -126,12 +143,11 @@ const ITEMS = [
   },
   {
     id: 'narrative',
-    title: 'Research-Led University Application Narrative',
-    tagline: 'Turning genuine academic work into a compelling intellectual story.',
+    title: 'Academic Depth and Distinction',
+    tagline: 'Showcasing the intellectual curiosity, independent thinking and academic initiative that set a student apart.',
     body: [
-      'Original research can provide evidence of what genuinely interests a student, how they think, what they have investigated and how they respond to intellectual challenges.',
-      'Theoria helps students understand and articulate their research journey for university applications, including academic essays, research supplements and interviews where relevant.',
-      'The UniVisory connection adds valuable experience in understanding selective university application expectations.',
+      "A research paper gives admissions officers a closer look at a student's academic abilities beyond grades and classroom performance. It demonstrates how they explore subjects that interest them, investigate unfamiliar questions, think critically and pursue knowledge independently.",
+     'Theoria helps students articulate their research journey and communicate the academic growth behind their work through university essays, research supplements and admissions interviews, wherever relevant.'
     ],
     helps:
       'Their application can move beyond statements such as “I am passionate about economics” or “I love biology” to demonstrate what they have actually explored, discovered and contributed.',
@@ -141,35 +157,6 @@ const ITEMS = [
       <>
         <circle cx="12" cy="8" r="4" />
         <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" />
-      </>
-    ),
-  },
-  {
-    id: 'innovation',
-    title: 'From Original Research to Innovation',
-    tagline: 'Research is the beginning, real-world innovation is the next step.',
-    body: ['Theoria takes students through two connected phases:'],
-    phases: [
-      {
-        tag: 'PHASE I',
-        title: 'Original Research',
-        text: 'Investigate a novel question, apply rigorous methodology and establish meaningful findings.',
-      },
-      {
-        tag: 'PHASE II',
-        title: 'Advanced Real-World Project',
-        text: 'Translate findings into a substantial application, model, prototype or solution, followed by testing and validation.',
-      },
-    ],
-    helps:
-      'They develop two complementary capabilities—generating new knowledge and applying that knowledge to solve meaningful problems. This can create a distinctive portfolio of both research and tangible achievement.',
-    showcase:
-      'A Fellowship case study showing the original research, subsequent advanced project, testing results and final outputs.',
-    icon: (
-      <>
-        <path d="M9 18h6" />
-        <path d="M10 21h4" />
-        <path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3Z" />
       </>
     ),
   },
@@ -435,8 +422,10 @@ export default function UniqueThings() {
             <li key={it.id} className="uq-item" style={{ '--i': i }}>
               <article className="ud-card">
                 <span className="ud-bar" aria-hidden="true" />
-                <span className="ud-ico"><Svg>{it.icon}</Svg></span>
-                <h3 className="ud-title">{it.title}</h3>
+               <div className="ud-top">
+                  {/* <span className="ud-ico"><Svg>{it.icon}</Svg></span> */}
+                  <h3 className="ud-title">{it.title}</h3>
+                </div>
                 <p className="ud-text">{it.tagline}</p>
                 <button
                   type="button"

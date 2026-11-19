@@ -4241,3 +4241,329 @@ section.ph-section{
   .uv-card,.uv-card::before,.uv-link{transition:none}
   .uv-card:hover{transform:none}
 }
+
+/* Mentor Network: keep every logo undistorted and crisp */
+.mu-logo img{
+  object-fit:contain;
+  image-rendering:auto;
+}
+
+/* ===== UNIQUE SECTION v2: icon + title in one row, bigger title and text ===== */
+.uq-section .ud-grid{
+  --ud-ico:46px;                            /* icon box                  */
+  --ud-ico-svg:18px;                        /* drawn icon                */
+  --ud-title:clamp(1.3rem,1.7vw,1.55rem);   /* card title                */
+  --ud-text:clamp(1.05rem,1.2vw,1.18rem);   /* short description         */
+}
+
+/* icon and title share one row */
+.uq-section .ud-grid .ud-card .ud-top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:0 0 12px;
+}
+
+.uq-section .ud-grid .ud-card .ud-top .ud-ico{
+  position:static;
+  flex:0 0 auto;
+  width:var(--ud-ico);
+  height:var(--ud-ico);
+  min-width:var(--ud-ico);
+  margin:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+}
+.uq-section .ud-grid .ud-card .ud-top .ud-ico svg{
+  width:var(--ud-ico-svg);
+  height:var(--ud-ico-svg);
+}
+
+.uq-section .ud-grid .ud-card .ud-top .ud-title{
+  flex:1 1 auto;
+  min-width:0;
+  margin:0;
+  font-size:var(--ud-title);
+  line-height:1.2;
+  font-weight:800;
+  letter-spacing:-.01em;
+  overflow-wrap:break-word;
+}
+
+/* short description: bigger, never cut off */
+.uq-section .ud-grid .ud-card .ud-text{
+  font-size:var(--ud-text);
+  line-height:1.6;
+  margin:0;
+  display:block;
+  -webkit-line-clamp:unset;
+  line-clamp:unset;
+  overflow:visible;
+}
+
+@media (max-width:640px){
+  .uq-section .ud-grid{
+    --ud-ico:34px;
+    --ud-ico-svg:17px;
+    --ud-title:1.25rem;
+    --ud-text:1.02rem;
+  }
+  .uq-section .ud-grid .ud-card .ud-top{ gap:10px; }
+}
+
+/* ===== UNIQUE SECTION v3: perfect icon + title alignment ===== */
+.uq-section .ud-grid .ud-card .ud-top{
+  /* display:grid !important; */
+  grid-template-columns:var(--ud-ico) minmax(0,1fr);
+  align-items:center;                         /* icon and title centred on the same line */
+  column-gap:14px;
+  margin:0 0 14px !important;
+  padding:0 !important;
+  text-align:left;
+  /* same row height in every card (room for a 2-line title) */
+  min-height:calc(var(--ud-title) * 2.5);
+}
+
+/* icon: exact square, no leftover spacing or positioning */
+.uq-section .ud-grid .ud-card .ud-top .ud-ico{
+  position:static !important;
+  inset:auto !important;
+  grid-column:1;
+  align-self:center;
+  justify-self:start;
+  width:var(--ud-ico) !important;
+  height:var(--ud-ico) !important;
+  min-width:var(--ud-ico) !important;
+  margin:0 !important;
+  padding:0 !important;
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+  line-height:0;
+  transform-origin:center;
+}
+.uq-section .ud-grid .ud-card .ud-top .ud-ico svg{
+  display:block;                             /* removes the inline baseline gap*/
+  width:var(--ud-ico-svg) !important;
+  height:var(--ud-ico-svg) !important;
+  margin:0;
+}
+
+/* title: starts at the same left edge, no stray padding or margin */
+.uq-section .ud-grid .ud-card .ud-top .ud-title{
+  grid-column:2;
+  align-self:center;
+  margin:0 !important;
+  padding:0 !important;
+  text-align:left;
+  font-size:var(--ud-title);
+  line-height:1.2;
+  font-weight:800;
+  letter-spacing:-.01em;
+  overflow-wrap:break-word;
+  hyphens:manual;
+}
+
+/* description starts exactly under the icon's left edge */
+.uq-section .ud-grid .ud-card .ud-text{
+  margin:0 !important;
+  text-align:left;
+}
+
+@media (max-width:640px){
+  .uq-section .ud-grid .ud-card .ud-top{
+    column-gap:12px;
+    min-height:0;                             /* phones: cards are full width, titles fit on 1–2 lines */
+  }
+}
+
+
+/* ===== WHY RESEARCH MATTERS (wy-) ===== */
+.home-page section.wy-section{
+  position:relative;
+  display:block !important;
+  min-height:0 !important;
+  height:auto !important;
+  padding:30px !important;
+  background-color:#F3F1E5 !important;
+  background-image:
+    radial-gradient(900px 420px at 8% 0%,rgba(1,138,134,.07),transparent 60%),
+    radial-gradient(800px 420px at 100% 100%,rgba(111,168,154,.12),transparent 60%) !important;
+  border:0 !important;
+  overflow:hidden;
+  scroll-snap-align:none;
+}
+
+/* heading */
+.wy-section .wy-head{text-align:left;max-width:900px;}
+.wy-section .wy-head h2{
+  margin:0;
+  font-size:clamp(1.9rem,3.6vw,3.1rem);
+  line-height:1.12;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:#133B3A;
+}
+.wy-section .wy-accent{color:#018a86}
+.wy-section .wy-rule{
+  display:block;width:72px;height:4px;border-radius:4px;background:#018a86;
+  margin:16px auto 0;
+  transform:scaleX(0);transform-origin:center;
+  transition:transform .7s var(--ease,ease) .3s;
+}
+
+/* two panels */
+.wy-section .wy-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(18px,2.4vw,32px);
+  align-items:stretch;
+}
+.wy-section .wy-panel{
+  display:flex;flex-direction:column;
+  gap:clamp(14px,1.6vw,20px);
+  padding:clamp(18px,2.4vw,32px);
+  border-radius:24px;
+  min-width:0;
+}
+.wy-section .wy-panel-say{
+  background:#FBFAF4;
+  border:1px solid #DAD6C0;
+  box-shadow:0 18px 50px -24px rgba(18,59,55,.28);
+}
+.wy-section .wy-panel-do{
+  background:linear-gradient(160deg,#123B37 0%,#0F3330 100%);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 22px 56px -22px rgba(18,59,55,.55);
+  color:#F3F1E5;
+}
+
+/* panel heading */
+.wy-section .wy-ph{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid #DAD6C0}
+.wy-section .wy-panel-do .wy-ph{border-bottom-color:rgba(255,255,255,.14)}
+.wy-section .wy-ph-ico{
+  width:42px;height:42px;border-radius:12px;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;
+}
+.wy-section .wy-ph-ico svg{width:22px;height:22px;display:block}
+.wy-section .wy-panel-say .wy-ph-ico{background:#018a86;color:#F3F1E5}
+.wy-section .wy-panel-do .wy-ph-ico{background:#F3F1E5;color:#123B37}
+.wy-section .wy-ph h3{margin:0;font-size:clamp(1.3rem,1.9vw,1.7rem);font-weight:800;letter-spacing:-.01em;line-height:1.15}
+.wy-section .wy-panel-say .wy-ph h3{color:#133B3A}
+.wy-section .wy-panel-do .wy-ph h3{color:#F3F1E5}
+
+/* lists */
+.wy-section .wy-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;flex:1}
+.wy-section .wy-li{flex:1 1 auto;display:flex;min-width:0}
+.wy-section .wy-card{
+  flex:1;position:relative;min-width:0;
+  display:flex;flex-direction:column;gap:8px;
+  border-radius:16px;overflow:hidden;
+  transition:transform .3s var(--ease,ease),box-shadow .3s ease,border-color .3s ease,background-color .3s ease;
+}
+.wy-section .wy-ct{margin:0;font-size:clamp(1.12rem,1.35vw,1.28rem);font-weight:800;line-height:1.25;letter-spacing:-.005em}
+.wy-section .wy-cp{margin:0;font-size:clamp(1rem,1.1vw,1.07rem);line-height:1.6}
+
+/* left cards */
+.wy-section .wy-card-say{
+  padding:16px 18px 14px 24px;
+  background:#F3F1E5;
+  border:1px solid #DAD6C0;
+}
+.wy-section .wy-card-say::before{
+  content:"";position:absolute;left:0;top:14px;bottom:14px;width:4px;
+  border-radius:0 4px 4px 0;background:#018a86;
+  transform:scaleY(.4);transform-origin:center;
+  transition:transform .35s var(--ease,ease);
+}
+.wy-section .wy-card-say:hover{
+  transform:translateY(-3px);
+  background:#FBFAF4;
+  border-color:#018a86;
+  box-shadow:0 16px 34px -18px rgba(18,59,55,.35);
+}
+.wy-section .wy-card-say:hover::before{transform:scaleY(1)}
+.wy-section .wy-card-say .wy-ct{color:#133B3A}
+.wy-section .wy-card-say .wy-cp{color:#4D6967}
+.wy-section .wy-uni{
+  align-self:flex-start;
+  font-size:.84rem;font-weight:800;letter-spacing:.04em;
+  color:#24605C;background:rgba(1,138,134,.12);
+  padding:4px 12px;border-radius:999px;
+}
+.wy-section .wy-foot{
+  margin-top:auto;padding-top:10px;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px;
+  border-top:1px dashed #C9C5AA;
+  font-size:.93rem;
+}
+.wy-section .wy-src{color:#4D6967;font-weight:600}
+.wy-section .wy-link{color:#018a86;font-weight:800;text-decoration:none;margin-left:auto}
+.wy-section a.wy-link span{display:inline-block;transition:transform .25s ease}
+.wy-section a.wy-link:hover{text-decoration:underline;text-underline-offset:3px}
+.wy-section a.wy-link:hover span{transform:translate(2px,-2px)}
+.wy-section a.wy-link:focus-visible{outline:2px solid #018a86;outline-offset:3px;border-radius:4px}
+.wy-section .wy-link-off{color:#2F6B66;font-weight:700}
+
+/* right cards */
+.wy-section .wy-card-do{
+  padding:16px 18px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  gap:10px;
+}
+.wy-section .wy-card-do:hover{
+  transform:translateY(-3px);
+  background:rgba(255,255,255,.1);
+  border-color:#6FA89A;
+}
+.wy-section .wy-row{display:flex;align-items:center;gap:12px}
+.wy-section .wy-ico{
+  width:38px;height:38px;border-radius:11px;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(169,203,191,.16);color:#A9CBBF;
+  transition:transform .3s var(--ease,ease),background-color .3s ease,color .3s ease;
+}
+.wy-section .wy-ico svg{width:20px;height:20px;display:block}
+.wy-section .wy-card-do:hover .wy-ico{transform:scale(1.1);background:#A9CBBF;color:#123B37}
+.wy-section .wy-card-do .wy-ct{color:#F3F1E5;min-width:0}
+.wy-section .wy-card-do .wy-cp{color:rgba(243,241,229,.84)}
+
+/* reveal on scroll */
+.wy-section .wy-head,
+.wy-section .wy-panel,
+.wy-section .wy-li{
+  opacity:0;transform:translateY(20px);
+  transition:opacity .7s var(--ease,ease),transform .7s var(--ease,ease);
+}
+.wy-section .wy-panel-say{transform:translateX(-26px);transition-delay:.12s}
+.wy-section .wy-panel-do{transform:translateX(26px);transition-delay:.12s}
+.wy-section .wy-li{transition-delay:calc(.3s + var(--i,0) * .09s)}
+.wy-section.is-in .wy-head,
+.wy-section.is-in .wy-panel,
+.wy-section.is-in .wy-li{opacity:1;transform:none}
+.wy-section.is-in .wy-rule{transform:scaleX(1)}
+
+/* tablet and phone */
+@media (max-width:960px){
+  .wy-section .wy-grid{grid-template-columns:minmax(0,1fr)}
+  .wy-section .wy-panel-say,
+  .wy-section .wy-panel-do{transform:translateY(20px)}
+}
+@media (max-width:640px){
+  .wy-section .wy-panel{border-radius:20px}
+  .wy-section .wy-card-say{padding:14px 14px 12px 20px}
+  .wy-section .wy-card-do{padding:14px}
+  .wy-section .wy-foot{flex-direction:column;align-items:flex-start}
+  .wy-section .wy-link{margin-left:0}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .wy-section .wy-head,
+  .wy-section .wy-panel,
+  .wy-section .wy-li{opacity:1;transform:none;transition:none}
+  .wy-section .wy-rule{transform:scaleX(1);transition:none}
+  .wy-section .wy-card,.wy-section .wy-ico{transition:none}
+}
