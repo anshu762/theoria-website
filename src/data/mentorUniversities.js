@@ -104,7 +104,7 @@ export const RAW_UNIVERSITIES = [
   },
   {
     name: 'Bocconi University', mono: 'BU', slug: 'bocconi-university', site: 'unibocconi.eu',
-    local: 'bocconi-logo.webp',
+    local: 'bocconi-logo.jpg',
     files: ['Bocconi_University_logo.svg', 'Logo_Bocconi.svg', 'Bocconi_University_Logo.svg'],
   },
   {
