@@ -1,0 +1,236 @@
+/* =====================================================================
+   PROGRAMS PAGE: card facts, comparison table, CTA   (prefix pg-)
+   ===================================================================== */
+
+/* ---------- 3 blocks inside each program card ---------- */
+.pg-programs .pg-facts{
+  display:grid;gap:12px;margin-top:20px;
+  padding:clamp(14px,1.6vw,18px);border-radius:16px;
+  background:var(--page);border:1px solid var(--line);
+}
+.pg-programs .pg-fact + .pg-fact{
+  padding-top:12px;border-top:1px dashed var(--line-2);
+}
+.pg-programs .card .pg-fact h4{
+  margin:0 0 5px;color:var(--purple-d);
+  font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;line-height:1.25;
+}
+.pg-programs .card .pg-fact p{
+  margin:0;color:var(--muted);
+  font-size:.94rem;font-weight:400;line-height:1.6;
+}
+
+/* ---------- table + CTA sections ---------- */
+.pg-programs section.pg-compare,
+.pg-programs section.pg-cta{min-height:0 !important;scroll-snap-align:none}
+.pg-programs section.pg-cta{
+  padding-top:0 !important;
+  padding-bottom:calc(var(--ban,60px) + clamp(28px,4vw,56px)) !important;
+}
+
+.pg-sr{
+  position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;
+}
+
+/* ---------- comparison table ---------- */
+.pg-table-wrap{
+  width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  border-radius:20px;border:1px solid var(--line);background:var(--card);
+  box-shadow:0 26px 46px -34px rgba(19,59,58,.5);
+}
+.pg-table-wrap:focus-visible{outline:3px solid var(--grad);outline-offset:3px}
+.pg-table{
+  width:100%;min-width:760px;border-collapse:separate;border-spacing:0;
+  text-align:left;font-size:clamp(.92rem,.89rem + .15vw,1rem);line-height:1.5;
+}
+.pg-table thead th{
+  padding:16px clamp(14px,1.6vw,22px);
+  background:var(--navy);color:var(--page);
+  font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;
+}
+
+.pg-table thead th.is-flag{background:var(--grad)}
+.pg-table tbody th,
+.pg-table tbody td{
+  padding:clamp(13px,1.4vw,18px) clamp(14px,1.6vw,22px);
+  border-top:1px solid var(--line);vertical-align:top;
+  color:var(--muted);background:var(--card);
+  transition:background .3s;
+  font-size: 15px !important;
+}
+.pg-table tbody tr:first-child th,
+.pg-table tbody tr:first-child td{border-top:0}
+.pg-table tbody th{
+  white-space:nowrap;
+}
+.pg-table tbody td.is-flag{background:rgba(1,138,134,.08);color:var(--ink);font-weight:600}
+.pg-table tbody tr:hover th,
+.pg-table tbody tr:hover td{background:var(--tint)}
+.pg-table tbody tr:hover td.is-flag{background:rgba(1,138,134,.16)}
+
+/* first column stays visible when the table scrolls sideways on phones */
+.pg-table thead th:first-child,
+.pg-table tbody th{position:sticky;left:0;z-index:2}
+.pg-table thead th:first-child{z-index:3}
+
+/* ---------- CTA ---------- */
+.pg-cta-box{
+  position:relative;overflow:hidden;isolation:isolate;text-align:center;
+  padding:clamp(34px,5vw,64px) clamp(20px,5vw,64px);border-radius:26px;
+  color:var(--page);
+  background:
+    radial-gradient(rgba(243,241,229,.08) 1px,transparent 1.6px) 0 0/22px 22px,
+    linear-gradient(160deg,#0F3330 0%,var(--navy) 55%,#1B4B47 130%);
+  box-shadow:0 34px 60px -38px rgba(19,59,58,.8);
+}
+.pg-cta-box:before{
+  content:"";position:absolute;z-index:-1;right:-6vw;top:-40%;
+  width:min(40vw,440px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(1,138,134,.35),transparent 68%);
+  animation:pg-glow 9s ease-in-out infinite;
+}
+.pg-programs .pg-cta-kicker{
+  margin:0 0 14px;color:var(--blue);
+  font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+}
+.pg-programs .pg-cta-box h2{
+  max-width:880px;margin:0 auto 14px;color:#fff;
+  font-size:clamp(1.6rem,1.05rem + 2vw,2.7rem);font-weight:600;line-height:1.18;letter-spacing:-.02em;
+}
+.pg-programs .pg-cta-sub{
+  max-width:680px;margin:0 auto clamp(22px,3vw,32px);color:#CFE0DA;
+  font-size:clamp(1rem,.94rem + .3vw,1.15rem);line-height:1.65;
+}
+.pg-cta-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  padding:.95em 1.7em;border-radius:999px;
+  background:var(--page);color:var(--navy);
+  font-weight:800;font-size:1rem;line-height:1.2;text-decoration:none;
+  box-shadow:0 16px 30px -14px rgba(0,0,0,.6);
+  transition:background .3s,color .3s,transform .3s var(--ease),box-shadow .3s;
+}
+.pg-cta-btn:hover{
+  background:var(--blue);color:#0F3330;transform:translateY(-3px);
+  box-shadow:0 22px 34px -14px rgba(0,0,0,.65);
+}
+.pg-cta-btn:active{transform:scale(.97)}
+.pg-cta-btn:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+.pg-cta-arr{display:inline-block;transition:transform .35s var(--ease)}
+.pg-cta-btn:hover .pg-cta-arr{transform:translateX(5px)}
+
+@keyframes pg-glow{50%{transform:translate(-18px,16px) scale(1.08)}}
+
+@media(max-width:640px){
+  .pg-cta-btn{display:flex;width:100%}
+  .pg-table{min-width:700px}
+}
+@media(prefers-reduced-motion:reduce){
+  .pg-cta-box:before{animation:none}
+}
+
+/* =====================================================================
+   PROGRAMS: table + CTA refinements (prefix pg-)
+   DIALS:
+   thead th font-size   table head size (17px, bigger than the 15px body)
+   section.pg-cta padding   CTA top/bottom space
+   .pg-cta-inner h2 max-width   CTA title width
+   ===================================================================== */
+
+/* ---------- table: 4 equal columns, identical text in every column ---------- */
+.pg-programs .pg-table{table-layout:fixed}
+
+.pg-programs .pg-table thead th{
+  width:25%;
+  font-size:17px !important;
+  letter-spacing:.06em;
+  line-height:1.3;
+}
+
+.pg-programs .pg-table tbody th,
+.pg-programs .pg-table tbody td{
+  width:25%;
+  font-size:15px !important;
+  font-weight:400 !important;
+  line-height:1.55 !important;
+  letter-spacing:normal !important;
+  text-transform:none !important;
+  text-align:left;
+  white-space:normal !important;
+  color:var(--muted) !important;
+}
+
+/* ---------- CTA: the whole section is the dark panel ---------- */
+.pg-programs section.pg-cta{
+  display:block;position:relative;overflow:hidden;isolation:isolate;
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+  color:var(--page);
+  background:
+    radial-gradient(rgba(243,241,229,.08) 1px,transparent 1.6px) 0 0/22px 22px,
+    linear-gradient(160deg,#0F3330 0%,var(--navy) 55%,#1B4B47 130%);
+}
+.pg-programs section.pg-cta:before{
+  content:"";position:absolute;z-index:-1;right:-6vw;top:-40%;
+  width:min(40vw,440px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(1,138,134,.35),transparent 68%);
+  animation:pg-glow 9s ease-in-out infinite;
+}
+
+/* no side padding of its own: the shell already gives the margins */
+.pg-programs .pg-cta-inner{
+  text-align:center;padding:0;
+}
+.pg-programs .pg-cta-inner h2{
+  max-width:1180px;margin:0 auto clamp(20px,2.6vw,30px);color:#fff;
+  font-size:clamp(1.6rem,1.05rem + 2vw,2.7rem);font-weight:600;line-height:1.18;letter-spacing:-.02em;
+  text-wrap:balance;
+}
+.pg-programs .pg-cta-inner .pg-cta-kicker{margin:0 0 12px}
+
+@media(prefers-reduced-motion:reduce){
+  .pg-programs section.pg-cta:before{animation:none}
+}
+
+/* =====================================================================
+   PROGRAMS TABLE: row alignment fix (prefix pg-)
+   DIALS:
+   --pg-label-w   width of the first (label) column
+   table min-width   below this the table scrolls sideways
+   ===================================================================== */
+.pg-programs .pg-table{
+  --pg-label-w:260px;
+  table-layout:fixed;
+  min-width:calc(var(--pg-label-w) + 660px);
+}
+
+/* first column: fixed width so labels stay on ONE line */
+.pg-programs .pg-table thead th:first-child,
+.pg-programs .pg-table tbody th{
+  width:var(--pg-label-w);
+  white-space:nowrap !important;
+}
+
+/* the 3 program columns share the remaining width equally */
+.pg-programs .pg-table thead th:not(:first-child),
+.pg-programs .pg-table tbody td{
+  width:auto;
+}
+
+/* every cell in a row is centred vertically, so rows with 1, 2 or 3 lines line up */
+.pg-programs .pg-table tbody th,
+.pg-programs .pg-table tbody td{
+  vertical-align:middle;
+  text-wrap:pretty;
+}
+.pg-programs .pg-table thead th{vertical-align:middle}
+
+/* phones: narrower label column, label may wrap if it has to */
+@media(max-width:640px){
+  .pg-programs .pg-table{
+    --pg-label-w:150px;
+    min-width:calc(var(--pg-label-w) + 600px);
+  }
+  .pg-programs .pg-table thead th:first-child,
+  .pg-programs .pg-table tbody th{white-space:normal !important}
+}

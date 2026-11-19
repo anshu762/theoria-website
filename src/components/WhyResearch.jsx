@@ -90,9 +90,9 @@ export default function WhyResearch() {
         <ul className="wr-grid">
           {ITEMS.map((it, i) => (
             <li key={it.id} className="wr-card" style={{ '--i': i }}>
-              <span className="wr-no" aria-hidden="true">
+              {/* <span className="wr-no" aria-hidden="true">
                 {String(i + 1).padStart(2, '0')}
-              </span>
+              </span> */}
               <span className="wr-ico" aria-hidden="true">
                 <svg
                   viewBox="0 0 24 24"

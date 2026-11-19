@@ -15,7 +15,11 @@ import About from './pages/About.jsx'
 import Apply from './pages/Apply.jsx'
 import Publications from './pages/Publications.jsx'
 import Projects from './pages/Projects.jsx'
-// import SuccessStoriesPage from './pages/SuccessStoriesPage.jsx'
+import BeyondResearch from './pages/BeyondResearch.jsx'
+import SuccessStoriesPage from './pages/SuccessStoriesPage.jsx'
+import ResearchFit from './pages/ResearchFit.jsx'
+import Contact from './pages/Contact.jsx'
+import ThankYou from './pages/ThankYou.jsx'
 
 export default function App() {
   return (
@@ -48,6 +52,12 @@ export default function App() {
           <Route path="/apply" element={<Apply />} />
           <Route path="/program/publications" element={<Publications />} />
           <Route path="/program/projects" element={<Projects />} />
+          <Route path="/beyond-research" element={<BeyondResearch />} />
+          <Route path="/success-stories" element={<SuccessStoriesPage />} />
+          <Route path="/research-fit-application" element={<ResearchFit />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/thank-you" element={<ThankYou />} />
+
           
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

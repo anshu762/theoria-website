@@ -117,11 +117,18 @@ export default function StatsSection() {
           <span className="st-rule" aria-hidden="true" />
         </div>
 
-        {/* next line: the three stat cards */}
+          {/* next line: the three stat cards */}
         <div className="st-grid">
           {STATS.map((s, i) => (
             <StatCard key={s.key} stat={s} index={i} />
           ))}
+        </div>
+
+        {/* bottom right */}
+        <div className="st-powered rv" style={d(500)}>
+          <p className="st-label st-powered-text">
+            Powered by <a href="https://univisory.org/">UniVisory</a>
+          </p>
         </div>
       </div>
     </section>

@@ -12,11 +12,12 @@ export default function Footer() {
           </div>
         </div>
         <div className="footerlinks">
-          <Link to="/why-research">Research programs</Link>
-          <Link to="/programs">Research library</Link>
-          <Link to="/research">Success stories</Link>
-          <Link to="/why-theoria">Competition ready</Link>
-          <Link to="/podcast">About us</Link>
+          <Link to="/programs">Research programs</Link>
+          <Link to="/program/publications">Research library</Link>
+          <Link to="/success-stories">Success stories</Link>
+          <Link to="/beyond-research">Beyond Research</Link>
+          <Link to="/podcast">Podcast</Link>
+          <Link to="/about">About</Link>
         </div>
         <hr />
         <p className="copy">© 2026 Theoria. Concept website for design and content approval. Research claims and program terms require verification before launch.</p>

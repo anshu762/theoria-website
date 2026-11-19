@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import LibraryShell from '../components/LibraryShell'
 
 const d = (ms) => ({ '--d': ms + 'ms' })
 const IMG = (file) => `${import.meta.env.BASE_URL}projects/${file}`
 
-/* ───────── PROJECT DATA (edit text / image names here) ───────── */
+/* ───────── PROJECT DATA (edit text / image names here) ─────────
+   section options:  paras: ['text', …]   list: ['item', …]   chips: ['IRIS', …]
+   images go in  public/projects/  (a tidy placeholder shows until the file exists) */
 const PROJECTS = [
   {
     id: 'shape-morphing-wing',
@@ -109,6 +110,479 @@ const PROJECTS = [
         label: 'Competitions to apply for',
         paras: [
           'INSPIRE-MANAK • CBSE National Science Exhibition • IRIS National Fair • Anveshana • Conrad Challenge — with potential for higher-level health-tech and assistive-technology competitions as the prototype and validation mature.',
+        ],
+      },
+    ],
+  },
+
+  /* ───────── NEW PROJECTS ───────── */
+  {
+    id: 'hybrid-engine',
+    no: '04',
+    title: 'Hybrid engine (Ramjet + Scramjet)',
+    image: IMG('hybrid-engine.png'),
+    alt: 'Ramjet and scramjet engine model',
+    pos: '50% 50%',
+    brief:
+      'Ramjet and scramjet engines designed in Fusion 360 and simulated in ANSYS at Mach 5 and Mach 15, with a 3D engine model that morphs its shape to the speed it operates at.',
+    sections: [
+      {
+        label: 'Problem statement',
+        paras: [
+          'High-speed aircraft require propulsion systems capable of operating across supersonic and hypersonic regimes. Ramjets and Scramjets offer better efficiency at these speeds. This project designs and simulates both engines to compare their behavior under Mach 5 and Mach 15 conditions.',
+        ],
+      },
+      {
+        label: 'Solution',
+        list: [
+          'Design Ramjet and Scramjet engines in Fusion 360.',
+          'Simulate both designs in ANSYS 2025 R2.',
+          'Evaluate behavior at Mach 5 and Mach 15.',
+          'Compare airflow compression, heat rise, thrust behavior, and stability.',
+        ],
+      },
+      {
+        label: 'Innovation',
+        paras: [
+          '3D model of an engine which has been designed that can morph it’s shape based upon the operational speed it’s supposed to achieve.',
+        ],
+      },
+      { label: 'Competition', chips: ['IRIS'] },
+    ],
+  },
+  {
+    id: 'winglets',
+    no: '05',
+    title: 'Different winglets profile comparison',
+    image: IMG('winglets.png'),
+    alt: 'Comparison of different winglet profiles',
+    pos: '50% 50%',
+    brief:
+      'A comparison study of different winglet profiles to find the optimal one, reducing wingtip vortices and induced drag while improving the lift-to-drag ratio.',
+    sections: [
+      {
+        label: 'Problem statement',
+        list: [
+          'Wings generate lift → pressure difference (high below, low above).',
+          'Air curls around the tip → creates wingtip vortices.',
+          'These vortices = energy loss → induced drag.',
+        ],
+      },
+      {
+        label: 'Solution',
+        list: [
+          'Winglets reduce vortex strength.',
+          'Increase effective wingspan without physically extending wing.',
+          'Improve Lift-to-Drag ratio (L/D).',
+        ],
+      },
+      {
+        label: 'Innovation',
+        paras: [
+          'Comparison study of different winglets and find the optimal out of all.',
+        ],
+      },
+      { label: 'Competition', chips: ['IRIS'] },
+    ],
+  },
+  {
+    id: 'sweat-tracker',
+    no: '06',
+    title: 'Digital sweat tracker',
+    image: IMG('sweat-tracker.png'),
+    alt: 'Wrist-worn digital sweat tracker',
+    pos: '50% 50%',
+    brief:
+      'A compact wrist-band that reads heart-rate data, sends it to a phone over BLE and warns the user before sweating starts.',
+    sections: [
+      {
+        label: 'Problem statement',
+        paras: [
+          'Users often experience sudden sweating without advance indication. This project aims to create a small wearable system that picks up early physiological changes and notifies the user before sweating begins.',
+        ],
+      },
+      {
+        label: 'Solution',
+        list: [
+          'Develop a wrist-worn device that reads heart-rate data.',
+          'Transfer this data to a mobile device through BLE.',
+          'Analyze short-term variations to estimate when sweating is about to trigger.',
+          'Provide an early alert so the user can take action.',
+        ],
+      },
+      {
+        label: 'Innovation',
+        paras: ['A compact wrist-band system that warns the user before sweating starts.'],
+      },
+      { label: 'Competitions', chips: ['IRIS'] },
+    ],
+  },
+  {
+    id: 'cataract-model',
+    no: '07',
+    title: 'ML-based cataract prediction model',
+    image: IMG('cataract-model.png'),
+    alt: 'Machine learning cataract prediction from eye images',
+    pos: '50% 50%',
+    brief:
+      'An offline machine-learning model that classifies eye images as cataract or normal, giving a quick preliminary screening without any medical-grade equipment.',
+    sections: [
+      {
+        label: 'Problem statement',
+        paras: [
+          'Cataract is one of the leading causes of vision impairment worldwide, especially in regions with limited access to specialized healthcare. Early detection is crucial but often delayed due to lack of screening tools and awareness. There is a need for an automated system that can analyze eye images and provide quick preliminary assessments.',
+        ],
+      },
+      {
+        label: 'Solution',
+        list: [
+          'Develop a system to classify eye images as cataract or normal.',
+          'Use machine learning for pattern recognition in eye images.',
+          'Enable batch processing of images from a local directory.',
+          'Create a simple and accessible screening tool.',
+        ],
+      },
+      {
+        label: 'Innovation',
+        paras: [
+          'An ML model that can run completely offline and by looking at the subject image of an eye this model predicts the likelihood of the individual to develop cataract or not, without the need of any medical grade equipment.',
+        ],
+      },
+      { label: 'Competition', chips: ['IRIS'] },
+    ],
+  },
+  {
+    id: 'ornithopter',
+    no: '08',
+    title: '3D model of an ornithopter',
+    image: IMG('ornithopter.png'),
+    alt: '3D model of an ornithopter',
+    pos: '50% 50%',
+    brief:
+      'A completely new 3D ornithopter model that is quieter than drones, can glide to save power and generates more lift per stroke.',
+    sections: [
+      {
+        label: 'Problem statement',
+        paras: [
+          'Traditional Drones have a problem of being to noisy and they also require continuous power to keep them flying.',
+        ],
+      },
+      {
+        label: 'Solution',
+        paras: [
+          'Designed an ornithopter that produces less noise and can glide like an aircraft (reduces overall power consumption and hence increases flight time).',
+        ],
+      },
+      {
+        label: 'Innovation',
+        paras: [
+          'Developed a completely novel 3D model from scratch that has improved degree of motion resulting in elevated lift generation per stroke.',
+        ],
+      },
+      { label: 'Competition', chips: ['IRIS'] },
+    ],
+  },
+  {
+    id: 'gids-shelter',
+    no: '09',
+    title: 'GIDS-based shelter allocation system',
+    image: IMG('gids-shelter.png'),
+    alt: 'GIS and graph-based emergency shelter allocation system',
+    pos: '50% 50%',
+    brief:
+      'A GIS and graph-based emergency shelter placement system that uses a Greedy Independent Dominating Set on a Unit-Disk Graph to choose shelters and assign people to them.',
+    sections: [
+      {
+        label: 'Problem statement',
+        paras: [
+          'During a disaster such as an earthquake, cyclone, flood, fire, or building collapse, a large number of people may suddenly require safe shelter. The major challenge is not only identifying affected population, but also deciding which shelters should be opened and how people should be assigned to them efficiently.',
+          'Traditional approaches may rely on fixed shelter lists or simple nearest-shelter logic, which can lead to overcrowding, poor coverage, and inefficient shelter selection.',
+        ],
+      },
+      {
+        label: 'Solution',
+        paras: [
+          'We developed a GIS and graph-based emergency shelter placement system that models the affected region using geographic coordinates and population nodes.',
+          'The system:',
+          'Disaster Scenario → Affected Population → Candidate Shelters → Shelter Evaluation → GIDS-based Selection → Ranking → Recommendation',
+          'The core algorithm uses a Greedy Independent Dominating Set (GIDS) approach on a Unit-Disk Graph to select a set of shelters that provides broad population coverage while avoiding unnecessary clustering of selected shelters.',
+        ],
+      },
+      {
+        label: 'Innovation',
+        paras: [
+          'The system first determines which shelters should form the overall emergency shelter network, and then assigns individuals to appropriate shelters based on their actual location.',
+        ],
+      },
+      {
+        label: 'Competitions',
+        chips: ['IRSI', 'GIS (geospatial innovation competitions)'],
+      },
+    ],
+  },
+  {
+    id: 'fanklet',
+    no: '10',
+    title: 'Fanklet (fall detecting anklet)',
+    image: IMG('fanklet.png'),
+    alt: 'Fanklet, an ESP32-based fall detecting anklet',
+    pos: '50% 50%',
+    brief:
+      'A low-cost ESP32 anklet that detects falls and analyses tremor patterns offline, with a companion app and an SOS call feature.',
+    sections: [
+      {
+        label: 'Problem statement',
+        paras: [
+          'Parkinson’s-related tremors and falls can significantly affect a person’s safety and independence. Existing monitoring systems can be expensive, complex, or dependent on continuous internet connectivity.',
+        ],
+      },
+      {
+        label: 'Solution',
+        paras: [
+          'A wearable ESP32-based fanklet continuously monitors acceleration and gyroscope data, while a mobile app records and analyzes the data for tremor patterns, activity, and fall events, with an SOS call feature for emergencies.',
+        ],
+      },
+      {
+        label: 'Innovation',
+        paras: [
+          'The system combines real-time fall detection, tremor analysis, and offline data processing in a low-cost wearable ecosystem, allowing long-term sensor data to be analyzed without relying on cloud services.',
+        ],
+      },
+      {
+        label: 'Competitions to apply for',
+        chips: [
+          'IRIS National Fair',
+          'CBSE Science Exhibition',
+          'INSPIRE Awards–MANAK',
+          'India International Science Festival (IISF)',
+          'Conrad Challenge',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cabinwatch',
+    no: '11',
+    title: 'CabinWatch',
+    image: IMG('cabinwatch.png'),
+    alt: 'CabinWatch in-vehicle occupant and temperature monitoring system',
+    pos: '50% 50%',
+    brief:
+      'A standalone retrofit system that detects children or pets left in a parked car and alerts locally and by SMS when the cabin temperature crosses a threshold.',
+    sections: [
+      {
+        label: 'Problem statement',
+        paras: [
+          'Children and pets left inside parked vehicles can be exposed to rapidly rising cabin temperatures, creating a serious risk of heat stress and heat stroke. Existing occupant-monitoring solutions are often integrated into premium/OEM vehicle systems and are difficult to retrofit into existing vehicles.',
+        ],
+      },
+      {
+        label: 'Solution',
+        paras: [
+          'A standalone retrofit system that uses onboard computer vision to detect an occupant and an environmental sensor to monitor cabin temperature. When an occupant is detected and the temperature crosses a predefined threshold, the system provides a local alert and sends an SMS notification to a predefined mobile number.',
+        ],
+      },
+      {
+        label: 'Innovation',
+        paras: [
+          'The system combines edge-based occupant detection and temperature monitoring into a single decision-making mechanism without depending on the vehicle’s OEM electronics or cloud infrastructure. A software-based cooldown mechanism prevents repeated SMS alerts while continuous monitoring continues.',
+        ],
+      },
+      {
+        label: 'Competition to apply for',
+        paras: [
+          'Suitable competitions can include Smart India Hackathon (SIH), e-Yantra Innovation Challenge, iDEX / Defence Innovation challenges where the problem statement aligns, and relevant hardware/IoT innovation competitions focused on public safety, automotive technology, or assistive technology.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'neurocalm',
+    no: '12',
+    title: 'NeuroCalm',
+    image: IMG('neurocalm.png'),
+    alt: 'NeuroCalm wearable stress sensing system',
+    pos: '50% 50%',
+    brief:
+      'A wearable that combines heart rate, GSR, temperature and finger pressure into a real-time Stress Index and triggers a haptic alert at a set threshold.',
+    sections: [
+      {
+        label: 'Problem statement',
+        paras: [
+          'People experiencing stress may show physiological changes such as increased heart rate, skin conductance, temperature, and muscle/finger pressure. These changes are often difficult to recognize early through subjective observation alone.',
+        ],
+      },
+      {
+        label: 'Solution',
+        paras: [
+          'NeuroCalm is a wearable sensing system that continuously measures HR, GSR, temperature, and finger pressure using MAX30102, GSR, MAX30205, and FSR sensors, then generates a real-time Stress Index.',
+        ],
+      },
+      {
+        label: 'Innovation',
+        paras: [
+          'Instead of relying on a single physiological signal, NeuroCalm combines multiple independent biosignals to estimate stress more robustly and triggers a haptic motor when the detected stress level crosses a defined threshold.',
+        ],
+      },
+      {
+        label: 'Competitions to apply for',
+        list: [
+          'Smart India Hackathon (SIH) — hardware/IoT & healthcare-oriented challenges',
+          'e-Yantra / IIT Bombay competitions — embedded systems & robotics',
+          'Anveshana / INSPIRE-type innovation programs — student innovation & prototyping',
+          'IIC / Institution Innovation Council competitions — health-tech and social-impact prototypes',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'heat-stroke',
+    no: '13',
+    title: 'Heat stroke prediction model',
+    image: IMG('heat-stroke.png'),
+    alt: 'ESP32-based heat stroke prediction device',
+    pos: '50% 50%',
+    brief:
+      'An ESP32-based edge device that tracks body temperature against a personal baseline and calculates a real-time heat-stress risk score without the cloud.',
+    sections: [
+      {
+        label: 'Problem statement',
+        paras: [
+          'Heat stress can develop progressively, while conventional monitoring may not continuously track changes in body temperature. There is a need for a compact system that can identify abnormal temperature trends early.',
+        ],
+      },
+      {
+        label: 'Solution',
+        paras: [
+          'An ESP32-based edge device uses the MAX30205 temperature sensor to continuously monitor temperature and establish an individual baseline. It analyzes temperature change, rate, and rising trends to calculate a real-time risk score.',
+        ],
+      },
+      {
+        label: 'Innovation',
+        paras: [
+          'Instead of relying only on a fixed temperature threshold, the system combines baseline deviation + temperature delta + rate of change + trend analysis into a lightweight on-device risk model, enabling real-time edge processing without cloud dependency.',
+        ],
+      },
+      {
+        label: 'Competition to apply for',
+        paras: [
+          'ATL Marathon / ATL Tinkering Lab challenges, CBSE innovation competitions, INSPIRE Awards–MANAK, Smart India Hackathon (SIH), and relevant hardware/IoT innovation challenges.',
+        ],
+      },
+    ],
+  },
+
+    {
+    id: 'agritech',
+    no: '14',
+    title: 'Agritech',
+    image: IMG('Agritech.jpeg'),
+    alt: 'Agritech app splash screen: leaf logo on a green background with the tagline Smart Farming Solutions',
+    pos: '50% 30%',
+    brief:
+      'An end-to-end Agritech AI system that works in low-connectivity settings, is explainable and multilingual, and shows measurable sustainability impact, with two publishable papers, a working app and small farmer/community pilots.',
+    sections: [
+      {
+        label: 'Overview',
+        paras: [
+          'Build an end-to-end Agritech AI system that works in low-connectivity settings, is explainable and multilingual, and demonstrates measurable sustainability impact. The work yields two publishable papers with mentors from India and the USA, a working app, optional hardware integration (IoT baseline; drone stretch), and small but real farmer/community pilots.',
+        ],
+      },
+      {
+        label: 'Primary outcome for admissions',
+        paras: [
+          'Two research papers (India + USA co-authors), quantifiable results, open artifacts (code/data), and real-world users.',
+          'This signals research depth, systems thinking, and social impact—exactly what top CSE programs value.',
+        ],
+      },
+      {
+        label: 'Deliverables',
+        list: [
+          'Paper A (India-focused, HCI/Systems/AI for low-resource settings). Title (working): AgriVision-Lite: Offline-First, Explainable, Multilingual Mobile AI for Crop Care. Core contributions: on-device ML + cloud fallback, Grad-CAM explainability, multilingual UI, small usability study, multi-modal fusion (image + weather + soil).',
+          'Paper B (International methods/systems). Title (working): AgriVision-X: Edge-Enabled Segmentation and Selective Treatment for Sustainable Precision Agriculture. Core contributions: lesion segmentation, selective action estimation (dose/area), optional edge inference (IoT/Drone), sustainability metrics.',
+          'App (Android; Flutter or native): Works fully offline; hybrid inference; multilingual + voice; explainable predictions; advisory cards; data consent and privacy.',
+          'Hardware path (choose at least one): IoT baseline (ESP32 + soil/ambient sensors via BLE) for fusion and validation. Drone stretch (DJI/Pixhawk + RGB; optional Jetson/Coral) for field stress mapping. Satellite imagery can substitute if drone access is hard.',
+          'Open artifacts: Clean GitHub repo, model card, anonymized sample dataset, short demo video, bilingual spray-sheet/export.',
+        ],
+      },
+      {
+        label: 'System scope: Mobile app (must-have)',
+        list: [
+          'Camera capture and gallery import.',
+          'On-device disease classification (TFLite int8; sub-100 ms on mid-range phone; ≤10 MB model).',
+          'Result card with diagnosis, confidence, and 3-step action plan (cultural → organic → chemical).',
+          'Hybrid inference: default on-device; cloud fallback for a heavier model when online.',
+          'Explainability: Grad-CAM heatmap overlay + one-line “why” message in local language.',
+          'Multi-modal inputs: image + soil moisture + weather for improved recommendations.',
+          'Basic irrigation advisor (simple ET-based rule at first; upgrade to small ML regressor).',
+          'Multilingual UI (English + Kannada/Hindi); optional voice prompts for accessibility.',
+          'Local datastore for fields, observations, predictions, treatments; offline-first sync.',
+          'Privacy and consent flows; delete-my-data; no PII to cloud by default; signed updates.',
+        ],
+      },
+      {
+        label: 'System scope: ML core (research engine)',
+        list: [
+          'Task 1: Image classification (MobileNet/EfficientNet-Lite; robust augmentations).',
+          'Task 2: Lesion segmentation (U-Net/DeepLab-Mobile) to localize disease—enables selective actions and stronger XAI.',
+          'Task 3: Fusion model (late fusion baseline): image + soil + weather.',
+          'Calibration: temperature scaling; report ECE so probabilities are trustworthy.',
+          'Model card + A/B ability inside app (opt-in to try newer model; instant rollback).',
+        ],
+      },
+      {
+        label: 'System scope: Hardware paths',
+        list: [
+          'IoT baseline (recommended even if no drone): ESP32 + capacitive soil moisture + temp/humidity (DHT22) + optional pH. BLE to app, simple quality checks (range/debounce/calibration prompts).',
+          'Drone stretch (optional): RGB mosaic capture → inference → hotspot polygons. If hardware spraying is not feasible, simulate selective spraying (coordinates + dose plan). Satellite imagery (e.g., public aerial datasets) can substitute the drone until you get access.',
+        ],
+      },
+      {
+        label: 'System scope: Precision/mapping and outputs',
+        list: [
+          'Stress polygon viewer: load GeoJSON hotspots (from drone/satellite/segmentation) on a map view.',
+          'Spray sheet export (PDF): compute estimated dose from lesion area/field area; bilingual, units verified.',
+        ],
+      },
+      {
+        label: 'System scope: Analytics, evaluation, ethics',
+        list: [
+          'Developer metrics panel (local only): latency, model version, device model, prediction counts.',
+          'In-app surveys: SUS and 2–3 trust questions about XAI.',
+          'Consent, anonymization, and responsible data handling baked in.',
+        ],
+      },
+      {
+        label: 'Novelty (what makes this “research” and not just an app)',
+        list: [
+          'Offline-first hybrid ML with calibrated cloud fallback (systems novelty for low connectivity regions).',
+          'Explainable AI presented in farmer-friendly way (Grad-CAM + local-language rationale).',
+          'Multi-modal fusion (image + environment) showing measurable accuracy and calibration gains.',
+          'Lesion segmentation → selective action estimation (dose/area), quantifying chemical savings.',
+          'Optional edge AI (IoT/drone/Coral/Jetson), or satellite-first substitute, for scalable precision.',
+          'Formal evaluation: calibration (ECE), latency/size tradeoffs, HCI metrics (SUS, trust), and sustainability metrics (estimated % reduction in chemical/water).',
+        ],
+      },
+      {
+        label: 'Evaluation metrics (quote these in SOP/CV)',
+        list: [
+          'On-device latency: <100 ms on mid-range Android; model size ≤10 MB.',
+          'Accuracy/F1: per-class F1 ≥0.85 on your local test set (include data from your region).',
+          'Calibration: ECE ≤0.08 (before/after temperature scaling).',
+          'Fusion uplift: ≥ +3 F1 points vs. image-only baseline.',
+          'Segmentation quality: IoU/Dice on lesion masks; show qualitative Grad-CAM vs. mask alignment.',
+          'Usability: SUS ≥70; ≥70% participants report XAI increased trust/understanding.',
+          'Sync reliability: zero data loss in airplane-mode tests; crash-free rate ≥99.5%.',
+          'IoT BLE reliability: packet loss ≤3% indoors / ≤8% outdoors.',
+          'Sustainability proxy: estimated pesticide reduction ≥10–20% from selective dosing on trials.',
+        ],
+      },
+      {
+        label: 'Datasets and data plan',
+        list: [
+          'Public: PlantVillage, PlantDoc (images); Agriculture-Vision or similar for aerial/satellite; open weather sources for features.',
+          'Local: collect 300–500 images in your crops/region; annotate at least 200; keep a small held-out local test set.',
+          'IoT: log soil moisture and temp/humidity alongside image samples for fusion experiments.',
         ],
       },
     ],
@@ -228,13 +702,12 @@ function ProjectModal({ index, onChange, onClose }) {
         <div className="pj-dlg-body" ref={bodyRef} onScroll={onScroll}>
           <div className="pj-content" key={p.id}>
             <div className="pj-hero" style={{ '--i': 0 }}>
-              <Pic src={p.image} alt={p.alt} />
+              <Pic src={p.image} alt={p.alt} pos={p.pos} />
             </div>
 
             <div className="pj-secs">
               {p.sections.map((s, i) => (
-                <section className="pj-sec" key={s.label} style={{ '--i': i + 1 }}>
-                  {/* <span className="pj-sec-no" aria-hidden="true">{i + 1}</span> */}
+                <section className="pj-sec" key={s.label} style={{ '--i': Math.min(i + 1, 6) }}>
                   <div className="pj-sec-main">
                     <h4>{s.label}</h4>
                     {s.chips && (
@@ -243,6 +716,7 @@ function ProjectModal({ index, onChange, onClose }) {
                       </div>
                     )}
                     {s.paras && s.paras.map((t, k) => <p key={k}>{t}</p>)}
+                    {s.list && s.list.map((t, k) => <p className="pj-li" key={'li' + k}>{t}</p>)}
                   </div>
                 </section>
               ))}
@@ -277,39 +751,47 @@ export default function Projects() {
   }, [])
 
   return (
-    <LibraryShell title="Research" accent="projects.">
-      <ul className="pj-grid">
-        {PROJECTS.map((p, i) => (
-          <li className="rv" key={p.id} style={d(i * 110)}>
-            <article className="pj-card">
-              <div className="pj-thumb">
-                <Pic src={p.image} alt={p.alt} pos={p.pos} />
-                <span className="pj-badge">Project {p.no}</span>
-              </div>
-              <div className="pj-card-body">
-                <h3>{p.title}</h3>
-                <p>{p.brief}</p>
-                <button
-                  type="button"
-                  className="pj-more"
-                  onClick={(e) => openModal(i, e)}
-                  aria-haspopup="dialog"
-                  aria-label={`View more about ${p.title}`}
-                >
-                  <span>View more</span>
-                  <i aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-                  </i>
-                </button>
-              </div>
-            </article>
-          </li>
-        ))}
-      </ul>
+    <div className="page lib-page pj-page">
+      <section className="pj-section">
+        <div className="shell">
+          <div className="pj-title rv">
+            <h1>Research <span className="pj-title-x">projects</span></h1>
+          </div>
+
+          <ul className="pj-grid">
+            {PROJECTS.map((p, i) => (
+              <li className="rv" key={p.id} style={d((i % 3) * 110)}>
+                <article className="pj-card">
+                  <div className="pj-thumb">
+                    <Pic src={p.image} alt={p.alt} pos={p.pos} />
+                    {/* <span className="pj-badge">Project {p.no}</span> */}
+                  </div>
+                  <div className="pj-card-body">
+                    <h3>{p.title}</h3>
+                    <p>{p.brief}</p>
+                    <button
+                      type="button"
+                      className="pj-more"
+                      onClick={(e) => openModal(i, e)}
+                      aria-haspopup="dialog"
+                      aria-label={`View more about ${p.title}`}
+                    >
+                      <span>View more</span>
+                      <i aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                      </i>
+                    </button>
+                  </div>
+                </article>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {active !== null && (
         <ProjectModal index={active} onChange={setActive} onClose={closeModal} />
       )}
-    </LibraryShell>
+    </div>
   )
 }

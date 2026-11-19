@@ -37,7 +37,6 @@ export default function Header() {
           ) : (
             <>
               <BookIcon width="48" height="40" />
-              {/* <img src="logo.png" alt="Theoria: Research for Young Scholars" width="48" height="40" /> */}
               <span className="wordmark">
                 THEORIA<small>RESEARCH FOR YOUNG SCHOLARS</small>
               </span>
@@ -98,7 +97,7 @@ export default function Header() {
               </div>
             )
           })}
-          <Link className="btn nav-cta" to="/apply">Research Application Form</Link>
+          <Link className="btn nav-cta" to="/research-fit-application">Research Application Form</Link>
         </nav>
       </div>
     </header>

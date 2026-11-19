@@ -260,3 +260,120 @@
     animation: none !important;
   }
 }
+
+/* =====================================================================
+   ABOUT: CONTACT SECTION (prefix fn-ct-)
+   DIAL: .fn-ct-map min-height = map height on desktop
+   ===================================================================== */
+
+/* the founder section is no longer the last one: normal bottom space.
+   (the contact section keeps the banner padding from .fn-page section) */
+.fn-page section.fn-founder{
+  padding-bottom:clamp(34px,6vh,72px) !important;
+}
+header{
+  background: none;
+  border: none;
+}
+
+/* contact section: soft tint band, same full width + side padding as the note */
+.fn-page .fn-contact{
+  background:var(--tint);
+  border-top:1px solid var(--line);
+}
+.fn-page .fn-contact > .shell{
+  max-width:none !important;
+  width:100% !important;
+  margin:0 !important;
+  padding-inline:var(--fn-side) !important;
+}
+
+.fn-ct-head{margin-bottom:clamp(20px,3vh,30px)}
+.fn-ct-head h2{
+  margin:0;color:var(--navy);
+  font-size:clamp(1.9rem,1.3rem + 1.9vw,2.9rem);line-height:1.06;
+}
+
+.fn-ct-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);
+  gap:var(--fn-gap);
+  align-items:stretch;
+}
+
+/* ---------- map ---------- */
+.fn-ct-map{
+  position:relative;overflow:hidden;
+  min-height:clamp(300px,34vw,440px);
+  border-radius:22px;background:var(--card);border:1px solid var(--line);
+  box-shadow:0 24px 60px -30px rgba(18,59,55,.55);
+}
+.fn-ct-map iframe{
+  position:absolute;inset:0;display:block;width:100%;height:100%;border:0;
+}
+
+/* ---------- details card ---------- */
+.fn-ct-card{
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,2.4vw,28px);
+  padding:clamp(22px,2.8vw,38px);
+  border-radius:22px;background:var(--card);border:1px solid var(--line);
+  box-shadow:0 24px 60px -34px rgba(18,59,55,.45);
+}
+.fn-ct-card:before{
+  content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--grad);
+}
+.fn-ct-list{list-style:none;margin:0;padding:0;display:grid;gap:clamp(18px,2vw,24px)}
+.fn-ct-row{display:flex;align-items:flex-start;gap:16px}
+.fn-ct-ico{
+  flex:none;width:48px;height:48px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--navy);color:var(--page);
+  transition:background .3s,transform .35s var(--ease);
+}
+.fn-ct-row:hover .fn-ct-ico{background:var(--grad);transform:scale(1.1)}
+
+.fn-page .fn-ct-row h3{
+  margin:0 0 4px;color:var(--grad);
+  font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;line-height:1.25;
+}
+.fn-page .fn-ct-row p{
+  margin:0;color:var(--ink);
+  font-size:clamp(1rem,.95rem + .2vw,1.12rem);font-weight:500;line-height:1.55;
+  overflow-wrap:anywhere;
+}
+.fn-ct-row p a{
+  color:inherit;text-decoration:none;border-bottom:1px solid var(--line-2);
+  transition:color .3s,border-color .3s;
+}
+.fn-ct-row p a:hover{color:var(--grad);border-color:var(--grad)}
+.fn-ct-row p a:focus-visible{outline:3px solid var(--grad);outline-offset:3px}
+
+/* directions button */
+.fn-ct-btn{
+  align-self:flex-start;
+  display:inline-flex;align-items:center;gap:10px;
+  padding:.75em 1.4em;border-radius:999px;
+  background:transparent;border:1.5px solid var(--navy);color:var(--navy);
+  font-weight:700;font-size:.97rem;line-height:1.2;text-decoration:none;
+  transition:background .3s,color .3s,transform .3s var(--ease),box-shadow .3s;
+}
+.fn-ct-btn:hover{
+  background:var(--navy);color:var(--page);transform:translateY(-2px);
+  box-shadow:0 14px 26px -14px rgba(19,59,58,.7);
+}
+.fn-ct-btn:active{transform:scale(.97)}
+.fn-ct-btn:focus-visible{outline:3px solid var(--grad);outline-offset:3px}
+.fn-ct-arr{display:inline-block;transition:transform .35s var(--ease)}
+.fn-ct-btn:hover .fn-ct-arr{transform:translateX(5px)}
+
+/* ---------- responsive ---------- */
+@media(max-width:860px){
+  .fn-ct-grid{grid-template-columns:minmax(0,1fr);gap:clamp(18px,5vw,26px)}
+  .fn-ct-map{min-height:clamp(260px,62vw,360px)}
+}
+@media(max-width:520px){
+  .fn-ct-row{gap:12px}
+  .fn-ct-ico{width:42px;height:42px}
+  .fn-ct-btn{align-self:stretch;justify-content:center}
+}
