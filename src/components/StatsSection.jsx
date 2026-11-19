@@ -127,7 +127,7 @@ export default function StatsSection() {
         {/* bottom right */}
         <div className="st-powered rv" style={d(500)}>
           <p className="st-label st-powered-text">
-            Powered by <a href="https://univisory.org/">UniVisory</a>
+            Powered by <a href="https://univisory.org/" target='_blank'>UniVisory</a>
           </p>
         </div>
       </div>

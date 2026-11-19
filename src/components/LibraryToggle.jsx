@@ -2,13 +2,13 @@ import { Link, useLocation } from 'react-router-dom'
 
 /* If your Projects page uses a different path, change `to` here (only place). */
 const VIEWS = [
-  { id: 'publications', label: 'Publications', to: '/program/projects' },
+  { id: 'publications', label: 'Publications', to: '/program/Publications' },
   { id: 'projects', label: 'Projects', to: '/program/projects' },
 ]
 
 const HINT = {
-  publications: ['You are viewing ', 'research publications', '. Use the switch to explore our projects.'],
-  projects: ['You are viewing ', 'research projects', '. Use the switch to read our publications.'],
+  publications: [ 'Use the switch to explore our projects.'],
+  projects: ['Use the switch to read our publications.'],
 }
 
 const DocIcon = () => (
@@ -69,10 +69,6 @@ export default function LibraryToggle({ current }) {
           )
         })}
       </nav>
-
-      <p className="vt-hint" key={current}>
-        {hint[0]}<strong>{hint[1]}</strong>{hint[2]}
-      </p>
     </div>
   )
 }

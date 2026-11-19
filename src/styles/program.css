@@ -105,13 +105,14 @@
 .pg-cta-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:12px;
   padding:.95em 1.7em;border-radius:999px;
-  background:var(--page);color:var(--navy);
+  background:var(--navy);color:var(--page);
   font-weight:800;font-size:1rem;line-height:1.2;text-decoration:none;
   box-shadow:0 16px 30px -14px rgba(0,0,0,.6);
   transition:background .3s,color .3s,transform .3s var(--ease),box-shadow .3s;
 }
 .pg-cta-btn:hover{
   background:var(--blue);color:#0F3330;transform:translateY(-3px);
+  color: #fff;
   box-shadow:0 22px 34px -14px rgba(0,0,0,.65);
 }
 .pg-cta-btn:active{transform:scale(.97)}
@@ -150,7 +151,7 @@
 .pg-programs .pg-table tbody th,
 .pg-programs .pg-table tbody td{
   width:25%;
-  font-size:15px !important;
+  font-size:18px !important;
   font-weight:400 !important;
   line-height:1.55 !important;
   letter-spacing:normal !important;
@@ -166,20 +167,20 @@
   padding-top: 30px !important;
   padding-bottom: 30px !important;
   color:var(--page);
-  background:
+  /* background:
     radial-gradient(rgba(243,241,229,.08) 1px,transparent 1.6px) 0 0/22px 22px,
-    linear-gradient(160deg,#0F3330 0%,var(--navy) 55%,#1B4B47 130%);
+    linear-gradient(160deg,#0F3330 0%,var(--navy) 55%,#1B4B47 130%); */
 }
 .pg-programs section.pg-cta:before{
   content:"";position:absolute;z-index:-1;right:-6vw;top:-40%;
   width:min(40vw,440px);aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle,rgba(1,138,134,.35),transparent 68%);
+  /* background:radial-gradient(circle,rgba(1,138,134,.35),transparent 68%); */
   animation:pg-glow 9s ease-in-out infinite;
 }
 
 /* no side padding of its own: the shell already gives the margins */
 .pg-programs .pg-cta-inner{
-  text-align:center;padding:0;
+  text-align:center;padding:30px;
 }
 .pg-programs .pg-cta-inner h2{
   max-width:1180px;margin:0 auto clamp(20px,2.6vw,30px);color:#fff;
@@ -234,3 +235,41 @@
   .pg-programs .pg-table thead th:first-child,
   .pg-programs .pg-table tbody th{white-space:normal !important}
 }
+
+/* =====================================================================
+   PROGRAMS: Elite card in green   (pg-elite)
+   ===================================================================== */
+.pg-programs .card.pg-elite,
+.pg-programs .card.pg-elite:hover{
+  background:
+    radial-gradient(rgba(243,241,229,.07) 1px,transparent 1.6px) 0 0/22px 22px,
+    linear-gradient(160deg,#0F3330 0%,#123B37 55%,#1B4B47 130%) !important;
+  border-color:#123B37 !important;
+  color:#F3F1E5;
+}
+.pg-programs .card.pg-elite{
+  box-shadow:0 30px 50px -30px rgba(18,59,55,.75);
+}
+
+/* text */
+.pg-programs .card.pg-elite h2{color:#fff !important}
+.pg-programs .card.pg-elite > p{color:#CFE0DA !important}
+.pg-programs .card.pg-elite ul li{color:#E4EEE9 !important}
+
+/* tag pill */
+.pg-programs .card.pg-elite .tag{
+  /* background:rgba(243,241,229,.14) !important; */
+  color:#F3F1E5 !important;
+  border-color:rgba(243,241,229,.3) !important;
+}
+
+/* the 3 fact blocks inside the card */
+.pg-programs .card.pg-elite .pg-facts{
+  background:rgba(243,241,229,.08);
+  border-color:rgba(243,241,229,.2);
+}
+.pg-programs .card.pg-elite .pg-fact + .pg-fact{
+  border-top-color:rgba(243,241,229,.24);
+}
+.pg-programs .card.pg-elite .pg-fact h4{color:var(--blue,#A9CBBF)}
+.pg-programs .card.pg-elite .pg-fact p{color:#D6E5DF}

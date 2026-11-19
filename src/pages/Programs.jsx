@@ -60,13 +60,19 @@ export default function Programs() {
             <article className="card rv"><div className="tag">Foundations</div><h2>Scholar</h2>
             <p>Develop research literacy, structured inquiry and a substantial first research output.</p><ul><li>Research-question development</li><li>Literature and methodology foundations</li><li>Guided analysis and writing</li><li>Report or appropriate project deliverable</li></ul>
             <Facts items={SCHOLAR_FACTS} /></article>
-            <article className="card featured rv" style={d(100)}><div className="tag font-[#F3F1E5]">Original investigation</div><h2>Elite</h2>
+            <article className="card featured pg-elite rv" style={d(100)}><div className="tag">Original investigation</div><h2>Elite</h2>
             <p>One-to-one research mentorship for a novel question and a defensible original output.</p><ul><li>Field-matched mentor</li><li>Advanced methodology and analysis</li><li>Iterative manuscript or research development</li><li>Publication-readiness and submission guidance</li></ul>
             <Facts items={ELITE_FACTS} /></article>
-            <article className="card fellow rv" style={d(200)}><div className="tag">Research &amp; innovation</div><h2>Fellowship</h2>
+            <article className="card rv" style={d(200)}><div className="tag">Research &amp; innovation</div><h2>Fellowship</h2>
             <p>Extended support for ambitious scholarly work, applied projects or both.</p><ul><li>Research track: manuscript and publication process</li><li>Innovation track: build and validate a project</li><li>Integrated track: research + applied output</li><li>Expanded academic review and mentor evaluation</li></ul>
             <Facts items={FELLOW_FACTS} /></article>
           </div>
+        </div>
+        <div className="pg-cta-inner rv">
+            <Link className="pg-cta-btn" to="/research-fit-application">
+              <span>Assess program fit</span>
+              <span className="pg-cta-arr" aria-hidden="true">→</span>
+            </Link>
         </div>
       </section>
 
@@ -100,20 +106,6 @@ export default function Programs() {
                 ))}
               </tbody>
             </table>
-          </div>
-        </div>
-      </section>
-
-      {/* ───────── CTA ───────── */}
-      <section className="pg-cta">
-        <div className="shell">
-          <div className="pg-cta-inner rv">
-            <p className="pg-cta-kicker">Your child’s research journey</p>
-            <h2>Not sure which pathway is right? Start with the student, not the program.</h2>
-            <Link className="pg-cta-btn" to="/research-fit-application">
-              <span>See how we assess program fit</span>
-              <span className="pg-cta-arr" aria-hidden="true">→</span>
-            </Link>
           </div>
         </div>
       </section>

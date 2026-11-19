@@ -22,25 +22,25 @@ const ITEMS = [
       </>
     ),
   },
-  {
-    id: 'mentorship',
-    title: '1:1 Mentorship with Researchers',
-    tagline: 'The right research expertise, matched to the student and their individual research interests.',
+   {
+    id: 'competitions',
+    title: 'International Competition Readiness',
+    tagline: 'Beyond publication. Towards international distinction.',
     body: [
-      'Our researchers bring advanced expertise across diverse fields. We match each student with 1:1 mentor based on their specific interests, research question, required techniques and potential interdisciplinary connections—not simply their intended university major.',
-      'Every student then follows a project-specific research journey, with research questions, methodologies, milestones and feedback tailored to their academic readiness and the demands of the investigation.',
+      'Theoria helps students identify and prepare for relevant research competitions, selective research programs, innovation challenges and international awards.',
+      'Preparation is aligned with the actual requirements of opportunities such as IRIS/Regeneron ISEF, RSI and suitable international innovation competitions.',
     ],
-    example:
-      'For example, a student interested in AI applications in healthcare may benefit from a researcher specializing in machine learning, computational biology or biomedical data analysis, depending on the nature of their research question.',
     helps:
-      'Students receive sustained intellectual guidance from a researcher equipped to challenge and advance their ideas. Through individualized mentorship, they develop research independence, strengthen their analytical thinking and build the confidence to explain and defend their work.',
+      'Students can pursue recognition beyond their school, test their work against demanding standards and develop the confidence to compete with exceptional peers.',
     showcase:
-      "A Researcher–Student Matching Profile highlighting the mentor's field expertise, relevant publications and suitability for the project, alongside a Student Research Plan outlining project milestones, progress and examples of mentor feedback.",
+      'An International Recognition Plan and Competition Readiness Tracker showing opportunities, eligibility, preparation requirements and milestones.',
     icon: (
       <>
-        <path d="M22 9 12 4 2 9l10 5 10-5Z" />
-        <path d="M6 11.5V16c0 1.2 2.7 3 6 3s6-1.8 6-3v-4.5" />
-        <path d="M22 9v6" />
+        <path d="M8 21h8" />
+        <path d="M12 17v4" />
+        <path d="M7 4h10v5a5 5 0 0 1-10 0Z" />
+        <path d="M7 6H4v1a3 3 0 0 0 3 3" />
+        <path d="M17 6h3v1a3 3 0 0 1-3 3" />
       </>
     ),
   },
@@ -103,24 +103,24 @@ const ITEMS = [
     ),
   },
   {
-    id: 'competitions',
-    title: 'International Competition Readiness',
-    tagline: 'Beyond publication. Towards international distinction.',
+    id: 'mentorship',
+    title: '1:1 Mentorship with Researchers',
+    tagline: 'The right research expertise, matched to the student and their individual research interests.',
     body: [
-      'Theoria helps students identify and prepare for relevant research competitions, selective research programs, innovation challenges and international awards.',
-      'Preparation is aligned with the actual requirements of opportunities such as IRIS/Regeneron ISEF, RSI and suitable international innovation competitions.',
+      'Our researchers bring advanced expertise across diverse fields. We match each student with 1:1 mentor based on their specific interests, research question, required techniques and potential interdisciplinary connections—not simply their intended university major.',
+      'Every student then follows a project-specific research journey, with research questions, methodologies, milestones and feedback tailored to their academic readiness and the demands of the investigation.',
     ],
+    example:
+      'For example, a student interested in AI applications in healthcare may benefit from a researcher specializing in machine learning, computational biology or biomedical data analysis, depending on the nature of their research question.',
     helps:
-      'Students can pursue recognition beyond their school, test their work against demanding standards and develop the confidence to compete with exceptional peers.',
+      'Students receive sustained intellectual guidance from a researcher equipped to challenge and advance their ideas. Through individualized mentorship, they develop research independence, strengthen their analytical thinking and build the confidence to explain and defend their work.',
     showcase:
-      'An International Recognition Plan and Competition Readiness Tracker showing opportunities, eligibility, preparation requirements and milestones.',
+      "A Researcher–Student Matching Profile highlighting the mentor's field expertise, relevant publications and suitability for the project, alongside a Student Research Plan outlining project milestones, progress and examples of mentor feedback.",
     icon: (
       <>
-        <path d="M8 21h8" />
-        <path d="M12 17v4" />
-        <path d="M7 4h10v5a5 5 0 0 1-10 0Z" />
-        <path d="M7 6H4v1a3 3 0 0 0 3 3" />
-        <path d="M17 6h3v1a3 3 0 0 1-3 3" />
+        <path d="M22 9 12 4 2 9l10 5 10-5Z" />
+        <path d="M6 11.5V16c0 1.2 2.7 3 6 3s6-1.8 6-3v-4.5" />
+        <path d="M22 9v6" />
       </>
     ),
   },

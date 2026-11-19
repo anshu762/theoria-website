@@ -396,7 +396,7 @@ export const PAPERS = [
     student: 'Aditi Sharma',
     school: 'LSE',
     grade: 'Class of 2028',
-    photo: '/students/student-img-1.png',
+    photo: '/students/student-img-5.png',
   },
   {
     id: 'p2',
@@ -426,7 +426,7 @@ export const PAPERS = [
     student: 'Student Name',
     school: 'Vanderbilt University',
     grade: 'Class of 2027',
-    photo: '/students/student-img-4.png',
+    photo: '/students/profile-image.png',
   },
   {
     id: 'p5',
@@ -434,9 +434,9 @@ export const PAPERS = [
     title: 'The Algorithmic Strategist: Potential and Limits of Artificial Intelligence in Business Strategy Formulation',
     field: 'AI · Business Strategy',
     student: 'Student Name',
-    school: 'cornell University',
+    school: 'Cornell University',
     grade: 'Class of 2029',
-    photo: '/students/student-img-5.png',
+    photo: '/students/student-img-1.png',
   },
     {
     id: 'p6',
@@ -466,7 +466,7 @@ export const PAPERS = [
     student: 'Student Name',
     school: 'Brown University',
     grade: 'Class of 2027',
-    photo: '/students/student-img-8.png',
+    photo: '/students/profile-image.png',
   },
   {
     id: 'p9',
@@ -474,7 +474,7 @@ export const PAPERS = [
     title: 'ParkinSense technical research report',
     field: 'Engineering · Wearable Health',
     student: 'Student Name',
-    school: 'cornell University',
+    school: 'Cornell University',
     grade: 'Class of 2029',
     photo: '/students/student-img-9.png',
   },
@@ -494,7 +494,7 @@ export const PAPERS = [
     title: 'Recommendation Systems for Personalized Digital Learning Interfaces: Analysis of User Engagement and Learning Progression',
     field: 'Machine Learning · Education',
     student: 'Student Name',
-    school: 'columbia university',
+    school: 'Columbia University',
     grade: 'Class of 2028',
     photo: '/students/student-img-11.png',
   },
@@ -504,7 +504,7 @@ export const PAPERS = [
     title: 'Multi-Sensor Fusion of Vibration, Stator Current and Thermal Measurements for Fault Diagnosis and Prognostics of Induction Motors: A Simulation Study',
     field: 'Engineering · Fault Diagnosis',
     student: 'Student Name',
-    school: 'Toronto',
+    school: 'University of Toronto',
     grade: 'Class of 2029',
     photo: '/students/profile-image.png',
   },
@@ -516,7 +516,7 @@ export const PAPERS = [
     student: 'Student Name',
     school: 'LSE',
     grade: 'Class of 2027',
-    photo: '/students/profile-image.png',
+    photo: '/students/student-img-8.png',
   },
   {
     id: 'p14',
@@ -526,7 +526,7 @@ export const PAPERS = [
     student: 'Student Name',
     school: 'NUS',
     grade: 'Class of 2028',
-    photo: '/students/profile-image.png',
+    photo: '/students/student-img-4.png',
   },
 ]
 

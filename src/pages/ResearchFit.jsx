@@ -309,7 +309,6 @@ export default function ResearchFit() {
           <svg className="rf-mark" viewBox="0 0 120 100" aria-hidden="true"><use href="#ic" /></svg>
           <div className="rf-hero-in">
             <div>
-              <p className="rf-brand">Theoria · UniVisory Research Academy</p>
               <h1>Research Fit Application</h1>
               <p className="rf-sub">
                 For students seeking serious mentor-guided research, intellectual depth, and a stronger academic profile.

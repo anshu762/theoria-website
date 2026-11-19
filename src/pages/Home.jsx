@@ -12,6 +12,30 @@ import ResearchImportance from '../components/ResearchImportance'
 
 const d = (ms) => ({ '--d': ms + 'ms' })
 
+const VIEWS = [
+  {
+    tag: 'MIT',
+    title: 'Optional research portfolio',
+    text: 'MIT provides a route for applicants to submit significant research as optional supplementary material.',
+    href: 'https://mitadmissions.org/apply/firstyear/portfolios-additional-material/',
+    link: 'MIT official admissions guidance ↗',
+  },
+  {
+    tag: 'Harvard',
+    title: 'Supplementary scholarly work',
+    text: "Harvard's application guidance describes optional supplementary materials for applicants whose work warrants further consideration.",
+    href: 'https://college.harvard.edu/admissions/apply/application-requirements',
+    link: 'Harvard official application guidance ↗',
+  },
+  {
+    tag: 'Columbia',
+    title: 'Academic exploration',
+    text: "Consult Columbia's official admissions materials for current policies on optional materials and evaluation; no research requirement is implied.",
+    href: 'https://undergrad.admissions.columbia.edu/',
+    link: 'Columbia Undergraduate Admissions ↗',
+  },
+]
+
 
 export default function Home() {
   return (
@@ -36,17 +60,25 @@ export default function Home() {
       <UniqueThings/>
       <ResearchImportance/>
 
-      <section>
+            <section className="uv-section" aria-labelledby="uv-h">
         <div className="shell">
-          <div className="rv">
-            <div className="eyebrow">University perspectives · Official guidance</div>
-            <h2>What leading universities actually say.</h2>
-            <p className="intro">These are links to official admissions materials, not claims that research is mandatory or that participation guarantees an advantage. Theoria is not affiliated with these universities.</p>
+          <div className="uv-head rv">
+            <div className="uv-eyebrow">University perspectives · Official guidance</div>
+            <h2 id="uv-h">What leading universities <span className="uv-accent">actually say.</span></h2>
+            <p className="uv-intro">These are links to official admissions materials, not claims that research is mandatory or that participation guarantees an advantage. Theoria is not affiliated with these universities.</p>
           </div>
-          <div className="three">
-            <div className="card rv"><span className="tag">MIT</span><h3>Optional research portfolio</h3><p>MIT provides a route for applicants to submit significant research as optional supplementary material.</p><a className="source" target="_blank" rel="noopener noreferrer" href="https://mitadmissions.org/apply/firstyear/portfolios-additional-material/">MIT official admissions guidance ↗</a></div>
-            <div className="card rv" style={d(100)}><span className="tag">Harvard</span><h3>Supplementary scholarly work</h3><p>Harvard's application guidance describes optional supplementary materials for applicants whose work warrants further consideration.</p><a className="source" target="_blank" rel="noopener noreferrer" href="https://college.harvard.edu/admissions/apply/application-requirements">Harvard official application guidance ↗</a></div>
-            <div className="card rv" style={d(200)}><span className="tag">Columbia</span><h3>Academic exploration</h3><p>Consult Columbia's official admissions materials for current policies on optional materials and evaluation; no research requirement is implied.</p><a className="source" target="_blank" rel="noopener noreferrer" href="https://undergrad.admissions.columbia.edu/">Columbia Undergraduate Admissions ↗</a></div>
+
+          <div className="uv-grid">
+            {VIEWS.map((v, i) => (
+              <div className="uv-item rv" style={d(i * 110)} key={v.tag}>
+                <article className="uv-card">
+                  <span className="uv-tag">{v.tag}</span>
+                  <h3>{v.title}</h3>
+                  <p>{v.text}</p>
+                  <a className="uv-link" target="_blank" rel="noopener noreferrer" href={v.href}>{v.link}</a>
+                </article>
+              </div>
+            ))}
           </div>
         </div>
       </section>

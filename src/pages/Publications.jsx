@@ -179,7 +179,7 @@ export default function Publications() {
       <div className="shell">
         <div className="vt-bar">
           <div className="pb-head">
-            <h1 id="pb-h">Research <span className="pb-accent">publications</span></h1>
+            <h1 id="pb-h">Research <span className="pb-accent">Papers</span></h1>
           </div>
           <LibraryToggle current="publications" />
         </div>

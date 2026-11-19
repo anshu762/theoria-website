@@ -3073,7 +3073,7 @@ header .shell.nav{
 .pg-programs section{
   min-height:0 !important;
   height:auto !important;
-  padding:var(--pg-pad) 0 !important;
+  padding:var(--pg-pad) 0;
   scroll-snap-align:none;
 }
 /* first section sits right under the title (keeps room for the "Most chosen path" badge) */
@@ -3680,7 +3680,7 @@ h1{
   font-size:clamp(1.4rem,var(--ph-q-size),3.4rem);
   line-height:1.18;
   letter-spacing:-.02em;
-  text-wrap:initial;
+  /* text-wrap:initial; */
 }
 .ph-q-em{color:var(--blue)}
 
@@ -4137,4 +4137,107 @@ section.ph-section{
   .ud-mh{gap:12px}
   .ud-mico{width:44px;height:44px}
   .ud-mico svg{width:22px;height:22px}
+}
+
+/* ===================================================================
+   HOME · What leading universities actually say   (uv-)
+   =================================================================== */
+.home-page section.uv-section{
+  position:relative;z-index:1;
+  display:block !important;
+  min-height:0 !important;height:auto !important;
+  overflow:hidden;
+  padding:clamp(40px,6vw,76px) 0 !important;
+  background:
+    radial-gradient(55% 90% at 100% 0%, rgba(111,168,154,.20), transparent 62%),
+    radial-gradient(45% 80% at 0% 100%, rgba(1,138,134,.08), transparent 60%),
+    var(--tint,#E8E5D2);
+  border-top:1px solid var(--line,#DAD6C0);
+  border-bottom:1px solid var(--line,#DAD6C0);
+}
+
+.uv-head{max-width:820px}
+.uv-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--blue-d,#2F6B66);
+}
+.uv-eyebrow::before{content:"";width:28px;height:2px;border-radius:2px;background:var(--grad,#018a86)}
+.uv-head h2{
+  margin:12px 0 0;
+  font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:400;
+  letter-spacing:-.01em;color:var(--navy,#123B37);
+}
+.uv-accent{color:var(--grad,#018a86);font-weight:600}
+.uv-intro{
+  margin:14px 0 0;max-width:68ch;
+  font-size:clamp(15px,1.25vw,17px);line-height:1.65;color:var(--muted,#4D6967);
+}
+
+.uv-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(14px,1.8vw,24px);
+  margin-top:clamp(24px,3.4vw,42px);
+}
+.uv-item{display:flex;min-width:0}
+
+.uv-card{
+  position:relative;display:flex;flex-direction:column;align-items:flex-start;
+  width:100%;overflow:hidden;
+  padding:clamp(20px,2vw,28px);
+  background:var(--card,#FBFAF4);
+  border:1px solid var(--line,#DAD6C0);border-radius:18px;
+  box-shadow:0 1px 2px rgba(18,59,55,.05);
+  transition:transform .3s var(--ease,ease),box-shadow .3s ease,border-color .3s ease;
+}
+.uv-card::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:3px;
+  background:linear-gradient(90deg,var(--grad,#018a86),var(--purple,#6FA89A));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease,ease);
+}
+.uv-tag{
+  display:inline-flex;align-items:center;
+  padding:6px 13px;border-radius:999px;
+  background:#123B37;color:#F3F1E5;
+  font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;line-height:1;
+}
+.uv-card h3{
+  margin:16px 0 0;
+  font-size:clamp(18px,1.5vw,21px);line-height:1.25;font-weight:600;color:var(--navy,#123B37);
+}
+.uv-card p{
+  margin:10px 0 0;
+  font-size:15px;line-height:1.6;color:var(--muted,#4D6967);
+}
+.uv-link{
+  margin-top:auto;padding-top:20px;
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:14px;font-weight:800;line-height:1.35;
+  color:var(--blue-d,#2F6B66);text-decoration:none;
+  background:linear-gradient(currentColor,currentColor) left calc(100% - 1px)/0 2px no-repeat;
+  transition:background-size .3s ease,color .2s ease;
+}
+.uv-link:focus-visible{outline:3px solid rgba(1,138,134,.5);outline-offset:3px;border-radius:4px}
+
+@media (hover:hover){
+  .uv-card:hover{
+    transform:translateY(-6px);
+    border-color:var(--line-2,#C9C5AA);
+    box-shadow:0 18px 34px -16px rgba(18,59,55,.35);
+  }
+  .uv-card:hover::before{transform:scaleX(1)}
+  .uv-link:hover{background-size:100% 2px;color:var(--navy,#123B37)}
+}
+
+@media (max-width:820px){
+  .uv-grid{grid-template-columns:1fr}
+  .uv-item{display:block}
+}
+@media (max-width:480px){
+  .uv-eyebrow{font-size:11px;letter-spacing:.12em}
+}
+@media (prefers-reduced-motion:reduce){
+  .uv-card,.uv-card::before,.uv-link{transition:none}
+  .uv-card:hover{transform:none}
 }

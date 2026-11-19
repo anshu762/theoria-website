@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import LibraryToggle from '../components/LibraryToggle'
 
 const d = (ms) => ({ '--d': ms + 'ms' })
 const IMG = (file) => `${import.meta.env.BASE_URL}projects/${file}`
@@ -754,8 +755,11 @@ export default function Projects() {
     <div className="page lib-page pj-page">
       <section className="pj-section">
         <div className="shell">
-          <div className="pj-title rv">
-            <h1>Research <span className="pj-title-x">projects</span></h1>
+          <div className="vt-bar">
+            <div className="pj-title rv">
+              <h1>Research <span className="pj-title-x">projects</span></h1>
+            </div>
+            <LibraryToggle current="projects" />
           </div>
 
           <ul className="pj-grid">

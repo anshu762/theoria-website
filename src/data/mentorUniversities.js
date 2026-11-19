@@ -20,7 +20,7 @@ const RAW = [
     files: ['Coat_of_Arms_of_the_University_of_Cambridge.svg', 'University_of_Cambridge_coat_of_arms.svg', 'University_of_Cambridge_logo.svg'],
   },
   {
-    name: 'CIT', mono: 'CT', slug: 'caltech',
+    name: 'Caltech', mono: 'CT', slug: 'caltech',
     files: ['Caltech_Logo.svg', 'Seal_of_the_California_Institute_of_Technology.svg'],
   },
   {

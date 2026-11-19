@@ -171,7 +171,7 @@ export default function About() {
                   </li>
                 )}
 
-                {CONTACT.phone && (
+                {/* {CONTACT.phone && (
                   <li className="fn-ct-row">
                     <span className="fn-ct-ico"><CIco n="wa" /></span>
                     <div>
@@ -181,7 +181,7 @@ export default function About() {
                       </p>
                     </div>
                   </li>
-                )}
+                )} */}
 
                 {CONTACT.email && (
                   <li className="fn-ct-row">
