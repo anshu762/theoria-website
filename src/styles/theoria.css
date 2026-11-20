@@ -10628,3 +10628,103 @@ html body .pj-title h1{
 @media(hover:none){
   .uq-section .uq-grid.ud-grid .ud-card:hover .ud-top:after{width:34px}
 }
+
+/* =====================================================================
+   HEADER: SMALL LAPTOP FIX (1121px - 1365px)
+   Keeps the whole nav on ONE row on small laptops / MacBooks (Safari too):
+   no text wrapping, slightly smaller text, tighter gaps, smaller CTA padding.
+   Screens of 1366px and wider are NOT touched. 1020px and below (mobile menu)
+   and 1021-1120px (your earlier nav fixes) are NOT touched.
+   Delete this block to revert.
+   ===================================================================== */
+@media (min-width:1121px) and (max-width:1365px){
+
+  header{ --nv-fs:clamp(12.5px, 1.1vw + .4px, 15.5px); }
+
+  /* one row, never wraps */
+  header .shell.nav{
+    flex-wrap:nowrap !important;
+    align-items:center;
+    gap:clamp(12px,1.5vw,22px) !important;
+  }
+  header .shell.nav .brand{ flex:none !important; }
+
+  header .navlinks{
+    flex:0 1 auto !important;
+    flex-wrap:nowrap !important;
+    white-space:nowrap !important;
+    gap:clamp(12px,1.4vw,20px) !important;
+  }
+
+  /* every nav item stays on a single line at its natural width */
+  header .navlinks .lnk,
+  header .navlinks .nav-dd,
+  header .navlinks .nav-dd-btn,
+  header .navlinks .nav-cta{
+    white-space:nowrap !important;
+    flex:none !important;
+    font-size:var(--nv-fs) !important;
+    line-height:1.2;
+  }
+
+  /* Research Application Form button: compact so it fits */
+  header .navlinks .nav-cta{
+    padding:.7em 1.1em !important;
+    margin-left:0 !important;
+  }
+}
+
+/* =====================================================================
+   HEADER: ONE ROW FROM 1021px TO 1365px (replaces the previous header fix)
+   Text, gaps, CTA and logo scale down smoothly so nothing wraps.
+   1366px and wider, and the mobile menu (1020px and below), are NOT touched.
+   Delete this block to revert.
+   ===================================================================== */
+@media (min-width:1021px) and (max-width:1365px){
+
+  header{
+    --hdr-pad:clamp(12px,1.6vw,28px);
+    --nv-fs:clamp(12px,.95vw + 2.6px,15.5px);
+  }
+
+  header .shell.nav{
+    flex-wrap:nowrap !important;
+    align-items:center;
+    gap:clamp(8px,1.2vw,22px) !important;
+    min-width:0;
+  }
+  header .shell.nav .brand{ flex:none !important; }
+
+  header .navlinks{
+    flex:0 1 auto !important;
+    min-width:0;
+    flex-wrap:nowrap !important;
+    white-space:nowrap !important;
+    gap:clamp(8px,1.2vw,20px) !important;
+  }
+
+  header .navlinks .lnk,
+  header .navlinks .nav-dd,
+  header .navlinks .nav-dd-btn,
+  header .navlinks .nav-cta{
+    flex:none !important;
+    white-space:nowrap !important;
+    font-size:var(--nv-fs) !important;
+    line-height:1.2;
+  }
+
+  header .navlinks .nav-dd-btn{ gap:4px; }
+
+  header .navlinks .nav-cta{
+    padding:.65em clamp(.8em,1.1vw,1.2em) !important;
+    margin-left:0 !important;
+  }
+}
+
+/* logo shrinks a little on the narrowest laptop widths */
+@media (min-width:1021px) and (max-width:1120px){
+  header .shell.nav .brand{ zoom:.78; }
+}
+@media (min-width:1121px) and (max-width:1240px){
+  header .shell.nav .brand{ zoom:.88; }
+}
