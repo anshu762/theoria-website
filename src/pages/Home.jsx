@@ -43,7 +43,7 @@ export default function Home() {
       <div className="hero">
         <div className="shell hero-inner">
           <div className="hero-copy">
-            <h1 className="rv" style={d(80)}>Built for curious young scholars</h1>
+            <h1 className="rv" style={d(80)}>Built for curious <span className='rp-accent'>young scholars</span></h1>
             <p className="rv" style={d(160)}>Research academy for young scholars who want to grow beyond what is taught in classroom.</p>
             <p className='rv bottom-text'>Backed by <a href="https://univisory.org/" target='_blank' className='hero-link'>UniVisory</a></p>
             <div className="actions rv" style={d(240)}>

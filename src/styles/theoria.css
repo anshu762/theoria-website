@@ -8888,9 +8888,18 @@ section.ri-section {
 }
 .st-accent,
 .mn-accent,
-.fq-accent{
-  color: #018a86;
-  font-weight: 700;
+.fq-accent,
+.grad-text,
+.pgt-accent,
+.rp-accent,
+.sp-accent,
+.bd-why-x,
+.bd-h1-b,
+.hh-accent,
+.cf-accent,
+.fn-accent{
+  color: #018a86 !important;
+  font-weight: 700 !important;
 }
 
 .wy-section .wy-rule {

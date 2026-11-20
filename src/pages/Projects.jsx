@@ -757,7 +757,7 @@ export default function Projects() {
         <div className="shell">
           <div className="vt-bar">
             <div className="pj-title rv">
-              <h1>Research <span className="pj-title-x">projects</span></h1>
+              <h1>Research <span className="rp-accent">projects</span></h1>
             </div>
             <LibraryToggle current="projects" />
           </div>

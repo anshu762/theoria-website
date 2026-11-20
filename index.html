@@ -9,7 +9,7 @@
 <!-- <link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='5 -8 110 110'%3E%3Ccircle cx='60' cy='16' r='12.5' fill='%23133B3A'/%3E%3Cpath d='M6 38Q40 33 56 52L56 90Q40 68 11 73Q16 55 6 38Z' fill='%23133B3A'/%3E%3Cpath d='M114 38Q80 33 64 52L64 90Q80 68 109 73Q104 55 114 38Z' fill='%23133B3A'/%3E%3C/svg%3E"> -->
 
 <!-- fallback favicon (shown for a split second; replaced by the real icon via the script at the bottom) -->
-<link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='5 -8 110 110'%3E%3Ccircle cx='60' cy='16' r='12.5' fill='%23F3F1E5'/%3E%3Cpath d='M6 38Q40 33 56 52L56 90Q40 68 11 73Q16 55 6 38Z' fill='%23F3F1E5'/%3E%3Cpath d='M114 38Q80 33 64 52L64 90Q80 68 109 73Q104 55 114 38Z' fill='%23F3F1E5'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='5 -8 110 110'%3E%3Cstyle%3Ecircle,path%7Bfill:%23123B37%7D@media (prefers-color-scheme:dark)%7Bcircle,path%7Bfill:%23F3F1E5%7D%7D%3C/style%3E%3Ccircle cx='60' cy='16' r='12.5' fill='%23123B37'/%3E%3Cpath d='M6 38Q40 33 56 52L56 90Q40 68 11 73Q16 55 6 38Z' fill='%23123B37'/%3E%3Cpath d='M114 38Q80 33 64 52L64 90Q80 68 109 73Q104 55 114 38Z' fill='%23123B37'/%3E%3C/svg%3E">
 <!-- Fonts used by the website -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,6 +33,8 @@
 <div id="root"></div>
 <script type="module" src="/src/main.jsx"></script>
 <!-- favicon = the SAME book icon (#ic symbol) as the header/footer, painted cream -->
+<!-- favicon = the SAME book icon (#ic symbol) as the header/footer.
+     Dark green on light browser themes, cream on dark browser themes. -->
 <script>
 (function () {
   var tries = 0;
@@ -48,13 +50,17 @@
     }).join('');
     var svg =
       '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 -8 110 110">' +
+        '<style>' +
+          '#fav-c feFlood{flood-color:#123B37}' +
+          '@media (prefers-color-scheme:dark){#fav-c feFlood{flood-color:#F3F1E5}}' +
+        '</style>' +
         '<defs>' + parts +
-          '<filter id="fav-cream" color-interpolation-filters="sRGB">' +
-            '<feFlood flood-color="#F3F1E5" result="c"/>' +
+          '<filter id="fav-c" color-interpolation-filters="sRGB">' +
+            '<feFlood flood-color="#123B37" result="c"/>' +
             '<feComposite in="c" in2="SourceAlpha" operator="in"/>' +
           '</filter>' +
         '</defs>' +
-        '<use href="#ic" xlink:href="#ic" width="120" height="100" filter="url(#fav-cream)"/>' +
+        '<use href="#ic" xlink:href="#ic" width="120" height="100" filter="url(#fav-c)"/>' +
       '</svg>';
     var old = document.querySelectorAll('link[rel~="icon"]');
     for (var i = 0; i < old.length; i++) old[i].parentNode.removeChild(old[i]);
