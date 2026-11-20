@@ -9986,3 +9986,450 @@ body,h1,h2,h3,.wordmark,.num-big,.quote,.step b,.pc-title,.footer .tagline {
     display: none;
   }
 }
+
+/* =========================================================
+   HOME — TARGETED RESPONSIVE UPDATE
+   1. Fluid hero typography
+   2. Mobile success-story swipe carousel
+   3. Compact mobile research-matters spacing
+   ========================================================= */
+
+
+/* =========================================================
+   1. HOME HERO — FLUID TITLE AND DESCRIPTION
+   ========================================================= */
+
+.home-page .hero .hero-copy {
+  min-width: 0;
+}
+
+.home-page .hero .hero-copy h1 {
+  max-width: 100%;
+  font-size: clamp(2rem, 1.1rem + 2.8vw, 4.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.home-page .hero .hero-copy p {
+  max-width: 54ch;
+  font-size: clamp(1rem, 0.85rem + 0.65vw, 1.4rem);
+  line-height: 1.65;
+  overflow-wrap: break-word;
+}
+
+
+/* ---------- Tablets ---------- */
+
+@media (min-width: 641px) and (max-width: 1020px) {
+  .home-page .hero .hero-copy {
+    max-width: 660px;
+  }
+
+  .home-page .hero .hero-copy h1 {
+    font-size: clamp(2.3rem, 1.1rem + 3vw, 3.25rem);
+    margin-bottom: 22px;
+  }
+
+  .home-page .hero .hero-copy p {
+    max-width: 48ch;
+    font-size: clamp(1.05rem, 0.9rem + 0.4vw, 1.2rem);
+  }
+}
+
+
+/* ---------- Phones ---------- */
+
+@media (max-width: 640px) {
+  .home-page .hero .hero-inner {
+    min-height: 0;
+    padding-top: 12px;
+    padding-bottom: 24px;
+    row-gap: 28px;
+  }
+
+  .home-page .hero .hero-copy {
+    width: 100%;
+    max-width: none;
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .home-page .hero .hero-copy h1 {
+    font-size: clamp(1.9rem, 1.1rem + 4vw, 2.65rem);
+    line-height: 1.14;
+    margin: 0 0 18px;
+    letter-spacing: -0.03em;
+  }
+
+  .home-page .hero .hero-copy p {
+    width: 100%;
+    max-width: 42ch;
+    margin: 0;
+    font-size: clamp(1rem, 0.9rem + 0.4vw, 1.1rem);
+    line-height: 1.65;
+  }
+
+  .home-page .hero .hero-copy .eyebrow {
+    align-self: flex-start;
+    max-width: 100%;
+    margin-bottom: 14px;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    letter-spacing: 0.12em;
+  }
+
+  .home-page .hero .hero-copy .actions {
+    width: 100%;
+    margin-top: 22px;
+    gap: 12px;
+  }
+
+  .home-page .hero .hero-copy .actions .btn {
+    min-height: 48px;
+    max-width: 100%;
+    padding: 13px 16px;
+    font-size: 0.95rem !important;
+    line-height: 1.4;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .home-page .hero .hero-copy .trust {
+    margin-top: 22px;
+    gap: 8px;
+  }
+}
+
+
+/* =========================================================
+   2. HOME SUCCESS STORIES — MOBILE SWIPE CAROUSEL
+
+   Story cards retain their current content and video buttons.
+   The existing View more item becomes the final carousel item.
+   Desktop and tablet layouts above 719px are unchanged.
+   ========================================================= */
+
+@media (max-width: 719px) {
+  .home-page .sx-section .sx-grid {
+    display: grid;
+
+    /* Place each direct child in the next horizontal column. */
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 88%;
+    grid-template-rows: auto;
+
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-inline: 0;
+    gap: 14px;
+
+    /* Leave room for card shadows and the scrollbar. */
+    padding: 8px 0 18px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0;
+
+    /* Keep a subtle native scroll indicator. */
+    scrollbar-width: thin;
+    scrollbar-color: var(--blue-d, #2f6b66)
+      var(--tint, #e8e5d2);
+  }
+
+  .home-page .sx-section .sx-grid > * {
+    grid-column: auto;
+    grid-row: auto;
+    min-width: 0;
+    max-width: 100%;
+    scroll-snap-align: start;
+  }
+
+  .home-page .sx-section .sx-grid > .sx-item {
+    display: flex;
+    height: auto;
+  }
+
+  .home-page .sx-section .sx-card {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+  }
+
+  .home-page .sx-section .sx-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--sx-ratio, 1 / 1);
+  }
+
+  .home-page .sx-section .sx-info {
+    min-width: 0;
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .home-page .sx-section .sx-uni {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .home-page .sx-section .sx-who {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /*
+   * Preserve the existing View more link.
+   * It occupies the final slide instead of a separate grid row.
+   */
+  .home-page .sx-section .sx-grid > .sx-go-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    padding: 16px;
+    border: 1px dashed var(--line-2, #c9c5aa);
+    border-radius: 20px;
+    background: var(--card, #fbfaf4);
+  }
+
+  .home-page .sx-section .sx-vm {
+    max-width: 100%;
+    min-height: 46px;
+    height: auto;
+    white-space: normal;
+  }
+
+  .home-page .sx-section .sx-grid::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  .home-page .sx-section .sx-grid::-webkit-scrollbar-track {
+    background: var(--tint, #e8e5d2);
+    border-radius: 999px;
+  }
+
+  .home-page .sx-section .sx-grid::-webkit-scrollbar-thumb {
+    background: var(--blue-d, #2f6b66);
+    border-radius: 999px;
+  }
+}
+
+
+/* ---------- Very small phones ---------- */
+
+@media (max-width: 380px) {
+  .home-page .sx-section .sx-grid {
+    grid-auto-columns: 92%;
+    gap: 12px;
+  }
+
+  .home-page .sx-section .sx-info {
+    padding: 14px;
+  }
+}
+
+
+/* =========================================================
+   3. WHY RESEARCH MATTERS — REDUCE MOBILE PADDING
+   Only the wy-section component is affected.
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .home-page section.wy-section {
+    padding: 24px 0 !important;
+  }
+
+  /*
+   * One outer gutter only.
+   * Avoid combining section side-padding with shell padding.
+   */
+  .home-page .wy-section > .shell {
+    padding-inline: 16px;
+  }
+
+  .home-page .wy-section .wy-head {
+    margin-bottom: 18px;
+  }
+
+  .home-page .wy-section .wy-head h2 {
+    margin-bottom: 0;
+    font-size: clamp(1.6rem, 1.15rem + 2.2vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .home-page .wy-section .wy-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .home-page .wy-section .wy-panel {
+    padding: 12px;
+    gap: 12px;
+    border-radius: 18px;
+  }
+
+  .home-page .wy-section .wy-ph {
+    gap: 10px;
+    padding-bottom: 10px;
+  }
+
+  .home-page .wy-section .wy-ph h3 {
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+
+  .home-page .wy-section .wy-list {
+    gap: 10px;
+  }
+
+  .home-page .wy-section .wy-card-say {
+    padding: 12px 12px 12px 16px;
+  }
+
+  .home-page .wy-section .wy-card-do {
+    padding: 12px;
+  }
+
+  .home-page .wy-section .wy-ct {
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .home-page .wy-section .wy-cp {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .home-page .wy-section .wy-foot {
+    padding-top: 8px;
+    gap: 6px;
+    font-size: 0.85rem;
+  }
+}
+
+/* =========================================================
+   MOBILE SUCCESS STORIES
+   Complete photo without added gaps + lower play button
+   ========================================================= */
+
+@media (max-width: 719px) {
+  /*
+   * Let the main image determine the photo area's height.
+   * Override the previous square-thumbnail sizing.
+   */
+  .home-page .sx-section .sx-photo {
+    position: relative;
+    height: auto !important;
+    min-height: 0;
+    aspect-ratio: auto !important;
+    overflow: hidden;
+  }
+
+  /*
+   * Main photo remains in normal flow:
+   * full width, natural height, no crop or zoom.
+   */
+  .home-page .sx-section .sx-photo img.sx-main,
+  .home-page .sx-section.is-in .sx-photo img.sx-main,
+  .home-page .sx-section .sx-card:hover .sx-photo img.sx-main {
+    position: relative;
+    inset: auto;
+
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+
+    object-fit: contain;
+    object-position: center;
+
+    transform: none;
+    animation: none;
+  }
+
+  /*
+   * The full photo now fills its own natural-height area,
+   * so a blurred background copy is unnecessary.
+   */
+  .home-page .sx-section .sx-photo img.sx-bg {
+    display: none;
+  }
+
+  /*
+   * Keep the whole photo clickable, but move the visible
+   * play controls toward its lower edge.
+   */
+  .home-page .sx-section .sx-play {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 8px;
+    padding: 12px 12px 16px;
+  }
+
+  .home-page .sx-section .sx-play-ico {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+
+    flex: none;
+    width: 48px;
+    height: 48px;
+    margin: 0;
+
+    transform: none;
+  }
+
+  /*
+   * Keep the label beneath the icon rather than positioning
+   * it separately over the same area.
+   */
+  .home-page .sx-section .sx-play-label,
+  .home-page .sx-section .sx-play:hover .sx-play-label,
+  .home-page .sx-section .sx-play:focus-visible .sx-play-label {
+    position: static;
+
+    max-width: 100%;
+    margin: 0;
+    padding: 6px 10px;
+
+    font-size: 10px;
+    line-height: 1.3;
+    text-align: center;
+    white-space: normal;
+
+    opacity: 1;
+    transform: none;
+  }
+
+  .home-page .sx-section .sx-play:hover .sx-play-ico,
+  .home-page .sx-section .sx-play:focus-visible .sx-play-ico {
+    transform: scale(1.05);
+  }
+
+  .home-page .sx-section .sx-play:active .sx-play-ico {
+    transform: scale(0.97);
+  }
+}
+
+@media (max-width: 719px) and (prefers-reduced-motion: reduce) {
+  .home-page .sx-section .sx-play:hover .sx-play-ico,
+  .home-page .sx-section .sx-play:focus-visible .sx-play-ico,
+  .home-page .sx-section .sx-play:active .sx-play-ico {
+    transform: none;
+  }
+}
