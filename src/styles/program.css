@@ -431,7 +431,7 @@
     display:block;width:auto;padding:12px 16px;
     border-top:1px solid var(--line);
   }
-  .pg-programs .pg-compare .pg-table tbody tr th + td{border-top:0}
+  .pg-programs .pg-compare .pg-table tbody tr th + td{border-top:1}
   .pg-programs .pg-compare .pg-table tbody td::before{
     content:attr(data-label);display:block;margin-bottom:4px;
     color:var(--purple-d);
@@ -451,4 +451,346 @@
   .pg-programs section.pgc-section::before,
   .pgc-pulse::after,
   .pgc-btn::before{animation:none}
+}
+
+/* =========================================================
+   PROGRAMS COMPARISON — KEEP TABLE LAYOUT ON PHONES
+   Scroll horizontally inside the wrapper, not the page.
+   ========================================================= */
+
+@media (max-width: 640px) {
+  /* ---------- Scroll container ---------- */
+
+  .pg-programs .pg-compare .pg-table-wrap {
+    display: block;
+    position: relative;
+    isolation: isolate;
+
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+
+    border: 1px solid var(--line, #dad6c0);
+    border-radius: 16px;
+    background: var(--card, #fbfaf4);
+
+    box-shadow: 0 26px 46px -34px rgba(19, 59, 58, 0.5);
+
+    scrollbar-width: thin;
+    scrollbar-color:
+      var(--blue-d, #2f6b66)
+      var(--tint, #e8e5d2);
+  }
+
+  /* ---------- Restore the table ---------- */
+
+  .pg-programs .pg-compare .pg-table {
+    --pg-label-w: 136px;
+
+    display: table;
+    width: 100%;
+    min-width: 736px;
+
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  /* Restore the column headings hidden by the card layout. */
+  .pg-programs .pg-compare .pg-table thead {
+    display: table-header-group;
+
+    position: static;
+    width: auto;
+    height: auto;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: visible;
+    clip: auto;
+    clip-path: none;
+    white-space: normal;
+  }
+
+  .pg-programs .pg-compare .pg-table tbody {
+    display: table-row-group;
+  }
+
+  .pg-programs .pg-compare .pg-table thead tr,
+  .pg-programs .pg-compare .pg-table tbody tr {
+    display: table-row;
+
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .pg-programs .pg-compare .pg-table thead th,
+  .pg-programs .pg-compare .pg-table tbody th,
+  .pg-programs .pg-compare .pg-table tbody td {
+    display: table-cell;
+    width: auto;
+
+    padding: 12px 14px !important;
+
+    text-align: left;
+    vertical-align: middle;
+
+    white-space: normal !important;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  /* ---------- Column headings ---------- */
+
+  .pg-programs .pg-compare .pg-table thead th {
+    background: var(--navy, #123b37);
+    color: var(--page, #f3f1e5);
+
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.04em;
+  }
+
+  .pg-programs .pg-compare .pg-table thead th.is-flag {
+    background: var(--grad, #018a86);
+  }
+
+  /* ---------- Body cells ---------- */
+
+  .pg-programs .pg-compare .pg-table tbody th,
+  .pg-programs .pg-compare .pg-table tbody td {
+    border: 0;
+    border-top: 1px solid var(--line, #dad6c0);
+
+    background: var(--card, #fbfaf4);
+    color: var(--muted, #4d6967) !important;
+
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.55 !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+  }
+
+  /* ---------- Sticky first column ---------- */
+
+  .pg-programs .pg-compare .pg-table thead th:first-child,
+  .pg-programs .pg-compare .pg-table tbody th {
+    position: sticky;
+    left: 0;
+
+    width: var(--pg-label-w);
+    min-width: var(--pg-label-w);
+    max-width: var(--pg-label-w);
+
+    border-right: 1px solid var(--line, #dad6c0);
+  }
+
+  .pg-programs .pg-compare .pg-table thead th:first-child {
+    z-index: 3;
+    background: var(--navy, #123b37);
+  }
+
+  .pg-programs .pg-compare .pg-table tbody th {
+    z-index: 2;
+    background: var(--page, #f3f1e5);
+    color: var(--ink, #133b3a) !important;
+    font-weight: 700 !important;
+  }
+
+  /* Preserve the featured-program column. */
+  .pg-programs .pg-compare .pg-table tbody td.is-flag {
+    background: rgba(1, 138, 134, 0.08);
+  }
+
+  /*
+   * Remove the repeated program labels generated for
+   * the previous stacked-card presentation.
+   */
+  .pg-programs .pg-compare .pg-table tbody td::before {
+    content: none;
+    display: none;
+  }
+
+  /* ---------- Restore consistent hover backgrounds ---------- */
+
+  .pg-programs .pg-compare .pg-table tbody tr:hover th,
+  .pg-programs .pg-compare .pg-table tbody tr:hover td {
+    background: var(--tint, #e8e5d2);
+  }
+
+  .pg-programs .pg-compare .pg-table tbody tr:hover td.is-flag {
+    background: rgba(1, 138, 134, 0.16);
+  }
+
+  /* ---------- Visible horizontal scroll indicator ---------- */
+
+  .pg-programs .pg-compare .pg-table-wrap::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .pg-programs .pg-compare .pg-table-wrap::-webkit-scrollbar-track {
+    background: var(--tint, #e8e5d2);
+  }
+
+  .pg-programs .pg-compare .pg-table-wrap::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: var(--blue-d, #2f6b66);
+  }
+}
+
+/* =========================================================
+   PROGRAMS COMPARISON — COMPACT MOBILE TABLE
+   Keep horizontal scrolling; reduce vertical space.
+   ========================================================= */
+
+@media (max-width: 640px) {
+  /* ---------- Compact section spacing ---------- */
+
+  .pg-programs section.pg-compare {
+    padding-top: 20px !important;
+    padding-bottom:
+      calc(var(--ban, 60px) + 20px) !important;
+  }
+
+  .pg-programs .pg-compare .pgt-head {
+    margin-bottom: 12px;
+  }
+
+  .pg-programs .pg-compare .pgt-head h2 {
+    font-size: clamp(1.35rem, 1.1rem + 1vw, 1.65rem);
+    line-height: 1.2;
+  }
+
+  /* ---------- Keep the table wide and scrollable ---------- */
+
+  .pg-programs .pg-compare .pg-table-wrap {
+    overflow-x: auto;
+    border-radius: 14px;
+  }
+
+  .pg-programs .pg-compare .pg-table {
+    --pg-label-w: 124px;
+
+    width: 100%;
+    min-width: 784px;
+
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  /*
+   * Slightly wider program columns reduce wrapping.
+   * Horizontal scrolling remains intentional.
+   */
+  .pg-programs .pg-compare .pg-table thead th:first-child,
+  .pg-programs .pg-compare .pg-table tbody th {
+    width: var(--pg-label-w);
+    min-width: var(--pg-label-w);
+    max-width: var(--pg-label-w);
+  }
+
+  /* ---------- Compact column headings ---------- */
+
+  .pg-programs .pg-compare .pg-table thead th {
+    padding: 9px 12px !important;
+
+    font-size: 13px !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0.025em;
+    vertical-align: middle;
+
+    border-bottom: 1px solid var(--line-2, #c9c5aa);
+  }
+
+  /* ---------- Compact body cells ---------- */
+
+  .pg-programs .pg-compare .pg-table tbody th,
+  .pg-programs .pg-compare .pg-table tbody td {
+    height: auto;
+
+    padding: 7px 12px !important;
+
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+    letter-spacing: normal !important;
+
+    vertical-align: middle;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+    text-wrap: wrap;
+  }
+
+  /*
+   * Restore every horizontal divider, including Scholar.
+   * This overrides the earlier "th + td { border-top: 0 }".
+   */
+  .pg-programs .pg-compare .pg-table tbody tr > th,
+  .pg-programs .pg-compare .pg-table tbody tr > td {
+    border-top: 1px solid var(--line-2, #c9c5aa);
+    border-bottom: 0;
+  }
+
+  /* The heading's bottom border separates the first body row. */
+  .pg-programs .pg-compare .pg-table tbody tr:first-child > th,
+  .pg-programs .pg-compare .pg-table tbody tr:first-child > td {
+    border-top: 1px solid var(--muted, #4d6967);
+  }
+
+  /* Subtle vertical separators make comparisons easier. */
+  .pg-programs .pg-compare .pg-table thead th + th,
+  .pg-programs .pg-compare .pg-table tbody td {
+    border-left: 1px solid var(--line, #dad6c0);
+  }
+
+  /*
+   * Avoid a double divider beside the sticky first column.
+   * Its right border already supplies this separator.
+   */
+  .pg-programs .pg-compare .pg-table thead th:nth-child(2),
+  .pg-programs .pg-compare .pg-table tbody th + td {
+    border-left: 0;
+  }
+
+  /* ---------- Remove extra spacing inside cells ---------- */
+
+  .pg-programs .pg-compare .pg-table tbody th p,
+  .pg-programs .pg-compare .pg-table tbody td p {
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .pg-programs .pg-compare .pg-table tbody th p + p,
+  .pg-programs .pg-compare .pg-table tbody td p + p {
+    margin-top: 4px;
+  }
+
+  .pg-programs .pg-compare .pg-table tbody td ul,
+  .pg-programs .pg-compare .pg-table tbody td ol {
+    margin: 0;
+    padding-left: 1.1em;
+  }
+
+  .pg-programs .pg-compare .pg-table tbody td li {
+    margin: 0;
+    padding-block: 1px;
+  }
+
+  /* ---------- Smaller scroll indicator ---------- */
+
+  .pg-programs .pg-compare .pg-table-wrap::-webkit-scrollbar {
+    height: 5px;
+  }
 }
