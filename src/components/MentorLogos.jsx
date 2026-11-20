@@ -76,7 +76,7 @@ export default function MentorLogos() {
       <div className="shell">
         {/* title on the left */}
         <div className="mu-head rv">
-          <h2 id="mentor-network-title">Our Mentor Network</h2>
+          <h2 id="mentor-network-title">Our Mentor <span className="mn-accent">Network</span></h2>
           <span className="mu-rule" aria-hidden="true" />
         </div>
 

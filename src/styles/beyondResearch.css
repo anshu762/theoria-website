@@ -597,3 +597,93 @@
 .bd-page .bd-why-head p,
 .bd-page .bd-way-head h2,
 .bd-page .bd-way-head p{text-wrap:wrap}
+
+/* =====================================================================
+   BEYOND RESEARCH: RESPONSIVE FIX (bd-)
+   Sizes only shrink on small screens. At about 800px and wider the
+   hero looks exactly as before. Delete this block to revert.
+   ===================================================================== */
+
+/* ---------- hero text scales with the screen (max = your current size) ---------- */
+.bd-page .bd-copy h1{
+  font-size:clamp(1.9rem,1.2rem + 3.6vw,3rem);   /* 3rem from about 800px up */
+  overflow-wrap:break-word;
+  text-wrap:balance;
+}
+.bd-page .bd-copy p.bd-lead{
+  font-size:clamp(1.15rem,1rem + 1.1vw,1.6rem);  /* 1.6rem from about 870px up */
+}
+.bd-page .bd-copy p{overflow-wrap:break-word}
+
+/* closing paragraph: was a fixed 20px */
+.bd-page .bd-close-copy p{
+  font-size:clamp(1rem,.9rem + .6vw,1.25rem);
+}
+
+/* long step titles never push the card wider */
+.bd-page .bd-step-card h3,
+.bd-page .bd-card h3{overflow-wrap:break-word}
+
+/* ---------- icon hover: small grow instead of rotate ---------- */
+.bd-card:hover .bd-card-ico{transform:scale(1.08)}
+
+/* ---------- tablet ---------- */
+@media(max-width:1020px){
+  /* hero keeps some air, but not 45px on every side */
+  .bd-page .bd-hero{padding:36px 24px 44px !important}
+  .bd-page .bd-hero-in{gap:clamp(24px,4vw,36px)}
+}
+
+/* ---------- small tablets + phones ---------- */
+@media(max-width:900px){
+  /* Our approach: no extra side padding on top of the page gutter */
+  .bd-page section.bd-way{
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+  .bd-close{padding:10px}
+}
+
+/* ---------- phones ---------- */
+@media(max-width:640px){
+  .bd-page .bd-hero{padding:28px 16px 34px !important}
+
+  .bd-page .bd-copy h1{line-height:1.12;letter-spacing:-.025em}
+  .bd-page .bd-copy p.bd-lead{line-height:1.4}
+  .bd-page .bd-copy p{line-height:1.7}
+  .bd-copy .actions{margin-top:20px}
+
+  /* globe panel: smaller, so it does not dominate the screen */
+  .bd-page .bd-art{max-width:340px;border-radius:22px}
+  .bd-page .bd-chip{
+    font-size:.68rem;padding:.45em .85em;gap:6px;
+  }
+  .bd-c1{top:9%;left:5%}
+  .bd-c2{top:24%;right:4%}
+  .bd-c3{bottom:25%;left:4%}
+  .bd-c4{bottom:9%;right:6%}
+
+  /* cards and steps */
+  .bd-page .bd-card{padding:16px !important}
+  .bd-page .bd-step-card{padding:18px}
+  .bd-close-cta{padding:20px;border-radius:18px}
+}
+
+/* very small phones */
+@media(max-width:380px){
+  .bd-page .bd-hero{padding:24px 14px 30px !important}
+  .bd-page .bd-art{max-width:300px}
+  .bd-page .bd-chip{font-size:.64rem}
+  .bd-card-ico{width:48px;height:48px;border-radius:14px}
+}
+
+/* ---------- touch screens: no stuck hover lift after a tap ---------- */
+@media(hover:none){
+  .bd-card:hover,
+  .bd-step:hover .bd-step-card,
+  .bd-pill:hover{transform:none}
+  .bd-card:hover:before,
+  .bd-step:hover .bd-step-card:before{transform:scaleX(0)}
+  .bd-card:hover .bd-card-ico{transform:none}
+  .bd-step:hover .bd-step-no{transform:none}
+}

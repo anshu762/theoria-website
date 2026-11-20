@@ -112,7 +112,7 @@ export default function StatsSection() {
         {/* title on the left, thin line fills the row */}
         <div className="st-head rv">
           <h2 id="st-title">
-            <span className="st-x">8x</span>Your Admission Prospects to Ivy League &amp; Oxbridge
+            <span className="st-x">8x</span>Your Admission Prospects to <span className="ph-x">Ivy League &amp; Oxbridge</span>
           </h2>
           <span className="st-rule" aria-hidden="true" />
         </div>

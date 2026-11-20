@@ -39,19 +39,19 @@ const PROGRAMS = ['Scholar', 'Elite', 'Fellowship']
 const ROWS = [
   [
     'Core purpose',
-    'Build a foundations in research and understand methodologies.',
-    'Investigate a novel research question, work with advanced methodologies',
+    'Build a foundation in research and understand methodologies.',
+    'Investigate a novel research question, work with advanced methodologies.',
     'Undertake original research, design, and develop an advanced project.',
   ],
   [
     'Mentorship & guidance',
     'Guidance on selecting a topic, developing academic writing skills.',
     'Close mentorship from subject experts on development of research manuscript.',
-    'Research mentorship + technical project guidance .',
+    'Research mentorship + technical project guidance.',
   ],
   [
     'What students produce',
-    'Structured research report',
+    'Structured research report.',
     'Original research manuscript or substantial scholarly output.',
     'Original research manuscript and advanced projects.',
   ],
@@ -82,8 +82,8 @@ export default function Programs() {
       <section>
         <div className="shell">
           <div className="three">
-            <article className="card rv"><div className="tag">Foundations</div><h2>Scholar</h2>
-            <p>Develop research literacy, structured inquiry and a substantial first research output.</p><ul><li>Research-question development</li><li>Literature and methodology foundations</li><li>Guided analysis and writing</li><li>Report or appropriate project deliverable</li></ul>
+            <article className="card rv"><div className="tag">Foundation</div><h2>Scholar</h2>
+            <p>Develop research literacy, structured inquiry and a substantial first research output.</p><ul><li>Research-question development</li><li>Literature and methodology foundation</li><li>Guided analysis and writing</li><li>Report or appropriate project deliverable</li></ul>
             <Facts items={SCHOLAR_FACTS} /></article>
             <article className="card featured pg-elite rv" style={d(100)}><div className="tag">Original investigation</div><h2>Elite</h2>
             <p>One-to-one research mentorship for a novel question and a defensible original output.</p><ul><li>Field-matched mentor</li><li>Advanced methodology and analysis</li><li>Iterative manuscript or research development</li><li>Publication-readiness and submission guidance</li></ul>

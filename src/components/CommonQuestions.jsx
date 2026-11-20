@@ -34,8 +34,8 @@ export default function CommonQuestions() {
     <section className="bg-white">
       <div className="shell">
         <div className="grid grid-cols-1 gap-1 lg:grid-cols-1 lg:gap-1">
-          <div className="" ref={headRef}>
-            <h2>Frequently asked questions</h2>
+          <div className="fq-head" ref={headRef}>
+            <h2>Frequently asked <span className="fq-accent">questions</span></h2>
           </div>
 
           {/* Accordion */}

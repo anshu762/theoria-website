@@ -279,7 +279,7 @@ export default function SuccessStories() {
       <div className="shell">
         <div className="sx-head sx-reveal">
           <div className="sx-title">
-            <h2 id="sx-title">Success stories - a glimpse</h2>
+            <h2 id="sx-title">Success stories - <span className="st-accent">a glimpse</span></h2>
           </div>
         </div>
 

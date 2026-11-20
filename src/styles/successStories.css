@@ -610,3 +610,49 @@
 @media(max-width:640px){
   .sp-rail{--sp-arrow-size:40px;--sp-arrow-out:-8px !important}
 }
+
+/* =====================================================================
+   CASE STUDY POPUP: CLOSE BUTTON FIX (prefix sp-)
+   The popup title area is a <header>, so the global header style was
+   covering the close button. This lifts the button above it and makes it
+   clearly visible. Delete this block to revert.
+   ===================================================================== */
+
+/* neutralise the global <header> style inside this popup only */
+.sp-modal .sp-cs-dialog .sp-cs-head{
+  position:relative !important;
+  z-index:1 !important;
+  top:auto !important;left:auto !important;right:auto !important;
+  width:auto !important;height:auto !important;min-height:0 !important;
+  transform:none !important;
+  box-shadow:none !important;
+  -webkit-backdrop-filter:none !important;backdrop-filter:none !important;
+}
+
+/* close button always on top, clearly visible on the dark head */
+.sp-modal .sp-cs-dialog .sp-close{
+  position:absolute;
+  z-index:30 !important;
+  top:clamp(10px,1.6vw,16px);
+  right:clamp(10px,1.6vw,16px);
+  width:42px;height:42px;
+  background:rgba(243,241,229,.16);
+  border:1.5px solid rgba(243,241,229,.45);
+  color:#fff;
+  box-shadow:0 8px 18px -8px rgba(0,0,0,.6);
+}
+.sp-modal .sp-cs-dialog .sp-close:hover{
+  background:var(--grad);
+  border-color:var(--grad);
+  transform:scale(1.1);              /* small grow instead of rotate */
+}
+.sp-modal .sp-cs-dialog .sp-close:active{transform:scale(.94)}
+.sp-modal .sp-cs-dialog .sp-close:focus-visible{
+  outline:3px solid var(--blue);outline-offset:2px;
+}
+
+/* phones: slightly smaller, and the title never runs under the button */
+@media(max-width:640px){
+  .sp-modal .sp-cs-dialog .sp-close{width:38px;height:38px}
+  .sp-cs-head{padding-right:58px}
+}
