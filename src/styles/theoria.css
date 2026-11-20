@@ -10500,3 +10500,131 @@ html body .pj-title h1{
   line-height:1.12 !important;
   letter-spacing:-.02em !important;
 }
+
+/* =====================================================================
+   UNIQUE SECTION: ALIGNMENT + SPACING FIX (uq- / ud-)
+   Keeps the subgrid alignment. Fixes the odd line breaks, trims the empty
+   space, tidies the gap under one-line titles. Delete this block to revert.
+   ===================================================================== */
+
+/* slightly smaller body text + card padding (titles are NOT touched) */
+.uq-section .uq-grid.ud-grid{
+  --ud-text:clamp(.96rem,.18vw + .8rem,1rem);
+  --ud-pad:clamp(18px,1.6vw,22px);
+}
+
+/* normal wrapping (removes the strange short lines) */
+.uq-section .uq-grid.ud-grid .ud-text{
+  text-wrap:wrap;
+  line-height:1.5;
+  margin:0 0 14px;
+}
+
+/* title zone: a thin divider so the aligned gap under short titles looks intentional */
+.uq-section .uq-grid.ud-grid .ud-card .ud-top{
+  margin:0 0 12px;
+  padding:0 0 12px;
+  border-bottom:1px solid #DAD6C0;
+}
+.uq-section .uq-grid.ud-grid .ud-card:hover .ud-top{
+  border-bottom-color:rgba(1,138,134,.35);
+}
+
+/* heading: remove the doubled space under it */
+.uq-section .uq-head h2{margin-bottom:0 !important}
+.uq-section .uq-head{margin-bottom:clamp(18px,2.2vw,30px)}
+
+/* phones */
+@media(max-width:600px){
+  .uq-section .uq-grid.ud-grid{
+    --ud-pad:18px;
+    --ud-text:1rem;
+  }
+  .uq-section .uq-grid.ud-grid .ud-card .ud-top{padding-bottom:10px;margin-bottom:10px}
+}
+
+/* touch screens: no stuck hover lift after a tap */
+@media(hover:none){
+  .uq-section .ud-card:hover{
+    transform:none;box-shadow:none;border-color:#DAD6C0;
+  }
+  .uq-section .ud-card:hover .ud-bar{transform:scaleX(0)}
+  .uq-section .ud-card:hover .ud-more-arr{transform:none}
+}
+
+/* =====================================================================
+   UNIQUE SECTION: TITLE + DESCRIPTION SPACING FIX (uq- / ud-)
+   Turns off the shared title/text rows (subgrid) so every description sits
+   directly under its own title. "View details" stays pinned to the bottom
+   of each card, so links still line up in each row.
+   Delete this block to revert.
+   ===================================================================== */
+
+/* 1. cards flow naturally (no shared rows) */
+.uq-section .uq-grid.ud-grid>.uq-item{
+  display:flex;
+  grid-row:auto;
+  grid-template-rows:none;
+}
+.uq-section .uq-grid.ud-grid>.uq-item>.ud-card{
+  display:flex;
+  flex-direction:column;
+  flex:1 1 auto;
+  grid-row:auto;
+  grid-template-rows:none;
+  align-content:normal;
+}
+
+/* 2. title zone: natural height, small accent bar, no divider */
+.uq-section .uq-grid.ud-grid .ud-card .ud-top{
+  grid-row:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:0;
+  min-height:0;
+  margin:0 0 12px;
+  padding:0;
+  border-bottom:0;
+}
+.uq-section .uq-grid.ud-grid .ud-card .ud-top:after{
+  content:"";
+  display:block;
+  flex:none;
+  width:34px;
+  height:3px;
+  margin-top:12px;
+  border-radius:3px;
+  background:linear-gradient(90deg,#018a86,#A9CBBF);
+  transition:width .35s ease;
+}
+.uq-section .uq-grid.ud-grid .ud-card:hover .ud-top:after{width:64px}
+.uq-section .uq-grid.ud-grid .ud-card .ud-top .ud-title{
+  flex:none;
+  line-height:1.2;
+}
+
+/* 3. description right under the title, link pinned to the bottom */
+.uq-section .uq-grid.ud-grid .ud-card .ud-text{
+  grid-row:auto;
+  flex:none;
+  margin:0 0 18px;
+  line-height:1.55;
+}
+.uq-section .uq-grid.ud-grid .ud-card .ud-more{
+  grid-row:auto;
+  margin:auto 0 0;
+  align-self:flex-start;
+  justify-self:auto;
+}
+
+/* 4. phones */
+@media(max-width:600px){
+  .uq-section .uq-grid.ud-grid .ud-card .ud-top{margin-bottom:10px;padding-bottom:0}
+  .uq-section .uq-grid.ud-grid .ud-card .ud-text{margin-bottom:16px}
+}
+
+/* touch screens: the accent bar doesn't stay stretched after a tap */
+@media(hover:none){
+  .uq-section .uq-grid.ud-grid .ud-card:hover .ud-top:after{width:34px}
+}
