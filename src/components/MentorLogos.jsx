@@ -1,17 +1,21 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { MENTOR_UNIVERSITIES } from '../data/mentorUniversities'
+
 
 
 const d = (ms) => ({ '--d': ms + 'ms' })
 
 
-// how many rows the logos are split into (26 logos -> 9 / 9 / 8)
-const ROWS = 3
+
+// scroll speed of the strip, in pixels per second
+const SPEED = 70
+
 
 
 // smallest acceptable size for the tiny website-icon fallback (avoids blur)
 const MIN_PX = 64
 const isFavicon = (src) => src.includes('google.com/s2/favicons')
+
 
 
 // `idx` = which entry of u.sources is being shown (kept in the parent so the
@@ -20,10 +24,12 @@ function MentorLogo({ u, idx, onFail }) {
   const src = u.sources[idx]
 
 
+
   // every source failed -> initials badge
   if (!src) {
     return <span className="mu-mono" aria-hidden="true">{u.mono}</span>
   }
+
 
 
   return (
@@ -45,9 +51,12 @@ function MentorLogo({ u, idx, onFail }) {
 }
 
 
+
 export default function MentorLogos() {
   // slug -> index of the source currently used
   const [tried, setTried] = useState({})
+  const laneRef = useRef(null)
+
 
 
   const onFail = useCallback((u, i) => {
@@ -60,11 +69,52 @@ export default function MentorLogos() {
   }, [])
 
 
+
   const total = MENTOR_UNIVERSITIES.length
-  const per = Math.ceil(total / ROWS)
-  const rows = Array.from({ length: ROWS }, (_, r) =>
-    MENTOR_UNIVERSITIES.slice(r * per, (r + 1) * per)
-  ).filter((row) => row.length)
+
+
+
+  // cards are now as wide as their content, so the loop distance is MEASURED:
+  // distance between the first card and its copy = one full set of logos
+  useEffect(() => {
+    const lane = laneRef.current
+    if (!lane) return undefined
+
+
+
+    const measure = () => {
+      const a = lane.children[0]
+      const b = lane.children[total]
+      if (!a || !b) return
+      const dist = b.offsetLeft - a.offsetLeft
+      if (dist <= 0) return
+      if (lane.dataset.dist !== String(dist)) {
+        lane.dataset.dist = String(dist)
+        lane.style.setProperty('--mu-dist', dist + 'px')
+        lane.style.setProperty('--mu-dur', (dist / SPEED).toFixed(1) + 's')
+      }
+      lane.dataset.ready = '1'
+    }
+
+
+
+    measure()
+    let ro
+    if ('ResizeObserver' in window) {
+      ro = new ResizeObserver(measure)
+      ro.observe(lane)
+    }
+    window.addEventListener('resize', measure)
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure)
+
+
+
+    return () => {
+      if (ro) ro.disconnect()
+      window.removeEventListener('resize', measure)
+    }
+  }, [total])
+
 
 
   return (
@@ -81,48 +131,32 @@ export default function MentorLogos() {
         </div>
 
 
-        {/* one auto-scrolling strip.
-            --mu-n     = number of UNIQUE universities (the loop distance)
-            --mu-speed = scaled so the scroll speed stays the same (4.8s per card) */}
-        <div
-          className="mu-rows"
-          style={{
-            '--cols': per,
-            '--mu-n': total,
-            '--mu-speed': `${(total * 4.8).toFixed(1)}s`,
-          }}
-        >
-          {rows.map((row, r) => (
-            <div
-              key={r}
-              /* first row = order 1, every other row = order 2 (keeps the strip in the right order) */
-              className={'mu-row rv' + (r > 0 ? ' rev' : '')}
-              style={d(120 + r * 140)}
-            >
-              <ul
-                className="mu-track"
-                aria-label={`Universities our mentors belong to, row ${r + 1}`}
-              >
-                {/* row is repeated once: the copy makes the loop seamless */}
-                {[...row, ...row].map((u, k) => {
-                  const dup = k >= row.length
-                  return (
-                    <li
-                      key={u.slug + '-' + k}
-                      className={'mu-card' + (dup ? ' is-dup' : '')}
-                      style={{ '--i': r * per + (k % row.length) }}
-                      aria-hidden={dup ? 'true' : undefined}
-                    >
-                      <span className="mu-logo">
-                        <MentorLogo u={u} idx={tried[u.slug] ?? 0} onFail={onFail} />
-                      </span>
-                      <span className="mu-name">{u.name}</span>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          ))}
+
+        {/* one auto-scrolling strip: every university once, then once more
+            (the copy makes the loop seamless) */}
+        <div className="mu-marquee rv" style={d(120)}>
+          <ul
+            className="mu-lane"
+            ref={laneRef}
+            aria-label="Universities our mentors belong to"
+          >
+            {[...MENTOR_UNIVERSITIES, ...MENTOR_UNIVERSITIES].map((u, k) => {
+              const dup = k >= total
+              return (
+                <li
+                  key={u.slug + '-' + k}
+                  className={'mu-card' + (dup ? ' is-dup' : '')}
+                  style={{ '--i': k % total }}
+                  aria-hidden={dup ? 'true' : undefined}
+                >
+                  <span className="mu-logo">
+                    <MentorLogo u={u} idx={tried[u.slug] ?? 0} onFail={onFail} />
+                  </span>
+                  <span className="mu-name">{u.name}</span>
+                </li>
+              )
+            })}
+          </ul>
         </div>
       </div>
     </section>

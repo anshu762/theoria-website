@@ -10737,3 +10737,66 @@ html body .pj-title h1{
 @media (min-width:1121px) and (max-width:1240px){
   header .shell.nav .brand{ zoom:.88; }
 }
+
+/* =====================================================================
+   MENTOR NETWORK: CARDS FIT THEIR TEXT (mu-)
+   Each card is as wide as its logo + name. One auto-scrolling strip,
+   loop distance measured by MentorLogos.jsx. Delete to revert (with the JSX).
+   ===================================================================== */
+
+.mu-section .mu-marquee{
+  position:relative;overflow:hidden;
+  padding:12px 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+}
+
+.mu-section .mu-lane{
+  --mu-lane-gap:clamp(12px,1.4vw,18px);
+  position:relative;
+  display:flex;flex-wrap:nowrap;align-items:stretch;
+  gap:var(--mu-lane-gap);
+  width:max-content;
+  margin:0;padding:0;list-style:none;
+  transform:translate3d(0,0,0);
+}
+.mu-section .mu-lane[data-ready]{
+  animation:mu-lane-run var(--mu-dur,120s) linear infinite;
+}
+@keyframes mu-lane-run{
+  to{transform:translate3d(calc(-1 * var(--mu-dist,0px)),0,0)}
+}
+
+/* card = exactly as wide as its content */
+.mu-section .mu-lane>.mu-card{
+  display:flex;align-items:center;
+  flex:0 0 auto !important;
+  width:auto !important;
+  min-width:0 !important;
+  max-width:none !important;
+  margin:0 !important;
+  padding-right:20px !important;
+}
+.mu-section .mu-lane .mu-logo{flex:none}
+.mu-section .mu-lane .mu-name{
+  flex:none;
+  white-space:nowrap;
+  overflow:visible;
+  text-overflow:clip;
+  max-width:none;
+}
+
+/* hover pauses (mouse only, so touch screens keep running) */
+@media (hover:hover){
+  .mu-section .mu-marquee:hover .mu-lane{animation-play-state:paused}
+}
+
+/* reduced motion: no movement, a wrapped grid instead */
+@media (prefers-reduced-motion:reduce){
+  .mu-section .mu-lane{
+    animation:none !important;
+    width:auto;flex-wrap:wrap;justify-content:center;
+  }
+  .mu-section .mu-lane>.mu-card.is-dup{display:none}
+  .mu-section .mu-marquee{-webkit-mask-image:none;mask-image:none}
+}
