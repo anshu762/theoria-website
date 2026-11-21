@@ -222,7 +222,7 @@ const PROJECTS = [
     id: 'cataract-model',
     no: '07',
     title: 'ML-based cataract prediction model',
-    image: IMG('cataract-model.png'),
+    image: IMG('cataract-model.webp'),
     alt: 'Machine learning cataract prediction from eye images',
     pos: '50% 50%',
     brief:
@@ -476,7 +476,7 @@ const PROJECTS = [
     {
     id: 'agritech',
     no: '14',
-    title: 'Agritech',
+    title: 'AI & ML Crop Disease Detection and Agritech App',
     image: IMG('Agritech.jpeg'),
     alt: 'Agritech app splash screen: leaf logo on a green background with the tagline Smart Farming Solutions',
     pos: '50% 30%',
