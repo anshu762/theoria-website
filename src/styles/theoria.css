@@ -1983,16 +1983,16 @@ textarea {
   border-radius: 2px;
 }
 .wordmark small:before {
-  background: linear-gradient(90deg,rgba(91,124,240,.15),var(--blue-d));
+  background: var(--navy);
 }
 .wordmark small:after {
-  background: linear-gradient(90deg,var(--blue-d),rgba(91,124,240,.15));
+  background: var(--navy);
 }
 .footer .wordmark small:before {
-  background: linear-gradient(90deg,rgba(157,190,255,.2),var(--blue));
+  background: var(--navy);
 }
 .footer .wordmark small:after {
-  background: linear-gradient(90deg,var(--blue),rgba(157,190,255,.2));
+  background: var(--navy);
 }
 @media (min-width:1021px) and (max-width:1200px) {
   .brand {
@@ -4599,7 +4599,7 @@ body .bg-grad {
   display: flex;
   align-items: center;
   gap: clamp(14px,2vw,24px);
-  margin: 10px 0 0;
+  /* margin: 10px 0 0; */
 }
 .sx-title h2 {
   flex: 0 1 auto;
@@ -9226,10 +9226,10 @@ section.ri-section {
   color: #CFE0DA;
 }
 #root>header[data-tone="dark"] .wordmark small:before {
-  background: linear-gradient(90deg,rgba(169,203,191,.2),#A9CBBF) !important;
+  background: var(--page) !important;
 }
 #root>header[data-tone="dark"] .wordmark small:after {
-  background: linear-gradient(90deg,#A9CBBF,rgba(169,203,191,.2)) !important;
+  background: var(--page) !important;
 }
 #root>header[data-tone="dark"] .navlinks a.lnk:after {
   background: #A9CBBF;
@@ -10518,7 +10518,7 @@ html body .pj-title h1{
 
 /* slightly smaller body text + card padding (titles are NOT touched) */
 .uq-section .uq-grid.ud-grid{
-  --ud-text:clamp(.96rem,.18vw + .8rem,1rem);
+  --ud-text:clamp(.99rem,.18vw + .8rem,1rem);
   --ud-pad:clamp(18px,1.6vw,22px);
 }
 
