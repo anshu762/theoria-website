@@ -248,103 +248,222 @@ export default function Contact() {
   const busy = phase !== 'idle'
 
   return (
-    <div className="page cf-page">
-      <div className="cf-wrap">
-        <div className="cf-head">
-          <h1>
-            Get in <span className="cf-accent">touch</span>
-          </h1>
-          <p>Tell us about you and your child, and we’ll get back to you soon.</p>
-        </div>
+  <div className="page cf-page">
+    <div className="cf-wrap">
+      <div className="cf-layout">
+        {/* Left: application form */}
+        <div className="cf-form-col">
+          <div className="cf-box" ref={boxRef}>
+            <div className="cf-progress" role="group" aria-label="Form progress">
+              <div className="cf-steps">
+                <span
+                  className={'cf-dot ' + (step === 1 ? 'is-active' : 'is-done')}
+                  aria-current={step === 1 ? 'step' : undefined}
+                >
+                  {step === 1 ? (
+                    '1'
+                  ) : (
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                      <path
+                        d="M5 12.5l4.5 4.5L19 7.5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )}
+                </span>
 
-        <div className="cf-box" ref={boxRef}>
-          <div className="cf-progress" role="group" aria-label="Form progress">
-            <div className="cf-steps">
-              <span
-                className={'cf-dot ' + (step === 1 ? 'is-active' : 'is-done')}
-                aria-current={step === 1 ? 'step' : undefined}
-              >
-                {step === 1 ? (
-                  '1'
-                ) : (
-                  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                    <path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                )}
-              </span>
-              <span className={'cf-line' + (step === 2 ? ' is-full' : '')}>
-                <i />
-              </span>
-              <span
-                className={'cf-dot' + (step === 2 ? ' is-active' : '')}
-                aria-current={step === 2 ? 'step' : undefined}
-              >
-                2
-              </span>
+                <span className={'cf-line' + (step === 2 ? ' is-full' : '')}>
+                  <i />
+                </span>
+
+                <span
+                  className={'cf-dot' + (step === 2 ? ' is-active' : '')}
+                  aria-current={step === 2 ? 'step' : undefined}
+                >
+                  2
+                </span>
+              </div>
+
+              <p className="cf-plabel">Step {step} of 2</p>
             </div>
-            <p className="cf-plabel">Step {step} of 2</p>
-          </div>
 
-          <form ref={formRef} onSubmit={onSubmit} noValidate>
-            <div className="cf-step" key={step}>
-              <h2 className="cf-step-title">{step === 1 ? 'Parent Details' : 'Student Details'}</h2>
+            <form ref={formRef} onSubmit={onSubmit} noValidate>
+              <div className="cf-step" key={step}>
+                <h2 className="cf-step-title">
+                  {step === 1 ? 'Parent Details' : 'Student Details'}
+                </h2>
 
-              <div className="cf-grid">
-                {fields.map((f) => (
-                  <Fragment key={f.name}>
-                    <Field f={f} value={v[f.name]} error={errors[f.name]} onChange={set(f.name)} />
-                    {f.name === 'class' && v.board === 'other' && (
-                      <Field f={OTHER} value={v.other_board} error={errors.other_board} onChange={set('other_board')} />
-                    )}
-                  </Fragment>
-                ))}
-              </div>
+                <div className="cf-grid">
+                  {fields.map((f) => (
+                    <Fragment key={f.name}>
+                      <Field
+                        f={f}
+                        value={v[f.name]}
+                        error={errors[f.name]}
+                        onChange={set(f.name)}
+                      />
 
-              <div className="cf-live" role="status" aria-live="polite">
-                {status && <div className={'cf-status ' + status.type}>{status.msg}</div>}
-              </div>
-
-              <div className="cf-actions">
-                {step === 1 ? (
-                  <button type="button" className="cf-btn cf-btn-primary" onClick={goNext}>
-                    Next Step →
-                  </button>
-                ) : (
-                  <>
-                    <button type="button" className="cf-btn cf-btn-ghost" onClick={goBack} disabled={busy}>
-                      ← Previous
-                    </button>
-                    <button type="submit" className="cf-btn cf-btn-primary" disabled={busy}>
-                      {phase === 'sending' ? (
-                        <>
-                          Submitting <span className="cf-spin" aria-hidden="true" />
-                        </>
-                      ) : phase === 'done' ? (
-                        '✓ Submitted!'
-                      ) : (
-                        'Submit Application'
+                      {f.name === 'class' && v.board === 'other' && (
+                        <Field
+                          f={OTHER}
+                          value={v.other_board}
+                          error={errors.other_board}
+                          onChange={set('other_board')}
+                        />
                       )}
+                    </Fragment>
+                  ))}
+                </div>
+
+                <div className="cf-live" role="status" aria-live="polite">
+                  {status && (
+                    <div className={'cf-status ' + status.type}>{status.msg}</div>
+                  )}
+                </div>
+
+                <div className="cf-actions">
+                  {step === 1 ? (
+                    <button
+                      type="button"
+                      className="cf-btn cf-btn-primary"
+                      onClick={goNext}
+                    >
+                      Next Step →
                     </button>
-                  </>
-                )}
+                  ) : (
+                    <>
+                      <button
+                        type="button"
+                        className="cf-btn cf-btn-ghost"
+                        onClick={goBack}
+                        disabled={busy}
+                      >
+                        ← Previous
+                      </button>
+
+                      <button
+                        type="submit"
+                        className="cf-btn cf-btn-primary"
+                        disabled={busy}
+                      >
+                        {phase === 'sending' ? (
+                          <>
+                            Submitting <span className="cf-spin" aria-hidden="true" />
+                          </>
+                        ) : phase === 'done' ? (
+                          '✓ Submitted!'
+                        ) : (
+                          'Submit Application'
+                        )}
+                      </button>
+                    </>
+                  )}
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
 
-       {(phone || email) && (
-          <p className="cf-reach">
-            Prefer to talk?{' '}
-            {email && <a href={'mailto:' + email}>{email}</a>}
-            {email && phone && ' · '}
-            {phone && <a href={phoneHref}>{phone}</a>}
-            {phone && ' · '}
-            {phone && (
-              <a href={waHref} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        {/* Right: heading, description and contact details */}
+        <aside className="cf-aside">
+          <div className="cf-head">
+            <p className="cf-eyebrow">Start your journey</p>
+
+            <h1>
+              Get in <span className="cf-accent">touch</span>
+            </h1>
+
+            <p className="cf-lead">
+              Tell us about you and your child, and we’ll get back to you soon.
+            </p>
+          </div>
+        </aside>
+
+        {/* Right bottom: contact details */}
+        <div className="cf-contact">
+          <div className="cf-contact-card">
+            <p className="cf-contact-title">Contact details</p>
+
+            {email && (
+              <a className="cf-contact-item" href={'mailto:' + email}>
+                <span className="cf-contact-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18">
+                    <rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                    <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+
+                <span className="cf-contact-text">
+                  <span className="cf-contact-label">Email</span>
+                  <span className="cf-contact-value">{email}</span>
+                </span>
+              </a>
             )}
-          </p>
-        )}
+
+            {phone && (
+              <a className="cf-contact-item" href={phoneHref}>
+                <span className="cf-contact-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path
+                      d="M6.5 3h3l1.5 4-2 1.5a11 11 0 005.5 5.5L16 12l4 1.5v3a2 2 0 01-2.2 2A15.5 15.5 0 014.5 5.2 2 2 0 016.5 3z"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+
+                <span className="cf-contact-text">
+                  <span className="cf-contact-label">Phone</span>
+                  <span className="cf-contact-value">{phone}</span>
+                </span>
+              </a>
+            )}
+
+            {phone && (
+              <a
+                className="cf-contact-item"
+                href={waHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="cf-contact-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path
+                      d="M12 3a9 9 0 00-7.7 13.6L3 21l4.5-1.2A9 9 0 1012 3z"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M8.7 8.4c.3 2.6 3.3 5.3 5.9 5.7l1.2-1.2 1.7.8-.4 1.7c-2.9.8-7.5-2.6-8.6-5.6l1.2-.9 1.4 1.3z"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+
+                <span className="cf-contact-text">
+                  <span className="cf-contact-label">WhatsApp</span>
+                  <span className="cf-contact-value">Chat with us</span>
+                </span>
+              </a>
+            )}
+          </div>
+        </div>
       </div>
     </div>
-  )
+  </div>
+)
 }

@@ -128,3 +128,346 @@
 .ty-ico svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .ty-tile-k{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cf-muted)}
 .ty-tile-v{display:block;margin-top:3px;font-size:15.5px;font-weight:600;line-height:1.5;overflow-wrap:anywhere}
+
+/* =====================================================================
+   CONTACT PAGE: form left + information right, one-screen desktop
+   ===================================================================== */
+
+.cf-page {
+  min-height: var(
+    --view,
+    calc(100vh - var(--hdr, 76px) - var(--ban, 60px))
+  );
+
+  display: flex;
+  align-items: center;
+
+  padding-top: clamp(10px, 2vh, 22px);
+  padding-bottom: calc(var(--ban, 60px) + clamp(10px, 2vh, 22px));
+}
+
+.cf-page .cf-wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-top: 0;
+}
+
+/* ---------- Two-column layout ---------- */
+
+.cf-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-areas:
+    "form aside"
+    "form contact";
+
+  align-items: center;
+  gap: clamp(20px, 3vw, 44px);
+}
+
+.cf-form-col {
+  grid-area: form;
+  min-width: 0;
+}
+
+.cf-aside {
+  grid-area: aside;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.cf-contact {
+  grid-area: contact;
+  min-width: 0;
+}
+
+/* ---------- Right-side heading ---------- */
+
+.cf-page .cf-head {
+  margin: 0;
+  text-align: left;
+}
+
+.cf-page .cf-head h1 {
+  margin: 12px 0 0;
+  color: var(--navy);
+  font-size: clamp(1.9rem, 1.2rem + 2.2vw, 3rem);
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.cf-page .cf-head .cf-accent {
+  color: var(--cf-mint, #a9cbbf);
+}
+
+.cf-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+
+  color: var(--cf-mint, #a9cbbf);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.cf-eyebrow::before {
+  content: "";
+  width: 24px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--cf-accent), var(--cf-mint));
+}
+
+.cf-lead {
+  margin: 14px 0 0;
+  max-width: 46ch;
+
+  color: #cfe0da;
+  font-size: clamp(15px, 1rem + 0.4vw, 17px);
+  line-height: 1.65;
+}
+
+/* ---------- Contact details ---------- */
+
+.cf-contact-card {
+  display: grid;
+  gap: 10px;
+
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--cf-line, #dad6c0);
+  border-radius: 20px;
+  background: var(--cf-card, #fbfaf4);
+  box-shadow: 0 18px 40px -28px rgba(19, 59, 58, 0.5);
+}
+
+.cf-contact-title {
+  margin: 0 0 2px;
+
+  color: var(--cf-navy, #123b37);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.cf-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+
+  color: var(--cf-ink, #133b3a);
+  text-decoration: none;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+.cf-contact-item:hover {
+  background: var(--cf-tint, #e8e5d2);
+  border-color: var(--cf-line2, #c9c5aa);
+  transform: translateY(-2px);
+}
+
+.cf-contact-item:focus-visible {
+  outline: 3px solid rgba(1, 138, 134, 0.45);
+  outline-offset: 3px;
+}
+
+.cf-contact-ico {
+  flex: none;
+  display: grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+
+  background: var(--cf-navy, #123b37);
+  color: var(--cf-cream, #f3f1e5);
+}
+
+.cf-contact-text {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.cf-contact-label {
+  color: var(--cf-muted, #4d6967);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cf-contact-value {
+  color: var(--cf-ink, #133b3a);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Compact form for one-screen view ---------- */
+
+.cf-page .cf-box {
+  padding: clamp(12px, 1.8vw, 20px);
+  border-radius: 20px;
+}
+
+.cf-page .cf-progress {
+  padding: 2px 2px 0;
+}
+
+.cf-page .cf-dot {
+  width: 34px;
+  height: 34px;
+  font-size: 14px;
+}
+
+.cf-page .cf-line {
+  width: clamp(48px, 12vw, 84px);
+}
+
+.cf-page .cf-plabel {
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+.cf-page .cf-step {
+  margin-top: 10px;
+  padding: clamp(14px, 2vw, 22px) clamp(14px, 2vw, 22px);
+  border-radius: 14px;
+}
+
+.cf-page .cf-step-title {
+  font-size: clamp(1.15rem, 1rem + 0.5vw, 1.45rem);
+}
+
+.cf-step-title::after {
+  margin: 8px auto 14px;
+}
+
+.cf-page .cf-grid {
+  gap: 10px;
+}
+
+.cf-page .cf-field label {
+  margin-bottom: 4px;
+  font-size: 11.5px;
+}
+
+.cf-page .cf-field input,
+.cf-page .cf-field select {
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.cf-page .cf-err {
+  margin-top: 3px;
+  font-size: 12px;
+}
+
+.cf-page .cf-status {
+  margin-top: 10px;
+  padding: 9px 12px;
+  font-size: 13.5px;
+}
+
+.cf-page .cf-actions {
+  margin-top: 14px;
+  gap: 10px;
+}
+
+.cf-page .cf-btn {
+  min-width: 0;
+  padding: 11px 20px;
+  font-size: 15px;
+}
+
+/* ---------- Tablet and phone ---------- */
+
+@media (max-width: 1020px) {
+  .cf-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "aside"
+      "form"
+      "contact";
+
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .cf-aside {
+    padding: clamp(20px, 5vw, 28px);
+  }
+
+  .cf-page .cf-head h1 {
+    font-size: clamp(1.7rem, 1.2rem + 3vw, 2.2rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .cf-page {
+    align-items: flex-start;
+    padding-top: 18px;
+  }
+
+  .cf-page .cf-wrap {
+    padding-top: 0;
+  }
+
+  .cf-lead {
+    font-size: 15px;
+  }
+
+  .cf-contact-card {
+    gap: 8px;
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .cf-contact-item {
+    padding: 9px 10px;
+  }
+
+  .cf-contact-ico {
+    width: 34px;
+    height: 34px;
+  }
+
+  .cf-contact-value {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cf-page .cf-box {
+    border-radius: 16px;
+  }
+
+  .cf-page .cf-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cf-page .cf-btn {
+    width: 100%;
+  }
+}
