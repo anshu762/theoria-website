@@ -94,7 +94,6 @@ export default function Home() {
             <p className="rv" style={d(200)}>At Theoria, our goal is not simply to help students produce research papers, but to nurture independent thinkers who can investigate questions, form original perspectives and contribute meaningfully to their fields.</p>
           </div>
 
-           {/* big statement on the right */}
           <div className="ph-quote rv" style={d(200)}>
             <span className="ph-q-line">Young scholars</span>
             <span className="ph-q-line">deserve more than</span>
