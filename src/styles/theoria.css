@@ -10074,8 +10074,6 @@ body,h1,h2,h3,.wordmark,.num-big,.quote,.step b,.pc-title,.footer .tagline {
     padding-top: 12px;
     padding-bottom: 24px;
     row-gap: 28px;
-    margin-left: 30px !important;
-    margin-right: 30px !important;
   }
 
   .home-page .hero .hero-copy {
@@ -10936,6 +10934,10 @@ html body .pj-title h1{
   .hero-copy h1 {
     margin: 0px 0 26px !important;
   }
+  .hero .hero-inner{
+    margin-left: 30px !important;
+    margin-right: 30px !important;
+  }
   .home-page .hero .hero-copy p {
     font-size: clamp(0.97rem, 0.83rem + 0.63vw, 1.3rem) !important;
   }
@@ -10947,6 +10949,10 @@ html body .pj-title h1{
 @media (min-width:1021px) and (max-height:760px){
   :root{
      --t2-size: clamp(1rem, 1rem + 2vw, 2rem) !important;
+  }
+  .hero .hero-inner{
+    margin-left: 30px !important;
+    margin-right: 30px !important;
   }
   .hero .shell{
     padding-left: 0px !important;
