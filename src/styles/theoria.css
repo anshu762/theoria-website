@@ -1873,7 +1873,7 @@ textarea {
   align-self: flex-start;
 }
 .hero-copy h1 {
-  margin: 0px 0 65px !important;
+  margin: 0px 0 65px;
 }
 .hero-copy p {
   margin-bottom: 25px;
@@ -4479,7 +4479,7 @@ body .bg-grad {
   line-height: 0;
 }
 .rp-hl {
-  background: linear-gradient(transparent 58%,rgba(111,168,154,.42) 58%);
+  background: rgba(111,168,154,.42) !important;
   border-radius: 2px;
   padding: 0 .12em;
 }

@@ -617,7 +617,7 @@
 
 /* closing paragraph: was a fixed 20px */
 .bd-page .bd-close-copy p{
-  font-size:clamp(1rem,.9rem + .6vw,1.25rem);
+  font-size: clamp(1rem, .94rem + .3vw, 1.15rem);
 }
 
 /* long step titles never push the card wider */
@@ -943,4 +943,47 @@
 /* ---------- reduced-motion users: decorative loops off ---------- */
 @media (prefers-reduced-motion:reduce){
   .bd-glow,.bd-ring,.bd-globe,.bd-book,.bd-chip,.bd-close:after{animation:none !important}
+}
+
+/* =====================================================================
+   BEYOND RESEARCH: PHONE FIX 3 (bd-)
+   APPEND AT THE VERY END of beyondResearch.css.
+   1021px and wider: unchanged. Delete this block to revert.
+   ===================================================================== */
+
+
+/* iPhone landscape: no automatic text enlarging */
+.bd-page{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
+
+/* ---------- tablets + phones: last section clears the bottom banner ---------- */
+@media (max-width:1020px){
+  .bd-page section.bd-way{
+    padding-bottom:calc(var(--ban,60px) + 28px) !important;
+  }
+}
+
+
+/* ---------- phones ---------- */
+@media (max-width:640px){
+  /* hero title: a little smaller, fewer lines (about 28px at 360px wide) */
+  .bd-page .bd-copy h1{
+    font-size:clamp(1.7rem,1.1rem + 2.9vw,2.2rem);
+    margin-bottom:12px;
+  }
+
+  /* globe caption: readable size, may wrap to 2 lines */
+  .bd-cap{font-size:.7rem;letter-spacing:.02em;bottom:5%}
+
+  /* opportunity cards: small labels a bit larger */
+  .bd-page .bd-opp-card .bd-opp-tag{font-size:.72rem}
+  .bd-page .bd-opp-card .bd-opp-who,
+  .bd-page .bd-opp-card .bd-opp-crit{font-size:.95rem}
+  .bd-page .bd-opp-note{font-size:.85rem}
+}
+
+
+/* ---------- very small phones (320px to 380px) ---------- */
+@media (max-width:380px){
+  .bd-cap{font-size:.62rem}
 }
