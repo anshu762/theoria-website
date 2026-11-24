@@ -8,6 +8,7 @@ import HeroPapers from '../components/HeroPapers'
 import SuccessStories from '../components/SuccessStories'
 import UniqueThings from '../components/UniqueThings'
 import ResearchImportance from '../components/ResearchImportance'
+import HeroFit from '../components/HeroFit'
 
 
 const d = (ms) => ({ '--d': ms + 'ms' })
@@ -40,6 +41,7 @@ const VIEWS = [
 export default function Home() {
   return (
     <div className="page home-page">
+      <HeroFit />
       <div className="hero">
         <div className="shell hero-inner">
           <div className="hero-copy">
@@ -59,29 +61,6 @@ export default function Home() {
       <SuccessStories/>
       <UniqueThings/>
       <ResearchImportance/>
-
-            {/* <section className="uv-section" aria-labelledby="uv-h">
-        <div className="shell">
-          <div className="uv-head rv">
-            <div className="uv-eyebrow">University perspectives · Official guidance</div>
-            <h2 id="uv-h">What leading universities <span className="uv-accent">actually say.</span></h2>
-            <p className="uv-intro">These are links to official admissions materials, not claims that research is mandatory or that participation guarantees an advantage. Theoria is not affiliated with these universities.</p>
-          </div>
-
-          <div className="uv-grid">
-            {VIEWS.map((v, i) => (
-              <div className="uv-item rv" style={d(i * 110)} key={v.tag}>
-                <article className="uv-card">
-                  <span className="uv-tag">{v.tag}</span>
-                  <h3>{v.title}</h3>
-                  <p>{v.text}</p>
-                  <a className="uv-link" target="_blank" rel="noopener noreferrer" href={v.href}>{v.link}</a>
-                </article>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* ---------- Our philosophy (green, book icon on the right) ---------- */}
       <section className="ph-section">

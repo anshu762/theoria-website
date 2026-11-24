@@ -1873,7 +1873,7 @@ textarea {
   align-self: flex-start;
 }
 .hero-copy h1 {
-  margin: 0px 0 65px;
+  margin: 0px 0 65px !important;
 }
 .hero-copy p {
   margin-bottom: 25px;
@@ -10903,5 +10903,53 @@ html body .pj-title h1{
     left: 0;
     right: 0;
     max-width: 100%;
+  }
+}
+
+/* =====================================================
+   HERO: FIT TO ONE SCREEN (used with HeroFit.jsx)
+   ===================================================== */
+@media (min-width:1021px){
+  .hero .hero-inner{ zoom:var(--hz,1); }
+
+  /* only while the script measures the natural size */
+  .hero .hero-inner.hz-measure{ align-items:start !important; }
+  .hero .hero-inner.hz-measure > *{ align-self:start !important; }
+
+  /* lets the paper column shrink instead of pushing out to the right */
+  .hero .hero-copy,
+  .hero .rp{ min-width:0; }
+}
+
+/* short laptop screens only: tighter hero top/bottom padding so more room is left for the content */
+@media (min-width:1021px) and (max-height:760px){
+  .hero{
+    padding-top:clamp(8px,1.6vh,18px) !important;
+    padding-bottom:clamp(8px,1.6vh,18px) !important;
+  }
+}
+
+
+@media (min-width:1021px){
+  .hero-copy h1 {
+    margin: 0px 0 26px !important;
+  }
+  .home-page .hero .hero-copy p {
+    font-size: clamp(0.97rem, 0.83rem + 0.63vw, 1.3rem) !important;
+  }
+  .ph-section .ph-copy p {
+  font-size: 19px !important;
+  }
+}
+
+@media (min-width:1021px) and (max-height:760px){
+  .hero-copy h1 {
+    margin: 0px 0 26px !important;
+  }
+  .home-page .hero .hero-copy p {
+    font-size: clamp(0.97rem, 0.83rem + 0.63vw, 1.3rem) !important;
+  }
+  .ph-section .ph-copy p {
+  font-size: 19px !important;
   }
 }
