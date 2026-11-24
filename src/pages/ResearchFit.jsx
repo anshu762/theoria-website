@@ -450,7 +450,7 @@ export default function ResearchFit() {
                 steps.
               </p>
               <div className="rf-grid2">
-                <Field label="Student signature / typed name" name="signature" />
+                <Field label="Student signature" name="signature" />
                 <Field label="Date" name="date" placeholder="YYYY-MM-DD" />
               </div>
             </div>
