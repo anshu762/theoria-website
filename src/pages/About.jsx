@@ -1,4 +1,26 @@
+import { useState } from 'react'
+
 const d = (ms) => ({ '--d': `${ms}ms` })
+
+/* own copy first (public/aboutUs/dir.webp), UniVisory copy as backup */
+const LOCAL_PHOTO = `${import.meta.env.BASE_URL}aboutUs/dir.webp`
+
+function FounderPhoto({ alt }) {
+  const [step, setStep] = useState(0)
+  const srcs = [LOCAL_PHOTO, FOUNDER.photo]
+  if (step >= srcs.length) return null
+  return (
+    <img
+      key={srcs[step]}
+      src={srcs[step]}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      referrerPolicy="no-referrer"
+      onError={() => setStep((s) => s + 1)}
+    />
+  )
+}
 
 /* ───────── FILL THESE IN ───────── */
 const FOUNDER = {
@@ -82,16 +104,13 @@ export default function About() {
             {/* LEFT — Founder image */}
             <div className="fn-side rv" style={d(0)}>
               <figure className="fn-photo">
-                <div className="fn-photo-frame">
-                  <img
-                    src={FOUNDER.photo}
+               <div className="fn-photo-frame">
+                  <FounderPhoto
                     alt={
                       FOUNDER.name
                         ? `${FOUNDER.name}, ${FOUNDER.role || 'Founder'}`
                         : 'Founder of Theoria'
                     }
-                    loading="lazy"
-                    decoding="async"
                   />
                 </div>
 

@@ -687,3 +687,260 @@
   .bd-card:hover .bd-card-ico{transform:none}
   .bd-step:hover .bd-step-no{transform:none}
 }
+
+/* =====================================================================
+   BEYOND RESEARCH: NEW SECTIONS + HERO CAPTION   (bd-opp-, bd-wk-, bd-cap)
+   Delete this block (and the 2 sections / caption in the JSX) to revert.
+   ===================================================================== */
+
+/* ---------- hero panel: competition names along the bottom ---------- */
+.bd-cap{
+  position:absolute;left:0;right:0;bottom:4.5%;z-index:3;
+  padding:0 4%;text-align:center;white-space:nowrap;
+  color:var(--page);font-weight:600;letter-spacing:.04em;
+  font-size:clamp(.6rem,.45rem + .3vw,.8rem);
+}
+/* lift the last chip a little so it never touches the caption */
+.bd-page .bd-c4{bottom:16%}
+
+/* ---------- shared section frame ---------- */
+.bd-page section.bd-opp,
+.bd-page section.bd-wk{padding:30px !important}
+.bd-page section.bd-opp{background:var(--tint);border-top:1px solid var(--line);scroll-margin-top:calc(var(--hdr,76px) + 10px)}
+.bd-page section.bd-wk{
+  overflow:hidden;isolation:isolate;color:var(--page);
+  background:
+    radial-gradient(rgba(243,241,229,.08) 1px,transparent 1.6px) 0 0/22px 22px,
+    linear-gradient(160deg,#0F3330 0%,var(--navy) 55%,#1B4B47 130%);
+}
+
+.bd-opp-head,
+.bd-wk-head{max-width:none;margin:0 0 clamp(20px,3vw,34px)}
+.bd-opp-eye{
+  display:block;margin:0 0 8px;color:var(--grad);
+  font-size:.72rem;font-weight:800;letter-spacing:.14em;line-height:1.3;
+}
+.bd-page .bd-opp-head h2,
+.bd-page .bd-wk-head h2{
+  margin:0 0 12px;
+  font-size:clamp(1.8rem, 1.1rem + 2.2vw, 2.8rem) !important;
+  font-weight:500 !important;
+  line-height:1.12;letter-spacing:-.025em;overflow-wrap:break-word;
+}
+.bd-page .bd-opp-head h2{color:var(--navy)}
+.bd-page .bd-wk-head h2{color:#fff}
+.bd-page .bd-opp-head p,
+.bd-page .bd-wk-head p{
+  margin:0;max-width:none;
+  font-size:clamp(1rem,.94rem + .3vw,1.15rem);line-height:1.7;
+}
+.bd-page .bd-opp-head p{color:var(--muted)}
+.bd-page .bd-wk-head p{color:#CFE0DA}
+
+/* ---------- opportunity cards (4 / 2 / 1 per row) ---------- */
+.bd-opp-grid,
+.bd-wk-grid{
+  list-style:none;margin:0;padding:0;display:grid;
+  gap:clamp(14px,1.8vw,22px);
+}
+.bd-opp-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.bd-wk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.bd-opp-li,
+.bd-wk-li{display:flex;min-width:0}
+
+.bd-opp-card{
+  position:relative;overflow:hidden;width:100%;
+  display:flex;flex-direction:column;
+  padding:clamp(18px,1.8vw,24px);border-radius:18px;
+  background:var(--card);border:1px solid var(--line);
+  transition:transform .35s var(--ease),box-shadow .35s,border-color .35s;
+}
+.bd-opp-card:before{
+  content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--grad);
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);
+}
+.bd-opp-card:hover{
+  transform:translateY(-6px);border-color:var(--line-2);
+  box-shadow:0 26px 44px -26px rgba(19,59,58,.55);
+}
+.bd-opp-card:hover:before{transform:scaleX(1)}
+
+.bd-page .bd-opp-card .bd-opp-tag{
+  margin:0 0 10px;color:var(--grad);
+  font-size:.68rem;font-weight:800;letter-spacing:.1em;line-height:1.4;
+}
+.bd-page .bd-opp-card h3{
+  margin:0 0 10px;color:var(--navy);
+  font-size:clamp(1.1rem,1rem + .45vw,1.35rem);font-weight:700;
+  line-height:1.25;letter-spacing:-.01em;overflow-wrap:break-word;
+}
+.bd-page .bd-opp-card .bd-opp-intro{
+  flex:1 1 auto;margin:0 0 14px;color:var(--muted);
+  font-size:.95rem;line-height:1.65;
+}
+.bd-opp-rule{
+  flex:none;border:0;height:1px;margin:0 0 12px;background:var(--line);
+}
+.bd-page .bd-opp-card .bd-opp-who{
+  margin:0 0 8px;color:var(--navy);
+  font-size:.92rem;font-weight:700;line-height:1.45;
+}
+.bd-page .bd-opp-card .bd-opp-crit{
+  margin:0 0 16px;color:var(--muted);
+  font-size:.92rem;line-height:1.6;
+}
+.bd-page .bd-opp-card .bd-opp-link{
+  margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:6px;
+  padding:4px 0;color:var(--grad);text-decoration:none;
+  font-size:.9rem;font-weight:800;letter-spacing:.01em;
+}
+.bd-opp-link span{display:inline-block;transition:transform .3s var(--ease)}
+.bd-opp-link:hover{text-decoration:underline;text-underline-offset:3px}
+.bd-opp-link:hover span{transform:translate(2px,-2px)}
+.bd-opp-link:focus-visible{outline:2px solid var(--grad);outline-offset:3px;border-radius:4px}
+
+.bd-page .bd-opp-note{
+  max-width:none;margin:18px 0 0;color:var(--muted);
+  font-size:.8rem;line-height:1.6;
+}
+
+/* ---------- "worthy of recognition" cards (dark, 3 / 2 / 1 per row) ---------- */
+.bd-wk-card{
+  position:relative;overflow:hidden;width:100%;
+  padding:clamp(18px,2vw,26px);border-radius:18px;
+  background:rgba(243,241,229,.03);border:1px solid rgba(169,203,191,.28);
+  transition:transform .35s var(--ease),background .35s,border-color .35s,box-shadow .35s;
+}
+.bd-wk-card:before{
+  content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--grad);
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);
+}
+.bd-wk-card:hover{
+  transform:translateY(-6px);background:rgba(243,241,229,.07);
+  border-color:rgba(169,203,191,.6);box-shadow:0 24px 40px -26px rgba(0,0,0,.6);
+}
+.bd-wk-card:hover:before{transform:scaleX(1)}
+.bd-page .bd-wk-card h3{
+  margin:0 0 8px;color:var(--page);
+  font-size:clamp(1.1rem,1rem + .45vw,1.35rem);font-weight:700;
+  line-height:1.25;letter-spacing:-.01em;overflow-wrap:break-word;
+}
+.bd-page .bd-wk-card p{
+  margin:0;color:#CFE0DA;font-size:.98rem;line-height:1.65;
+}
+
+/* ---------- responsive ---------- */
+@media (min-width:1021px){
+  /* keep the card titles on one line across the row */
+  .bd-page .bd-opp-card .bd-opp-tag{min-height:2.8em}
+}
+@media (max-width:1020px){
+  .bd-opp-grid,
+  .bd-wk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .bd-page section.bd-opp,
+  .bd-page section.bd-wk{padding-left:0 !important;padding-right:0 !important}
+}
+@media (max-width:640px){
+  .bd-opp-grid,
+  .bd-wk-grid{grid-template-columns:minmax(0,1fr)}
+}
+
+/* touch screens: no stuck hover lift after a tap */
+@media (hover:none){
+  .bd-opp-card:hover,
+  .bd-wk-card:hover{transform:none}
+  .bd-opp-card:hover:before,
+  .bd-wk-card:hover:before{transform:scaleX(0)}
+}
+@media (prefers-reduced-motion:reduce){
+  .bd-opp-card,.bd-wk-card,.bd-opp-link span{transition:none}
+}
+
+/* =====================================================================
+   BEYOND RESEARCH: RESPONSIVE FIX 2 (bd-)
+   APPEND AT THE VERY END of beyondResearch.css.
+   1280px and wider: unchanged. Delete this block to revert.
+   ===================================================================== */
+
+
+/* safety net: nothing on this page can create sideways scroll */
+.bd-page{overflow-x:clip}
+
+
+/* hero caption may wrap instead of being cut */
+.bd-cap{white-space:normal;text-wrap:balance;line-height:1.3}
+
+
+/* ---------- small laptops / tablets landscape: 1021px to 1279px ---------- */
+@media (min-width:1021px) and (max-width:1279px){
+  .bd-page .bd-hero{padding:36px 30px 40px !important}
+
+  /* smaller globe panel gives the text more room */
+  .bd-page .bd-hero-in{
+    grid-template-columns:minmax(0,1fr) clamp(260px,28vw,400px);
+  }
+
+  /* text scales smoothly and reaches today's size at 1280px */
+  .bd-page .bd-copy h1{font-size:clamp(2rem,calc(3.9vw - 2px),3rem)}
+  .bd-page .bd-copy p.bd-lead{font-size:clamp(1.2rem,calc(1.6vw + 5px),1.6rem)}
+  .bd-page .bd-copy p{
+    font-size:clamp(.97rem,calc(1.13vw + 4px),1.15rem);
+    line-height:1.65;
+  }
+}
+
+
+/* ---------- Global Recognition cards: 4 per row only when there is room ---------- */
+@media (max-width:1099px){
+  .bd-opp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bd-page .bd-opp-card .bd-opp-tag{min-height:0}
+}
+@media (max-width:640px){
+  .bd-opp-grid{grid-template-columns:minmax(0,1fr)}
+}
+
+
+/* ---------- tablet: hero gutter lines up with the sections below ---------- */
+@media (max-width:1020px){
+  .bd-page .bd-hero{padding:36px 30px 44px !important}
+  .bd-page .bd-opp-card .bd-opp-link{padding:10px 0}
+}
+
+
+/* ---------- small tablets + phones: shell gutter only, like the other sections ---------- */
+@media (max-width:900px){
+  .bd-page .bd-hero{padding:32px 0 40px !important}
+}
+
+
+/* ---------- phones ---------- */
+@media (max-width:640px){
+  .bd-page .bd-hero{padding:28px 0 34px !important}
+
+  /* long button labels wrap instead of overflowing */
+  .bd-copy .actions .btn,
+  .bd-close-cta .btn{
+    white-space:normal;text-align:center;justify-content:center;line-height:1.3;
+  }
+}
+
+
+/* ---------- very small phones ---------- */
+@media (max-width:380px){
+  .bd-page .bd-hero{padding:24px 0 30px !important}
+  .bd-cap{font-size:.56rem;letter-spacing:.02em}
+}
+
+
+/* ---------- phones turned sideways (short screens): smaller globe panel ---------- */
+@media (max-width:1020px) and (orientation:landscape) and (max-height:520px){
+  .bd-page .bd-art{max-width:280px}
+}
+
+
+/* ---------- reduced-motion users: decorative loops off ---------- */
+@media (prefers-reduced-motion:reduce){
+  .bd-glow,.bd-ring,.bd-globe,.bd-book,.bd-chip,.bd-close:after{animation:none !important}
+}
