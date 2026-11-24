@@ -10946,6 +10946,10 @@ html body .pj-title h1{
   :root{
      --t2-size: clamp(1rem, 1rem + 2vw, 2rem) !important;
   }
+  .shell{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
   .hero-copy h1 {
     margin: 0px 0 26px !important;
   }
