@@ -5,6 +5,8 @@ const d = (ms) => ({ '--d': ms + 'ms' })
 
 const IMG = 'https://univisory.org/cdn/images/testimonials/'
 const VID = 'https://univisory.org/cdn/videos/'
+const LOCAL_IMG = `${import.meta.env.BASE_URL}testimonials/`
+const LOCAL_VID = `${import.meta.env.BASE_URL}videos/`
 
 const STORIES = [
   { id: 'prisha',  name: 'Prisha Arora',            uni: 'Wharton Business School',            student: 'Prisha Arora',              cls: "Class of '28", img: 'prisha-arora-img.webp',  video: 'Prisha_Testimonial.mp4' },
@@ -20,7 +22,7 @@ const STORIES = [
   { id: 'krishiv', name: 'Krishiv',                 uni: 'University of Southern California',  student: 'Krishiv',                   cls: "Class of '28", img: 'krishiv-img.webp',       video: "Krishiv's_Testimonial.mp4" },
   { id: 'ira',     name: 'Ira',                     uni: 'Georgia Institute of Technology',    student: 'Ira',                       cls: "Class of '28", img: 'Ira-img.webp',           video: "Ira's_Testimonial.mp4" },
   { id: 'jasnoor', name: "Jasnoor's Mother",        uni: 'University of California, Berkeley', student: "Jasnoor's Mother",          cls: "Class of '28", img: 'jasnoor-img.webp',       video: "jasnoor_mom's_Testimonial.mp4" },
-].map((s) => ({ ...s, img: IMG + s.img, video: VID + s.video }))
+].map((s) => ({ ...s, localImg: LOCAL_IMG + s.img, localVideo: LOCAL_VID + s.video, img: IMG + s.img, video: VID + s.video }))
 
 const IMPACT = [
   {
@@ -162,6 +164,9 @@ function Ico({ n }) {
 
 /* ───────────── one story card (a carousel slide) ───────────── */
 function StoryCard({ s, i, onOpen }) {
+  // 0 = our own copy, 1 = UniVisory URL
+  const srcs = [s.localImg, s.img]
+  const [step, setStep] = useState(0)
   const [loaded, setLoaded] = useState(false)
   const [broken, setBroken] = useState(false)
   const imgRef = useRef(null)
@@ -170,7 +175,12 @@ function StoryCard({ s, i, onOpen }) {
   useEffect(() => {
     const el = imgRef.current
     if (el && el.complete && el.naturalWidth > 0) setLoaded(true)
-  }, [])
+  }, [step])
+
+  const fail = () => {
+    if (step < srcs.length - 1) setStep(step + 1)
+    else setBroken(true)
+  }
 
   return (
     <li className="sp-slide">
@@ -189,13 +199,15 @@ function StoryCard({ s, i, onOpen }) {
             </span>
           ) : (
             <img
+              key={srcs[step]}
               ref={imgRef}
-              src={s.img}
+              src={srcs[step]}
               alt={s.name}
               loading="lazy"
               decoding="async"
+              referrerPolicy="no-referrer"
               onLoad={() => setLoaded(true)}
-              onError={() => setBroken(true)}
+              onError={fail}
             />
           )}
           <span className="sp-play" aria-hidden="true">
@@ -341,7 +353,14 @@ function StoryCarousel({ onOpen, modalOpen }) {
 
 /* ───────────── video stage (resets for every story) ───────────── */
 function VideoStage({ item }) {
+  // 0 = our own copy, 1 = UniVisory URL
+  const srcs = [item.localVideo, item.video]
+  const [step, setStep] = useState(0)
   const [err, setErr] = useState(false)
+  const fail = () => {
+    if (step < srcs.length - 1) setStep(step + 1)
+    else setErr(true)
+  }
   return (
     <div className="sp-stage">
       {err ? (
@@ -351,14 +370,15 @@ function VideoStage({ item }) {
         </div>
       ) : (
         <video
+          key={srcs[step]}
           className="sp-video"
-          src={item.video}
-          poster={item.img}
+          src={srcs[step]}
+          poster={item.localImg}
           controls
           autoPlay
           playsInline
           preload="metadata"
-          onError={() => setErr(true)}
+          onError={fail}
         />
       )}
     </div>

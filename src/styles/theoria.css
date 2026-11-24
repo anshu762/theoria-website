@@ -10800,3 +10800,108 @@ html body .pj-title h1{
   .mu-section .mu-lane>.mu-card.is-dup{display:none}
   .mu-section .mu-marquee{-webkit-mask-image:none;mask-image:none}
 }
+
+/* =====================================================================
+   HEADER: AUTO-FIT (replaces all earlier header fit blocks)
+   Header.jsx measures the nav and adds one class to <header>:
+     is-tight   -> slightly tighter gaps / button
+     is-fit     -> smooth scale (never below 80%)
+     is-compact -> menu button (only when it cannot fit at 80%)
+   1020px and below keeps your existing mobile menu untouched.
+   Delete this block (and the JS effect) to revert.
+   ===================================================================== */
+@media (min-width:1021px){
+
+  /* one row, never wraps */
+  header .shell.nav{ flex-wrap:nowrap !important; align-items:center; min-width:0; }
+  header .shell.nav .brand{ flex:none !important; }
+  header .navlinks{ flex-wrap:nowrap !important; white-space:nowrap !important; }
+  header .navlinks .lnk,
+  header .navlinks .nav-dd,
+  header .navlinks .nav-dd-btn,
+  header .navlinks .nav-cta{ white-space:nowrap !important; flex:none !important; }
+
+  /* step 2: tighter */
+  header.is-tight .shell.nav{ gap:16px !important; }
+  header.is-tight .navlinks{ gap:clamp(8px,1vw,14px) !important; }
+  header.is-tight .navlinks .nav-cta{ padding:.62em 1em !important; margin-left:0 !important; }
+
+  /* step 3: smooth scale */
+  header.is-fit .brand,
+  header.is-fit .navlinks{ zoom:var(--nv-k,1); }
+
+  /* step 4: menu button */
+  header.is-compact .shell.nav{ justify-content:space-between !important; }
+  header.is-compact .mobiletoggle{
+    display:inline-flex !important; align-items:center; justify-content:center;
+    margin-left:auto; padding:8px; background:transparent; border:0;
+    color:inherit; cursor:pointer; border-radius:10px;
+  }
+  header.is-compact .navlinks{ display:none !important; }
+  header.is-compact .navlinks.show{
+    display:flex !important; flex-direction:column; align-items:stretch;
+    flex-wrap:nowrap !important; gap:2px !important; white-space:normal !important;
+    position:absolute; top:100%; left:0; right:0; z-index:60;
+    padding:10px var(--hdr-pad,24px) 18px;
+    background:var(--page,#F3F1E5);
+    border-bottom:1px solid var(--line,#DAD6C0);
+    box-shadow:0 18px 30px -18px rgba(18,59,55,.35);
+    max-height:calc(100vh - var(--hdr,76px));
+    max-height:calc(100dvh - var(--hdr,76px));
+    overflow-y:auto;
+  }
+  header.is-compact .navlinks .lnk{
+    display:block; padding:12px 6px; font-size:1.05rem;
+    color:var(--ink,#133B3A) !important;
+    border-bottom:1px solid var(--line,#DAD6C0);
+  }
+  header.is-compact .navlinks .lnk.active{ color:var(--grad,#018a86) !important; }
+
+  header.is-compact .navlinks .nav-dd{
+    display:flex; flex-wrap:wrap; align-items:center; width:100%;
+    border-bottom:1px solid var(--line,#DAD6C0);
+  }
+  header.is-compact .navlinks .nav-dd .lnk{ flex:1 1 auto !important; border-bottom:0; }
+  header.is-compact .navlinks .nav-dd-btn{ color:var(--ink,#133B3A) !important; padding:10px; }
+  header.is-compact .navlinks .nav-dd-menu{
+    position:static !important; display:none !important; flex:0 0 100%; width:100%;
+    min-width:0 !important; margin:0; padding:0 0 8px 14px !important; list-style:none;
+    opacity:1 !important; visibility:visible !important; transform:none !important;
+    background:transparent !important; border:0 !important; box-shadow:none !important;
+  }
+  header.is-compact .navlinks .nav-dd.is-open .nav-dd-menu{ display:block !important; }
+  header.is-compact .navlinks .nav-dd-item{
+    display:block; padding:10px 8px; color:var(--ink,#133B3A) !important;
+  }
+  header.is-compact .navlinks .nav-dd-item.active{ color:var(--grad,#018a86) !important; }
+
+  header.is-compact .navlinks .nav-cta{ align-self:flex-start; margin:14px 0 0 !important; }
+}
+/* =====================================================================
+   HEADER: FINAL OVERFLOW SAFETY
+   Prevents desktop nav items or the CTA from being cut on small laptops.
+   ===================================================================== */
+
+@media (min-width: 1021px) {
+  header .shell.nav {
+    min-width: 0;
+  }
+
+  header .navlinks {
+    min-width: 0;
+  }
+
+  /* Make the compact-menu button reliably visible when JS applies it. */
+  header.is-compact .mobiletoggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* The open compact menu must never create sideways page scrolling. */
+  header.is-compact .navlinks.show {
+    left: 0;
+    right: 0;
+    max-width: 100%;
+  }
+}

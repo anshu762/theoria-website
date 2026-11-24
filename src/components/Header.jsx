@@ -1,12 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import BookIcon from './BookIcon'
 import { NAV_LINKS, LOGO_PNG } from '../config'
 
+
 /* ---------- read how dark the surface behind the header is ---------- */
 const COLOR_RE = /rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)(?:[\s,/]+([\d.]+)(%?))?\s*\)/g
 
+
 const lum = (r, g, b) => (0.299 * r + 0.587 * g + 0.114 * b) / 255
+
 
 function readColors(str) {
   const out = []
@@ -21,10 +24,12 @@ function readColors(str) {
   return out
 }
 
+
 /* brightness (0 = black, 1 = white) of one element's own background, or null if it has none */
 function surfaceLum(el) {
   const cs = getComputedStyle(el)
   if (parseFloat(cs.opacity) < 0.1) return null
+
 
   const bi = cs.backgroundImage
   if (bi && bi !== 'none' && bi.indexOf('gradient') !== -1) {
@@ -36,6 +41,11 @@ function surfaceLum(el) {
   return null
 }
 
+
+/* the nav may shrink to this fraction of its size before switching to the menu button */
+const FIT_MIN = 0.8
+
+
 export default function Header() {
   const [open, setOpen] = useState(false)   // mobile menu
   const [dd, setDd] = useState(null)        // which dropdown is open (by its `to`)
@@ -44,13 +54,119 @@ export default function Header() {
   const navRef = useRef(null)
   const hdrRef = useRef(null)
 
+
   useEffect(() => { setOpen(false); setDd(null) }, [pathname])
+
+
+  /* ---------- auto-fit: keep the nav on ONE row on any screen / zoom ----------
+     1) natural size  2) tighter spacing  3) smooth scale (>= FIT_MIN)  4) menu button */
+  useLayoutEffect(() => {
+    const hdr = hdrRef.current
+    if (!hdr) return undefined
+    const nav = hdr.querySelector('.shell.nav')
+    const brand = hdr.querySelector('.brand')
+    const links = hdr.querySelector('.navlinks')
+    if (!nav || !brand || !links) return undefined
+
+
+    const mq = window.matchMedia('(max-width:1020px)')
+    let raf = 0
+    let dead = false
+    let wasCompact = false
+
+
+    /* natural widths (links measured at their max-content width) */
+    const measure = () => {
+      const cs = getComputedStyle(nav)
+      const avail = nav.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0)
+      const gap = Math.max(16, parseFloat(cs.columnGap) || 0)
+      const keep = links.style.cssText
+      links.style.setProperty('flex', 'none', 'important')
+      links.style.setProperty('width', 'max-content', 'important')
+      links.style.setProperty('max-width', 'none', 'important')
+      const linksW = links.getBoundingClientRect().width
+      links.style.cssText = keep
+      const brandW = brand.getBoundingClientRect().width
+      return { avail, gap, sum: brandW + linksW }
+    }
+
+
+    const fit = () => {
+      raf = 0
+      if (dead) return
+      hdr.classList.remove('is-tight', 'is-fit', 'is-compact')
+      hdr.style.removeProperty('--nv-k')
+      let compact = false
+
+
+      if (!mq.matches) {                                   // >= 1021px only
+        let m = measure()
+        if (m.sum + m.gap > m.avail) {                     // 2) tighter spacing
+          hdr.classList.add('is-tight')
+          m = measure()
+          if (m.sum + m.gap > m.avail) {                   // 3) smooth scale
+            const k = Math.floor(((m.avail - m.gap) / m.sum) * 1000) / 1000
+            if (k >= FIT_MIN) {
+              hdr.style.setProperty('--nv-k', String(k))
+              hdr.classList.add('is-fit')
+              const cta = links.lastElementChild
+              const right = cta ? cta.getBoundingClientRect().right : 0
+              if (nav.scrollWidth > nav.clientWidth + 1 || right > document.documentElement.clientWidth - 2) compact = true
+            } else {
+              compact = true
+            }
+          }
+        }
+        /* Final safety check:
+          Use the real rendered layout, not only the estimated scale.
+          If anything still overflows the header, always use the menu button. */
+        if (!compact && nav.scrollWidth > nav.clientWidth + 1) {
+          compact = true
+        }
+
+        if (compact) {
+          hdr.classList.remove('is-tight', 'is-fit')
+          hdr.style.removeProperty('--nv-k')
+          hdr.classList.add('is-compact')
+        }
+      }
+
+
+      if (wasCompact && !compact) setOpen(false)
+      wasCompact = compact
+    }
+
+
+    const queue = () => { if (!raf) raf = window.requestAnimationFrame(fit) }
+
+
+    fit()                                                  // before first paint
+    const timers = [250, 900].map((ms) => window.setTimeout(queue, ms))
+    window.addEventListener('resize', queue)
+    window.addEventListener('orientationchange', queue)
+    window.addEventListener('load', queue)
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(queue)
+
+
+    return () => {
+      dead = true
+      if (raf) window.cancelAnimationFrame(raf)
+      timers.forEach(window.clearTimeout)
+      window.removeEventListener('resize', queue)
+      window.removeEventListener('orientationchange', queue)
+      window.removeEventListener('load', queue)
+      hdr.classList.remove('is-tight', 'is-fit', 'is-compact')
+      hdr.style.removeProperty('--nv-k')
+    }
+  }, [])
+
 
   /* pick the header colours from the section currently under it */
   useEffect(() => {
     const hdr = hdrRef.current
     if (!hdr) return undefined
     let raf = 0
+
 
     const measure = () => {
       raf = 0
@@ -76,7 +192,9 @@ export default function Header() {
       setTone((t) => (t === next ? t : next))
     }
 
+
     const queue = () => { if (!raf) raf = window.requestAnimationFrame(measure) }
+
 
     queue()
     const timers = [120, 400, 1000].map((ms) => window.setTimeout(queue, ms)) // after the page renders
@@ -91,6 +209,7 @@ export default function Header() {
       window.removeEventListener('load', queue)
     }
   }, [pathname])
+
 
   /* close the dropdown on outside click / Esc */
   useEffect(() => {
@@ -107,7 +226,9 @@ export default function Header() {
     }
   }, [dd])
 
+
   const linkClass = ({ isActive }) => 'lnk' + (isActive ? ' active' : '')
+
 
   return (
     <header ref={hdrRef} data-tone={tone}>
@@ -125,6 +246,7 @@ export default function Header() {
           )}
         </Link>
 
+
         <button
           className="mobiletoggle"
           aria-label="Open navigation"
@@ -135,6 +257,7 @@ export default function Header() {
             <path d="M4 7h16M4 12h16M4 17h16" />
           </svg>
         </button>
+
 
         <nav className={'navlinks' + (open ? ' show' : '')} aria-label="Main" ref={navRef}>
           {NAV_LINKS.map((l) => {

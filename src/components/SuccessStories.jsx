@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 
 /* Where the "More success stories" button goes. Change to your real route. */
 const MORE_LINK = '/success-stories'
+const LOCAL_IMG = `${import.meta.env.BASE_URL}testimonials/`
+const LOCAL_VID = `${import.meta.env.BASE_URL}videos/`
+const fileOf = (u) => u.slice(u.lastIndexOf('/') + 1)
 
 /* Content copied from your two markup blocks */
 const STORIES = [
@@ -90,7 +93,14 @@ function useReveal() {
 
 /* ---------- one story card ---------- */
 function StoryCard({ s, side, delay, onOpen }) {
+  // 0 = our own copy, 1 = UniVisory URL
+  const srcs = [LOCAL_IMG + fileOf(s.photo), s.photo]
+  const [step, setStep] = useState(0)
   const [broken, setBroken] = useState(false)
+  const fail = () => {
+    if (step < srcs.length - 1) setStep(step + 1)
+    else setBroken(true)
+  }
   return (
     <div className={`sx-item sx-reveal is-${side}`} style={{ '--d': delay + 'ms' }}>
       <article className="sx-card">
@@ -100,9 +110,9 @@ function StoryCard({ s, side, delay, onOpen }) {
           ) : (
             <>
               {/* blurred copy: only visible if a photo is not exactly 16:9 */}
-              <img className="sx-bg" src={s.photo} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              <img key={'b' + step} className="sx-bg" src={srcs[step]} alt="" aria-hidden="true" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
               {/* the real photo, always shown in full */}
-              <img className="sx-main" src={s.photo} alt={s.alt} loading="lazy" decoding="async" onError={() => setBroken(true)} />
+              <img key={'m' + step} className="sx-main" src={srcs[step]} alt={s.alt} loading="lazy" decoding="async" referrerPolicy="no-referrer" onError={fail} />
             </>
           )}
           <span className="sx-shade" aria-hidden="true" />
@@ -136,7 +146,13 @@ function VideoModal({ story, closing, onClose }) {
   const dialogRef = useRef(null)
   const closeRef = useRef(null)
   const videoRef = useRef(null)
+  const srcs = [LOCAL_VID + fileOf(story.video), story.video]
+  const [step, setStep] = useState(0)
   const [failed, setFailed] = useState(false)
+  const fail = () => {
+    if (step < srcs.length - 1) setStep(step + 1)
+    else setFailed(true)
+  }
 
   useEffect(() => {
     closeRef.current?.focus({ preventScroll: true })
@@ -212,14 +228,15 @@ function VideoModal({ story, closing, onClose }) {
             </div>
           ) : (
             <video
+              key={srcs[step]}
               ref={videoRef}
-              src={story.video}
-              poster={story.photo}
+              src={srcs[step]}
+              poster={LOCAL_IMG + fileOf(story.photo)}
               controls
               autoPlay
               playsInline
               preload="metadata"
-              onError={() => setFailed(true)}
+              onError={fail}
             />
           )}
         </div>
