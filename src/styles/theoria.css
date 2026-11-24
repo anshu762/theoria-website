@@ -10946,7 +10946,7 @@ html body .pj-title h1{
   :root{
      --t2-size: clamp(1rem, 1rem + 2vw, 2rem) !important;
   }
-  .shell{
+  .hero .shell{
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
