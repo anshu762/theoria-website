@@ -10474,10 +10474,10 @@ body,h1,h2,h3,.wordmark,.num-big,.quote,.step b,.pc-title,.footer .tagline {
 }
 
 /* ---------- 1) same top/bottom padding on every section (hero, page title and CTA band excluded) ---------- */
-html body section:not(.hero):not(.pagehead):not([class*="hero"]):not([class*="cta"]){
+/* html body section:not(.hero):not(.pagehead):not([class*="hero"]):not([class*="cta"]){
   padding-top:var(--sec-pad-y) !important;
   padding-bottom:var(--sec-pad-y) !important;
-}
+} */
 /* the section right under a page title keeps a small gap (the title block already has its own bottom space) */
 html body .pagehead + section:not(.hero):not([class*="hero"]):not([class*="cta"]):not([hidden]){
   padding-top:clamp(8px,1.4vw,18px) !important;
@@ -10953,3 +10953,27 @@ html body .pj-title h1{
   font-size: 19px !important;
   }
 }
+
+/* =====================================================================
+   PROJECTS POPUP: remove the extra space around each section (pj-)
+   APPEND AT THE VERY END of theoria.css. Delete this block to revert.
+   Cause: the global "section" padding / centring rules also hit the
+   popup's <section class="pj-sec"> blocks.
+   ===================================================================== */
+.pj-modal .pj-dlg .pj-secs > section.pj-sec{
+  padding:clamp(10px,1.4vw,16px) 0 !important;   /* DIAL: space around each block */
+  min-height:0 !important;
+  height:auto !important;
+  justify-content:flex-start !important;         /* no vertical centring */
+  scroll-snap-align:none;
+}
+/* first block sits right under the picture */
+.pj-modal .pj-dlg .pj-secs > section.pj-sec:first-child{
+  padding-top:0 !important;
+}
+
+/* paragraphs and list lines inside a block: tight, even spacing */
+.pj-modal .pj-sec-main p{margin:0 0 .65em}
+.pj-modal .pj-sec-main p:last-child{margin-bottom:0}
+.pj-modal .pj-sec-main p.pj-li{margin-bottom:.5em}
+.pj-modal .pj-sec-main p.pj-li:last-child{margin-bottom:0}
