@@ -104,7 +104,7 @@ function PubModal({ index, onClose, onGo, restore }) {
       >
         <div className="pb-dh">
           <div className="pb-dh-text" key={index}>
-            <span className="pb-kick">Publication {index + 1} of {n}</span>
+            {/* <span className="pb-kick">Publication {index + 1} of {n}</span> */}
             <h2 id="pb-dlg-title">{p.title}</h2>
           </div>
           <button type="button" className="pb-x" onClick={onClose} aria-label="Close">
